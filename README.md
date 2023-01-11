@@ -6,9 +6,7 @@
 
 * Rails version: 6.1.7
 
-* Project entities: Participant, Administrator, Test
-
-* Project entities (questionable): Authentication, Social Network
+* Project entities: Category, Test, Question, Answer, User
 
 * To start the server type in terminal: rails s
 
