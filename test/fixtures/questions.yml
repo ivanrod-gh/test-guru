@@ -2,8 +2,6 @@
 
 one:
   body: MyString
-  answer: MyString
 
 two:
   body: MyString
-  answer: MyString

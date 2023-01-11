@@ -2,8 +2,6 @@
 
 one:
   name: MyString
-  permission: MyString
 
 two:
   name: MyString
-  permission: MyString
