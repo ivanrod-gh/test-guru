@@ -21,37 +21,37 @@ rand(5..15).times { User.create(name: Faker::Name.name) }
 Test.create(
   title: 'Основы HTML',
   category: Category.find_by(title: 'HTML'),
-  user: User.find_by(id: rand(1..User.count))
+  author_user: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Основы Ruby',
   category: Category.find_by(title: 'Ruby'),
-  user: User.find_by(id: rand(1..User.count))
+  author_user: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Основы Java',
   category: Category.find_by(title: 'Java'),
-  user: User.find_by(id: rand(1..User.count))
+  author_user: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Основы JavaScript',
   category: Category.find_by(title: 'JavaScript'),
-  user: User.find_by(id: rand(1..User.count))
+  author_user: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Викторина: Планеты солнечной системы',
   category: Category.find_by(title: 'Викторины'),
-  user: User.find_by(id: rand(1..User.count))
+  author_user: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Викторина: Да/нет',
   category: Category.find_by(title: 'Викторины'),
-  user: User.find_by(id: rand(1..User.count))
+  author_user: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Викторина: Животные',
   category: Category.find_by(title: 'Викторины'),
-  user: User.find_by(id: rand(1..User.count))
+  author_user: User.find_by(id: rand(1..User.count))
 )
 
 # Basic HTML: questions/answers
@@ -2783,7 +2783,7 @@ Category.all.count.times do |db_category_id|
       Test.create(
         title: "Болванка [#{Category.find(db_category_id + 1).title}] уровень #{i + 1} номер #{j + 1}",
         category: Category.find_by(id: db_category_id + 1),
-        user: User.find_by(id: rand(1..User.count)),
+        author_user: User.find_by(id: rand(1..User.count)),
         level: test_level
       )
     end
@@ -2877,8 +2877,8 @@ end
 #   puts "All users stats:"
 #   User.all.each do |user|
 #     puts "#{'=' * 10}\nid: #{user.id}\nname: #{user.name}"
-#     user.tests.length.zero? ? (puts '-no writed tests-') : (puts "writed tests: #{user.tests.inspect}")
-#     puts "started tests: #{user.users_tests.inspect}"
+#     user.author_tests.length.zero? ? (puts '-no written tests-') : (puts "written tests: #{user.author_tests.inspect}")
+#     user.passed_tests.length.zero? ? (puts '-no passed tests-') : (puts "passed tests: #{user.passed_tests.inspect}")
 #     puts "created_at: #{user.created_at}\nupdated_at: #{user.updated_at}"
 #   end
 # end
