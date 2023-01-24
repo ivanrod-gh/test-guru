@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2023_01_20_184451) do
   create_table "users_tests", force: :cascade do |t|
     t.integer "user_id"
     t.integer "test_id"
-    t.index ["user_id", "test_id"], name: "index_users_tests_on_user_id_and_test_id", unique: true
+    t.index ["user_id", "test_id"], name: "index_users_tests_on_user_id_and_test_id"
   end
 
   add_foreign_key "answers", "questions"

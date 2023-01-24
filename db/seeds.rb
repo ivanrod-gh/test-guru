@@ -21,37 +21,37 @@ rand(5..15).times { User.create(name: Faker::Name.name) }
 Test.create(
   title: 'Основы HTML',
   category: Category.find_by(title: 'HTML'),
-  author_user: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Основы Ruby',
   category: Category.find_by(title: 'Ruby'),
-  author_user: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Основы Java',
   category: Category.find_by(title: 'Java'),
-  author_user: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Основы JavaScript',
   category: Category.find_by(title: 'JavaScript'),
-  author_user: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Викторина: Планеты солнечной системы',
   category: Category.find_by(title: 'Викторины'),
-  author_user: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Викторина: Да/нет',
   category: Category.find_by(title: 'Викторины'),
-  author_user: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count))
 )
 Test.create(
   title: 'Викторина: Животные',
   category: Category.find_by(title: 'Викторины'),
-  author_user: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count))
 )
 
 # Basic HTML: questions/answers
@@ -2783,7 +2783,7 @@ Category.all.count.times do |db_category_id|
       Test.create(
         title: "Болванка [#{Category.find(db_category_id + 1).title}] уровень #{i + 1} номер #{j + 1}",
         category: Category.find_by(id: db_category_id + 1),
-        author_user: User.find_by(id: rand(1..User.count)),
+        author: User.find_by(id: rand(1..User.count)),
         level: test_level
       )
     end
