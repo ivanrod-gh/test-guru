@@ -6,7 +6,7 @@
 
 * Rails version: 6.1.7
 
-* Project entities: Category, Test, Question, Answer, User
+* Project entities: Category, Test, Question, Answer, User, UsersTest
 
 * To start the server type in terminal: rails s
 
