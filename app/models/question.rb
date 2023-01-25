@@ -10,6 +10,6 @@ class Question < ApplicationRecord
   private
 
   def validate_answer_count
-    errors.add(:base) unless (1..4).include?(answers.length)
+    errors.add(:base) if answers.length > 4
   end
 end
