@@ -16,7 +16,7 @@ Category.create(title: 'Java')
 Category.create(title: 'JavaScript')
 Category.create(title: 'Викторины')
 
-rand(5..15).times { User.create(name: Faker::Name.name) }
+rand(5..15).times { User.create(name: Faker::Name.name, email: 'some@mail.net') }
 
 Test.create(
   title: 'Основы HTML',
@@ -54,49 +54,56 @@ Test.create(
   author: User.find_by(id: rand(1..User.count))
 )
 
+# q10 = Question.new(body: 'b1', test_id:1)
+# q10.answers.new(body: 'b1')
+# q10.save!
+
 # Basic HTML: questions/answers
-html_basic_test = Test.find_by(title: 'Основы HTML')
-html_basic_test.questions.create(
+current_test = Test.find_by(title: 'Основы HTML')
+question = current_test.questions.new(
   body: 'О чем говорит тэг <p align="right"> … </p>?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Текст, заключенный в тэг, будет расположен по центру страницы'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Текст, заключенный в тэг, будет расположен по левому краю страницы'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Текст, заключенный в тэг, будет расположен по правому краю страницы',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какие единицы измерения могут использоваться для атрибута ширины?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Пиксели и %',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Миллиметры и сантиметры'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Пиксели и миллиметры'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Использование тэга … позволяет добавлять одну строку текста без начала
   нового абзаца:'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<line/>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<br/>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<td/>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Объясните смысл кода, представленного ниже:
 <table>
   <tr>
@@ -106,283 +113,303 @@ html_basic_test.questions.create(
   </tr>
 </table>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Будет создана таблица, состоящая из 1 ряда и 3 колонок',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Будет создана таблица, состоящая из 3 рядов и 1 колонки'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Будет создана таблица, состоящая из 2 рядов и 3 колонок'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Выберите код HTML, который бы создавал кнопку отправки заполненной формы.
   Имя кнопки – ОК'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<input type="ОК" value="Submit"/>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<p> input type="submit" value="OK" </p>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<input type="submit" value="ОК"/>',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой тэг при создании страницы добавляет имя страницы, которое будет
   отображаться в строке заголовка в браузере пользователя?'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<title> … </title>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<header> … </header>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<body> … </body>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Заполните поля, чтобы отобразить картинку “flower.jpg” с высотой 300
   пикселей и шириной 750 пикселей:'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<img ref=”flower” format=.jpg
 high=300 px
 width=750 px />'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<src img=”flower.jpg”
 height=”300%”
 width=”750%”/>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<img src=”flower.jpg”
 height=”300 px” alt=””
 width=”750 px”/>',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что содержит в себе атрибут href?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'URL страницы, на которую произойдет перенаправление',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Имя страницы, на которую произойдет перенаправление'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Указание на то, где будет открываться новая страница: в том же или новом
   окне'.gsub("\n ", '')
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какие из перечисленных тэгов относятся к созданию таблицы?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<header> <body> <footer>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<table> <tr> <td>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<ul> <li> <tr> <td>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Укажите тэг, который соответствует элементу списка:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<li>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<ul>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<ol>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'О чем говорит следующая запись: <form action="url" method="POST">?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Создается форма, при заполнении которой вводимые данные будут отображаться'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Создается форма, при заполнении которой вводимые данные не будут отображаться',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Создается форма, которая будет служить для внесения информации,
   представленной в виде ссылки (URL)'.gsub("\n ", '')
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какое значение следует задать атрибуту type, чтобы оно превращало входной
   тэг в форму отправки?'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Submit',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Checkbox'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Radiobutton'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Для задания размеров тэгу <frameset> требуются следующие атрибуты:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Высота и ширина'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Площадь и толщина границ'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Строки и столбцы',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Выберите верное утверждение:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'В HTML цвета задаются комбинацией значений шестнадцатеричной системы
   исчисления: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, A, B, C, D, E, F'.gsub("\n ", ''),
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'В HTML цвета задаются комбинацией значений двоичной системы исчисления: 0
   или 1'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'В HTML цвета задаются комбинацией значений восьмеричной системы исчисления:
   0, 1, 2, 3, 4, 5, 6, 7'.gsub("\n ", '')
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какие тэги делают шрифт текста жирным?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<ins> и <del>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<li> и <ul>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<b> и <strong>',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какие тэги используются для определения заголовков?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'h1-h6',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Header'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Heading'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Неотображаемые комментарии в HTML задаются следующим образом:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<! - Your comment -!>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<! - - Your comment - -!>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<!p> Your comment </!p>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что означает следующий код:
 <a href="http://www.sololern.com" target="_blank">
   Learn Playing
 </a>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Переход по ссылке произойдет на новой странице',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Переход по ссылке произойдет на текущей странице'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'На текущей странице появится текст «Learn Playing»'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Перечислите основные модули контента, существующие в HTML 5.'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Image, Media, Metadata, Link, Heading, Color, Input Value'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Metadata, Embedded, Interactive, Heading, Phrasing, Flow, Sectioning',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Flow, Static, Link, Header, Body, Footer, Processing, Chase'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Укажите, какой элемент HTML 5 отвечает за воспроизведение видео:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<video>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<media>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<movie>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Элемент <canvas> используется для:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Прикрепления таблиц Excel'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Управления данными в базе данных'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Прорисовки графики',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой тэг содержит навигацию?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<nav>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<geo>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<metanav>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'SessionStorage – это клиентское решение в HTML 5, которое позволяет:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Извлекать и использовать данные предыдущих сессий при условии того, что не
   были очищены cash и cookie'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Создавать базу данных решений пользователей в памяти браузера'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Извлекать и использовать данные только текущей сессии',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что создастся при исполнении следующего кода:
 <svg width="75" height="75">
 <line x1="50" y1="0" x2="50" y2="100"
@@ -391,30 +418,32 @@ style="stroke:black" />
 style="stroke:black" />
 </svg> ?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Знак «плюс»',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Знак «минус»'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Знак «равно»'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Функция HTML 5 navigation.geolocation.getCurrentPosition() возвращает:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Встроенную в основной функционал сайта карту мира'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Данные о местонахождении пользователя',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Данные о местонахождении сервера'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Заполните пропуски таким образом, чтобы получился валидный HTML документ.
   «First paragraph» - комментарий.
 <___>
@@ -424,378 +453,405 @@ html_basic_test.questions.create(
 <___>
 </html>'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'html/; - - ?; p; /body'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'html v.5; - - !; /p; /body'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'html; - - !; p; /body',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'HTML – это'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Язык разметки',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Библиотека гипертекста'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Скриптовый язык'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Обязательно ли использование тэгов <html> … </html>?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да, без них браузер не распознает HTML-документ',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да, если HTML-документ создается в блокноте или другом текстовом редакторе.
   В специальном компиляторе HTML эти тэги можно не использовать'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Не обязательно'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой атрибут позволяет объединить ячейки таблицы по вертикали?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Union'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Colspan'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Rowspan',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Допустимое число заголовков первого уровня в HTML-документе составляет:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '3'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '7'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Текст, выделенный курсивом, представлен в следующей записи:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<del> курсив </del>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<i> курсив </i>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<hr> курсив </hr>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'В HTML не существует … тэгов:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Одиночных'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Парных'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Тройных',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'При создании сайтов используют кодировку:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'UTF8',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ASCII'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'UTF-32'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'HTML-документ может иметь расширения:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '.html'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '.html или .htm',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '.html или .txt'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Укажите устаревшие тэги для HTML 5:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<applet>, <blink>, <u>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<ul>, <audio>, <pre>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<code>, <s>, <embed>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Тэг, подключающий к существующему HTML-документу скрипты, которые
   выполняются на клиентской стороне – это:'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<object>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<script>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<client>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой символ обозначает конец тэга?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '^'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: ';'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '/',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Список, в котором элементы перечисления отмечаются буллетами, позволяет
   создать тэг:'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<ul>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<ol>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<bl>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Укажите корректную запись для создания чек-бокса:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<input checkbox>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<type input=”checkbox”>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<input type=”checkbox”>',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Укажите корректную запись для создания выпадающего списка:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<input type=”dropdown”>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<input dropdown list>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<dropdown list>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой атрибут HTML указывает альтернативный текст для изображения, если
   данное изображение не отобразится?'.gsub("\n ", '')
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'imgalt'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'imgvar'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'alt',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой HTML-тэг используется для определения футера документа или раздела?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<footer>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<bottom>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<section>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'HTML-тэг, позволяющий воспроизводить аудиозаписи – это:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<music>'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<audio>',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<sound>'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'В HTML 5, onblur и onfocus – это:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Атрибуты событий',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Атрибуты стиля'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Атрибуты подключения базы данных'
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Графика, определенная SVG, отображается в формате:'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'CSS'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'JSOM'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'XML',
   correct: true
 )
-html_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что определяет тэг <aside>?'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Дополнительное содержимое, т.е. то, что не включает основной документ',
   correct: true
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ссылку на подключенный документ'
 )
-html_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Цветовое решение документа'
 )
 
 # Basic Ruby: questions/answers
-ruby_basic_test = Test.find_by(title: 'Основы Ruby')
-ruby_basic_test.questions.create(
+current_test = Test.find_by(title: 'Основы Ruby')
+question = current_test.questions.new(
   body: 'Где записана сокращенная форма кода ниже:
 x = x / 3'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'x /= 3 ',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет сокращенной формы'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'x = / 3'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Чем отличается puts от print:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ничем, оба делают одно и тоже'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'print без пропуска строки, а puts с пропуском ',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'puts позволяет выводить переменные, а print только текст'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой метод позволяет перевести строку в нижний регистр:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'lowercase()'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'dcase()'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'downcase()',
   correct: true
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что выведет этот код:
 some = 25
 print(“Переменная: ” + some)'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Выведет: “Переменная: some”'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Выведет: “Переменная: 25”'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Будет выведена ошибка',
   correct: true
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Где указана пустая переменная (без какого-либо значения):'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'some = 0'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'some = nil',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'some = “”'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'В каком варианте вы получите число без пропуска строки от пользователя:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'num = gets'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'num = gets.chomp()'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'um = gets.chomp().to_i ',
   correct: true
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Как называется самый популярный фреймворк Ruby для веба:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ruby On Rails',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ruby Web'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ruby Framework'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что покажет этот код:
 num = -6
 num *= 2
@@ -803,375 +859,398 @@ num = num. abs()
 res = Math. sqrt(num * 12)
 print(“Результат: ” + res. round(). to_s)'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Выведет: Ошибку'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Выведет: “Результат: -12”'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Выведет: “Результат: 12”',
   correct: true
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Сработает ли данный код:
 print(“Введите имя: “)
 name = gets
 puts(“Имя: ” + name)'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Необходимо дописать gets.chomp()'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Код сработает в любом случае',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Код сработает только если введут строку, а не число'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Динамический, рефлективный, интерпретируемый высокоуровневый язык
   программирования:'.gsub("\n ", '')
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ruby',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Dylan'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Scala'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Язык обладает независимой от операционной системы реализацией:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'одноточности'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'многопоточности',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'релевантности'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'По особенностям синтаксиса он близок к языку:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Perl',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Dylan'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Scala'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'По объектно-ориентированному подходу близок к:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Smalltalk',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Scala'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Dylan'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Некоторые черты языка взяты из:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Perl'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Scala'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Lisp',
   correct: true
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Создатель Ruby:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Билл Гейтц'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Марк Цукербург'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Юкихиро Мацумото (Matz)',
   correct: true
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'В Японии Ruby стал популярным с момента появления первой общедоступной
   версии в:'.gsub("\n ", '')
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2005 году'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1995 году ',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1999 году'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Ruby – полностью такой язык:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Специфический'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Объектно-ориентированный',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ориентировочно-последовательный'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Ruby использует вызов по соиспользованию (call-by-sharing), хотя в
   сообществе Ruby часто говорят, что он использует вызов по:'.gsub("\n ", '')
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Вычислению'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Памяти'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ссылке',
   correct: true
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Ruby не поддерживает множественное наследование, но вместо него есть мощный
   механизм:'.gsub("\n ", '')
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Фактов'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Примесей',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Тем'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Ruby является таким языком:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'максипарадигменным'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'парадигменным'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'мультипарадигменным',
   correct: true
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Ruby поддерживает такой стиль:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'динамический'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'процедурный',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'процессуальный'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Ruby позволяет обрабатывать исключения в стиле:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Java',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Perl'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Eiffel'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Ruby позволяет переопределять операторы, которые на самом деле являются:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'методами',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'способами'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'данными'
 )
-ruby_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Ruby может динамически загружать расширения, если это позволяет:'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'память'
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'операционная система',
   correct: true
 )
-ruby_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'интернет'
 )
 
 # Basic Java: questions/answers
-java_basic_test = Test.find_by(title: 'Основы Java')
-java_basic_test.questions.create(
+current_test = Test.find_by(title: 'Основы Java')
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int a = 5;
 System.out.println(a + 2);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '52'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '7',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '5+2'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'unhandled exception '
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int a = 5;
 System.out.println(a + "2");
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '52',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '7'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '5+2'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'unhandled exception '
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int a = 5;
 System.out.println(a / 2);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2.5'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'unhandled exception'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int a = 5;
 System.out.println(a / 2.0);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2.5',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'unhandled exception'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int a = 5;
 System.out.println(a % 2);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2.5'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'unhandled exception'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 double a = 5;
 System.out.println(a / 2);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2.5',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'unhandled exception'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 double a = 5;
 System.out.println((int) a / 2);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2.5'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'unhandled exception'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int[] array = new int[]{11, 5, -4, 8, 4, 7};
@@ -1180,20 +1259,21 @@ System.out.print(array[i]+" ");
 }
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '11 -4 4',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '0 2 4'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ArrayIndexOutOfBoundsException'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '11'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int[] array = new int[]{11, 5, -4, 8, 4, 7};
@@ -1202,20 +1282,21 @@ System.out.print(i+" ");
 }
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '11 -4 4'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '0 2 4',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ArrayIndexOutOfBoundsException'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '11'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int[] array = new int[]{11, 5, -4, 8, 4, 7};
@@ -1224,20 +1305,21 @@ System.out.print(array[i] + " ");
 }
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '11 -4 4'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '0 2 4'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ArrayIndexOutOfBoundsException',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '11'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что выполняет данный код?
 public static void main(String[] args) {
 int z = 0;
@@ -1249,20 +1331,21 @@ number /= 10;
 System.out.println(z);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'выводит на консоль сумму цифр числа',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'выводит на консоль количество цифр числа'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'выводит на консоль сумму остатков от деления на 10 всех цифр числа'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'выводит на консоль число в обратном порядке'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int x = -2, y = 5, z;
@@ -1270,20 +1353,21 @@ z = x > y ? x : y;
 System.out.println(z);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '-2'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '5',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '3'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '7'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Дан код:
 public static void main(String[] args) {
 int x = -2, y = 5, max;
@@ -1292,252 +1376,265 @@ System.out.println(max);
 }
 Какой из предложенных ниже фрагментов кода выведет на консоль максимальное число?'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'max = x < y ? x : y;'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'max = x > y ? x : y;',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'if (x > y) max = x; else max = y;',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'if (x < y) max = x; else max = y;'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: '--х;'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'постфиксный инкремент'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'префиксный инкремент'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'постфиксный декремент'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'префиксный декремент',
   correct: true
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что из нижеперечисленного является примитивным типом данных?'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'int[]'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'int',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'char',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Boolean'
 )
-java_basic_test.questions.last.answers.create(
-  body: 'Integer'
-)
-java_basic_test.questions.last.answers.create(
-  body: 'String'
-)
-java_basic_test.questions.create(
+# question.answers.new(
+#   body: 'Integer'
+# )
+# question.answers.new(
+#   body: 'String'
+# )
+question.save!
+question = current_test.questions.new(
   body: 'Как указать индекс последнего элемента массива?'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'array.length;'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'array.size;'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'array.length-1;',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'array.size-1;'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int[] array = new int[]{15, 5, -8, -6, 0, 7};
 System.out.println(array[array.length - 1]);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '0'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '7',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '6'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '5'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int[] array = new int[3];
 System.out.println(array[2]);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '0',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1'
 )
-java_basic_test.questions.last.answers.create(
-  body: '2'
-)
-java_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: '2'
+# )
+question.answers.new(
   body: 'ArrayIndexOutOfBoundsException'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'null'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 String[] array = new String[3];
 System.out.println(array[2]);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '0'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '1'
 )
-java_basic_test.questions.last.answers.create(
-  body: '2'
-)
-java_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: '2'
+# )
+question.answers.new(
   body: 'ArrayIndexOutOfBoundsException'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'null',
   correct: true
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Выберите правильный вариант записи операции сравнения?'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '0<=x;',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'x>=0;',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'x=>0;'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '0=<x;'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 String s = "Hello";
 System.out.println(s + 5 + 4);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello54',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello9'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello 5 4'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello 54'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 String s = "Hello";
 System.out.println(s + (5 + 4));
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello54'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello9',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello 5 4'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello 54'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 System.out.println(1.0 / 0);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Infinity',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'NAN'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ArithmeticException: / by zero'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'не позволит запустить код на выполнение'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой модификатор доступа необходимо использовать, чтобы переменная была
   видна только в текущем классе?'.gsub("\n ", '')
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'public'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'private',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'protected'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'default (package visible) '
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой модификатор доступа необходимо использовать, чтобы переменная была
   видна везде?'.gsub("\n ", '')
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'public',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'private'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'protected'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'default (package visible) '
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Дан следующий код:
 public static void main(String[] args) {
 int z = 15;
@@ -1550,46 +1647,48 @@ z--;
 Необходимо вывести на консоль все числа от 0 до 15. Выберите правильный вариант
 решения.'.gsub("\n ", '')
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'while ((z >= 0) && (z <= 15))',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'while ((z >= 0) & (z <= 15))'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'while ((z >= 0) || (z <= 15))'
 )
-java_basic_test.questions.last.answers.create(
-  body: 'while ((z >= 0) != (z <= 15))'
-)
-java_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'while ((z >= 0) != (z <= 15))'
+# )
+# question.answers.new(
+#   body: 'while ((z >= 0) == (z <= 15))'
+# )
+question.answers.new(
   body: 'while ((z >= 0) == (z <= 15))'
 )
-java_basic_test.questions.last.answers.create(
-  body: 'while ((z >= 0) == (z <= 15))'
-)
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int x = 125_121_148;
 System.out.println(++x);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ошибка на этапе компиляции'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ошибка во время выполнения'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '125121149',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '125121148'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 String test = "Hello";
@@ -1597,20 +1696,21 @@ String test2 = "Hello";
 System.out.println(test==test2);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'true',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'false'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'null'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 String test = new String("Hello");
@@ -1618,38 +1718,40 @@ String test2 = new String("Hello");
 System.out.println(test==test2);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'true'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'false',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Hello'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'null'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного фрагмента кода?
 for(;;) {
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'бесконечный цикл',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ошибка на этапе компиляции'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ошибка на этапе выполнения'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'этот код никогда не выполнится'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 int sum = 0;
@@ -1657,20 +1759,21 @@ for (int i = 1; i <= 3; sum += i++) ;
 System.out.println(sum);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '6',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '3'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'compile error'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '5'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 byte x = 127;
@@ -1678,20 +1781,21 @@ x += 2;
 System.out.println(x);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '-127',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '129'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'runtime error'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'compile error'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
 byte x = -128;
@@ -1699,272 +1803,285 @@ x -= 2;
 System.out.println(x);
 }'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '126',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '-130'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'compile error'
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какие из следующих объявлений переменных верны?'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'int 1x;'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'double t; int x;'
 )
-java_basic_test.questions.last.answers.create(
-  body: 'int f,f;'
-)
-java_basic_test.questions.last.answers.create(
-  body: 'int x,X; double a; a1;'
-)
-java_basic_test.questions.last.answers.create(
-  body: 'String book1; book2;'
-)
-java_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'int f,f;'
+# )
+# question.answers.new(
+#   body: 'int x,X; double a; a1;'
+# )
+# question.answers.new(
+#   body: 'String book1; book2;'
+# )
+question.answers.new(
   body: 'char symbol1,symbol2,symbol_3;',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
-  body: 'int x,a,b; double y,z,x;'
-)
-java_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'int x,a,b; double y,z,x;'
+# )
+question.answers.new(
   body: 'int x; double X;',
   correct: true
 )
-java_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Выберите вариант объявления массива в стиле Java:'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'String [] birthdays = new String[10];',
   correct: true
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'String birthdays [] = new String[10];'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'String birthdays [] = String[10];'
 )
-java_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'String birthdays = String[];'
 )
 
 # Basic Java Script: questions/answers
-java_script_basic_test = Test.find_by(title: 'Основы JavaScript')
-java_script_basic_test.questions.create(
+current_test = Test.find_by(title: 'Основы JavaScript')
+question = current_test.questions.new(
   body: 'Какую функцию нужно использовать, чтобы пользователь мог ввести свой текст
   (ответ) в окошке?'.gsub("\n ", '')
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'print'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'prompt',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'confirm'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'setTimeout'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какую функцию нужно использовать, чтобы вывести на экран текст в окошке?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'setInterval'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'history'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'alert',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'open'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что в строке ниже?
 var a;'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'функция'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'переменная',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'команда'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'оператор'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'В какой строке ошибка?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a;'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a = 3;'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var = 3;',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'a = 3;'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Для чего нужна строка?
 var username = prompt("Ваше имя");'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Создать переменную и записать в неё имя, которое вводит пользователь',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Вывести имя пользователя на экран'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Создать пустую переменную'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Спросить у пользователя его имя'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'С помощью какого оператора можно найти остаток от деления?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '**'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '%',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '--'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '?'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой оператор прибавляет к числу единицу?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '--'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '++',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '&&'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '||'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Как преобразовать введённую строку в число?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a = Number(prompt("Введите число"))',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a = (Number)(prompt("Введите число"))'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a = (Number)prompt("Введите число")'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a = prompt("Введите число")'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой оператор определит, равны ли две переменные?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '>'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: '='
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: '='
+# )
+question.answers.new(
   body: '<='
 )
-java_script_basic_test.questions.last.answers.create(
-  body: '>='
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: '>='
+# )
+question.answers.new(
   body: '==',
   correct: true
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой оператор поможет определить, что две переменные НЕ равны друг другу?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: '>'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: '>'
+# )
+question.answers.new(
   body: '!=',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '<='
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '>='
 )
-java_script_basic_test.questions.last.answers.create(
-  body: '=='
-)
-java_script_basic_test.questions.create(
+# question.answers.new(
+#   body: '=='
+# )
+question.save!
+question = current_test.questions.new(
   body: 'С какого слова начинается условие?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'else'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'loop'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'loop'
+# )
+question.answers.new(
   body: 'if',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'then'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'begin'
-)
-java_script_basic_test.questions.last.answers.create(
-  body: 'function'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'begin'
+# )
+# question.answers.new(
+#   body: 'function'
+# )
+question.answers.new(
   body: 'for'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Пользователь вводит два числа, нужно определить какое из них больше. В каком
   варианте задача решена верно?'.gsub("\n ", '')
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a = Number(prompt("Число 1: "));
 var b= Number(prompt("Число 2: "));
 if (a>b)
@@ -1972,197 +2089,206 @@ alert ("Наибольшее: "+a);
 else alert ("Наибольшее: "+b);',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a = prompt("Число 1: ");
 var b= prompt("Число 2: ");
 if (a>b)
 alert ("Наибольшее: "+a);
 else alert ("Наибольшее: "+b);'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'Number(prompt("Число 1: "));
 Number(prompt("Число 2: "));
 if (a>b)
 alert ("Наибольшее: "+a);
 else alert ("Наибольшее: "+b);'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var a = Number(prompt("Число 1: "));
 var b= Number(prompt("Число 2: "));
 if (a>b)
 alert ("Наибольшее: "+a);'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'В каких вариантах при создании условия допущена ошибка?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'if (a > b)
 alert(“Наибольшее ” + a);'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'if (a < b)
-alert(“Наименьшее ” + a);
-else alert(“Наименьшее ” + b);'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'if (a < b)
+# alert(“Наименьшее ” + a);
+# else alert(“Наименьшее ” + b);'
+# )
+question.answers.new(
   body: 'if (a==b)
 {
 alert(“Числа равны”);
 с = a + b;
 }'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '(a > b)
 alert(“Наибольшее ” + a);',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'if a > b
 alert(“Наибольшее ” + a);',
   correct: true
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'С какого слова начинается цикл?'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'else'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'else'
+# )
+question.answers.new(
   body: 'loop'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'if'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'then'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'begin'
-)
-java_script_basic_test.questions.last.answers.create(
-  body: 'function'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'begin'
+# )
+# question.answers.new(
+#   body: 'function'
+# )
+question.answers.new(
   body: 'for',
   correct: true
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'В каком варианте цикл создан верно?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'for (var i = 0; i < 10; i++) {
 alert(“Цифра ” + i);
 }',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'for (i = 0; i < 10; i++) {
 alert(“Цифра ” + i);
 }'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'for (var i == 0; i < 10; i++) {
 alert(“Цифра ” + i);
 }'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'for var i = 0; i < 10; i++ {
 alert(“Цифра ” + i);
 }'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какие бывают циклы в JavaScript? Отметьте все правильные варианты.'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'for',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'while',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'do...while',
-  correct: true
-)
-java_script_basic_test.questions.last.answers.create(
-  body: 'let'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'do...while',
+#   correct: true
+# )
+# question.answers.new(
+#   body: 'let'
+# )
+question.answers.new(
   body: 'if'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'var'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что такое массив?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'спископодобный элемент',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'переменная'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'свойство'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что выполняется во второй строке кода?
 var animals = [‘кошка’, ’собака’, ‘хомяк’];
 animals.push(‘попугай’);'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'удаление элемента в конце массива'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'добавление элемента в конец массива',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'добавление элемента в начало массива'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что выполняется во второй строке кода?
 var animals = [‘кошка’, ’собака’, ‘хомяк’];
 animals.pop();'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'удаление элемента в конце массива',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'добавление элемента в конец массива'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'удаление элемента в начале массива'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'С какого слова начинается функция?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'else'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'loop'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'loop'
+# )
+question.answers.new(
   body: 'if'
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'then'
-)
-java_script_basic_test.questions.last.answers.create(
+# question.answers.new(
+#   body: 'then'
+# )
+question.answers.new(
   body: 'begin'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'function',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
-  body: 'for'
-)
-java_script_basic_test.questions.create(
+# question.answers.new(
+#   body: 'for'
+# )
+question.save!
+question = current_test.questions.new(
   body: 'В какой строке происходит вызов функции perimeter?
 Введите порядковый номер этой строки.
 function perimeter (side) {
@@ -2173,549 +2299,579 @@ side = prompt(‘Введите сторону квадрата: ’);
 p = perimeter(side);
 alert(‘Периметр квадрата: ’ + p);'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '2'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '3'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '6',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: '9'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'В каком варианте функция создана без ошибок?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'function square (side) {
 x = side * side;
 return x;
 }',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'function (side) {
 x = side * side;
 return x;
 }'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'function square (side)
 x = side * side;
 return x;'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'function square {
 x = side * side;
 return x;
 }'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Для чего нужна функция getElementById()?'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ввод текста'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'поиск элемента в HTML по его ID',
   correct: true
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'добавление элемента в массив'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'поиск текста'
 )
-java_script_basic_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Что делает строка ниже?
 document.getElementById(“p1”).innerHTML = “Привет!”;'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ищет элемент в HTML'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ищет элемент в HTML и удаляет в нём текст'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'удаляет элемент в HTML'
 )
-java_script_basic_test.questions.last.answers.create(
+question.answers.new(
   body: 'ищет элемент в HTML и меняет в нём текст',
   correct: true
 )
 
 # Quiz: Planets: questions/answers
-quiz_planets_test = Test.find_by(title: 'Викторина: Планеты солнечной системы')
-quiz_planets_test.questions.create(
+current_test = Test.find_by(title: 'Викторина: Планеты солнечной системы')
+question = current_test.questions.new(
   body: 'Сколько спутников у Марса?',
   answer_explanation: 'У Марса два спутника: Фобос и Деймос.'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: '13'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: '2',
   correct: true
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: '50'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: '1'
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Самый большой вулкан Солнечной системы называется «Гора Олимп». Где он
   находится?'.gsub("\n ", ''),
   answer_explanation: 'Гора Олимп, крупнейший вулкан Солнечной системы находится на
   Марсе. Высота вулкана — 26 км от основания, диаметр — около 540 км.'.gsub("\n ", '')
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Юпитер'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Земля'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Венера'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Марс',
   correct: true
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какая планета ближе всех расположена к Солнцу?',
   answer_explanation: 'Меркурий — ближайшая к Солнцу планета.'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Земля'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Венера'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Меркурий',
   correct: true
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нептун'
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Большое красное пятно на Юпитере, что это?',
   answer_explanation: 'Большое красное пятно — это сильная буря в атмосфере Юпитера.'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'вулкан'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'озеро'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'буря',
   correct: true
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'кратер'
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Из чего в основном состоит Солнце?',
   answer_explanation: 'Солнце в основном состоит из двух газов: водорода и гелия.'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'жидкая лава'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'расплавленный метал'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'газ',
   correct: true
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'камень'
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Из чего в основном состоят кометы?',
   answer_explanation: 'Кометы в основном состоят из льда и пыли.'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'ядовитая жидкость'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'лед и пыль',
   correct: true
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'ржавый металл'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'расплавленный камень'
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'К какой планете принадлежат спутники Оберон и Титания?',
   answer_explanation: 'Оберон и Титания — два из 27 спутников Урана.'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Юпитер'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Уран',
   correct: true
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Венера'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Земля'
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какой из вариантов лучше всего описывает атмосферу, окружающую Венеру?',
   answer_explanation: 'Венера окружена кислотными облаками, а ее средняя температура
   на поверхности может достигать 735 К (462 °C). Поэтому самое подходящее описание
   атмосферы Венеры — горячая и ядовитая.'.gsub("\n ", '')
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'яркая и солнечная'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'холодная и снежная'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'холодная и влажная'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'горячая и ядовитая',
   correct: true
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Где находится пояс астероидов?',
   answer_explanation: 'Пояс астероидов находится в области между планетами Марс и
   Юпитер.'.gsub("\n ", '')
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'между Юпитером и Сатурном'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Землей и Венерой'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Марсом и Юпитером',
   correct: true
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Землей и Марсом'
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какая из этих планет самая маленькая?',
   answer_explanation: 'Меркурий, его ширина составляет 4879 км.'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Юпитер'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Уран'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Земля'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Меркурий',
   correct: true
 )
-quiz_planets_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какие две планеты вращаются в обратном направлении от остальных?',
   answer_explanation: 'Уран и Венера'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Уран и Венера',
   correct: true
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Венера и Плутон'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Меркурий и Юпитер'
 )
-quiz_planets_test.questions.last.answers.create(
+question.answers.new(
   body: 'Земля и Нептун'
 )
 
 # Quiz: Yes/No: questions/answers
-quiz_yes_no_test = Test.find_by(title: 'Викторина: Да/нет')
-quiz_yes_no_test.questions.create(
+current_test = Test.find_by(title: 'Викторина: Да/нет')
+question = current_test.questions.new(
   body: 'Быки реагируют на красный цвет?',
   answer_explanation: 'Быки практически не различают цветов. В корриде они реагируют
   не на красный, а на раздражающее размахивание плащом.'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Страусы от опасности прячут голову в песок?',
   answer_explanation: 'Страусы, когда чувствуют опасность, убегают. Миф о том, что
   они закапываются, возник, возможно, из-за того, что, обессилев от долгой погони,
   они просто роняют голову со своей длинной шеей.'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Бананы растут на пальмах?',
   answer_explanation: 'Банановое растение — это гигантская трава. А сами бананы —
   ягоды.'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Эйнштейн был двоечником?',
   answer_explanation: 'Эйнштейн учился не отлично, но хорошо. Единственная низкая
   оценка в его аттестате — тройка по французскому.'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Летучие мыши слепые?',
   answer_explanation: 'У летучих мышей вполне нормальное зрение. Они совмещают его
   возможности с эхолокацией.'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Молния не может ударить дважды в одно и то же место?',
   answer_explanation: 'Молния способна ударить в одно место не два и даже не три раза.
   В некоторые здания она бьет до ста раз в год.'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Площадь суши России больше, чем у Плутона?',
   answer_explanation: 'Площадь суши России — 17 млн км2. Это больше, чем у Плутона
   (16,6 млн  км2).'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да',
   correct: true
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет'
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Верблюды накапливают в горбах воду?',
   answer_explanation: 'Верблюды накапливают в горбах не воду, а жир.'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Если взять в руку лягушку — появится бородавка?',
   answer_explanation: 'Бородавки могут появиться на руках от вируса папилломы человека.
   Но не лягушки.'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Нервные клетки не восстанавливаются?',
   answer_explanation: 'В мозге постоянно происходит процесс нейрогенеза — образования
   новых нервных клеток из клеток-предшественниц. С возрастом процесс замедляется.
   Но все же идет!'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
-quiz_yes_no_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Великая Китайская стена — единственный рукотворный объект на Земле, видимый
   из космоса?'.gsub("\n ", ''),
   answer_explanation: 'С низкой орбиты можно увидеть отнюдь не только Великую
   Китайскую стену. Египетские пирамиды, например, видно ничуть не хуже.'.gsub("\n ", '')
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Да'
 )
-quiz_yes_no_test.questions.last.answers.create(
+question.answers.new(
   body: 'Нет',
   correct: true
 )
 
 # Quiz: Animals: questions/answers
-quiz_animals_test = Test.find_by(title: 'Викторина: Животные')
-quiz_animals_test.questions.create(
+current_test = Test.find_by(title: 'Викторина: Животные')
+question = current_test.questions.new(
   body: 'Какая кошка самая большая на планете?',
   answer_explanation: 'Крупнейший подвид животного обитает в Сибири и достигает веса
   свыше 300 кг. При этом другие кошки тоже заслуживают особого внимания: рычание
   льва заставляет содрогаться всю саванну в окрестностях 5 километров, а гепард
   находится в Книге рекордов Гиннесса как самое быстрое млекопитающее.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Лев'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Тигр',
   correct: true
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Гепард'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Барс'
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какое сухопутное животное может открыть рот максимально широко?',
   answer_explanation: 'У бегемота огромный рот, который открывается на 150 градусов
   и 1 м в высоту. Внутри челюстей расположены массивные зубы длиной около 45 см.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Аллигатор'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Крокодил'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Бабуин'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Бегемот',
   correct: true
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какое животное самое крупное на Земле?',
   answer_explanation: 'Африканский слон относится к крупнейшим наземным обитателям,
   но самым крупным животным на планете считается синий кит. Его вес может достигать
   200 тонн, что сопоставимо с массой 33 слонов.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Африканский слон'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Синий кит',
   correct: true
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Кашалот'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Гигантский кальмар'
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Какое млекопитающее умеет летать?',
   answer_explanation: 'Белка-летяга и колуго (еще его называют «летающим лемуром»)
   только прыгают с одного дерева на другое, а белоголовый орлан относится к птицам,
   а не к млекопитающим. Поэтому единственный правильный ответ – летучая мышь.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Летучая мышь',
   correct: true
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Белка-летяга'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Белоголовый орлан'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Колуго'
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Как называется животное, которое употребляет в пищу растения и мясо?',
   answer_explanation: 'Плотоядные особи употребляют мясо, травоядные – только
   растительную пищу, а всеядные – и те, и другие продукты. Под пескатарианством
   подразумевается поедание овощей и рыбы.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Плотоядное животное'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Травоядное животное'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Всеядное животное',
   correct: true
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Пескатариан'
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Почему каланы («морские выдры») держатся за руки?',
   answer_explanation: 'Подобное явление относится к самым зрелищным и очаровательным
   в мире природы – животные держатся вместе в плавучих группах, которые называются
   «плотами», и часто связывают лапы, словно держатся за руки. Такой подход позволяет
   им поддерживать тесный телесный контакт и не уплывать далеко от семьи.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Потому что они любят друг друга'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Чтобы показать, что они в одной семье'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Чтобы они не уплывали, когда спят',
   correct: true
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Потому что они играют'
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Как отличить насекомое от паука?',
   answer_explanation: 'Несмотря на массу сходств с другими ползучими насекомыми,
   пауки не являются насекомыми. Они принадлежат к классу паукообразных, которые
   сами употребляют в пищу насекомых.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'У насекомых три части тела, у пауков – две'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'У насекомых шесть ног, у пауков – восемь'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'У насекомых могут быть крылья, у пауков они отсутствуют'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Все вышеперечисленные факты',
   correct: true
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Чем утконос отличается от других млекопитающих?',
   answer_explanation: 'Утконос является одним из двух млекопитающих, которые
   откладывают яйца. Еще один вид – ехидна, или колючий муравьед, напоминающий
@@ -2723,55 +2879,57 @@ quiz_animals_test.questions.create(
   доисторических времен. Утконос проводит яйцекладку в своей норе, а у ехидны
   для яиц есть сумка.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Крякает, как утка'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Откладывает яйца ',
   correct: true
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Строит гнезда'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Ковыляет'
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Почему змеи высовывают язык?',
   answer_explanation: 'Змеи высовывают язык, чтобы получить химические данные из
   окружающей среды и передать их обратно к двум рецепторам на нёбе. Это объясняет,
   почему у змей раздвоенный язык.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Чтобы напугать хищников'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Чтобы облизать добычу'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Чтобы издать шипящий звук'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Чтобы «понюхать» воздух',
   correct: true
 )
-quiz_animals_test.questions.create(
+question.save!
+question = current_test.questions.new(
   body: 'Как называется явление, обозначающее, что на Земле не осталось ни одного
   животного конкретного вида?'.gsub("\n ", ''),
   answer_explanation: 'Самыми яркими представителями группы вымерших животных
   являются динозавры.'.gsub("\n ", '')
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Эволюция'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Сохранение'
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Вымирание',
   correct: true
 )
-quiz_animals_test.questions.last.answers.create(
+question.answers.new(
   body: 'Находящиеся под угрозой исчезновения'
 )
 
@@ -2792,17 +2950,18 @@ end
 
 Test.where("title LIKE 'Болванка%'").each do |db_test|
   rand(5..15).times do
-    db_test.questions.create(
+    question = db_test.questions.new(
       body: Faker::Markdown.emphasis
     )
-    question_answer_count = rand(3..5)
+    question_answer_count = rand(2..4)
     correct_answer = rand(1..question_answer_count)
     question_answer_count.times do |i|
-      db_test.questions.last.answers.create(
+      question.answers.new(
         body: "#{'(true)' if i + 1 == correct_answer} #{Faker::Book.title}",
         correct: i + 1 == correct_answer
       )
     end
+    question.save!
   end
 end
 
