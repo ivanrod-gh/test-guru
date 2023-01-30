@@ -5,58 +5,53 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create!(name: 'Luke', movie: movies.first)
 
 # Filling test DB with initial data
-# NO VALIDATION
-Category.create(title: 'HTML')
-Category.create(title: 'Ruby')
-Category.create(title: 'Java')
-Category.create(title: 'JavaScript')
-Category.create(title: 'Викторины')
+Category.create!(title: 'HTML')
+Category.create!(title: 'Ruby')
+Category.create!(title: 'Java')
+Category.create!(title: 'JavaScript')
+Category.create!(title: 'Викторины')
 
-rand(5..15).times { User.create(name: Faker::Name.name, email: 'some@mail.net') }
+rand(5..15).times { User.create!(name: Faker::Name.name, email: 'some@mail.net') }
 
-Test.create(
+Test.create!(
   title: 'Основы HTML',
   category: Category.find_by(title: 'HTML'),
   author: User.find_by(id: rand(1..User.count))
 )
-Test.create(
+Test.create!(
   title: 'Основы Ruby',
   category: Category.find_by(title: 'Ruby'),
   author: User.find_by(id: rand(1..User.count))
 )
-Test.create(
+Test.create!(
   title: 'Основы Java',
   category: Category.find_by(title: 'Java'),
   author: User.find_by(id: rand(1..User.count))
 )
-Test.create(
+Test.create!(
   title: 'Основы JavaScript',
   category: Category.find_by(title: 'JavaScript'),
   author: User.find_by(id: rand(1..User.count))
 )
-Test.create(
+Test.create!(
   title: 'Викторина: Планеты солнечной системы',
   category: Category.find_by(title: 'Викторины'),
   author: User.find_by(id: rand(1..User.count))
 )
-Test.create(
+Test.create!(
   title: 'Викторина: Да/нет',
   category: Category.find_by(title: 'Викторины'),
   author: User.find_by(id: rand(1..User.count))
 )
-Test.create(
+Test.create!(
   title: 'Викторина: Животные',
   category: Category.find_by(title: 'Викторины'),
   author: User.find_by(id: rand(1..User.count))
 )
-
-# q10 = Question.new(body: 'b1', test_id:1)
-# q10.answers.new(body: 'b1')
-# q10.save!
 
 # Basic HTML: questions/answers
 current_test = Test.find_by(title: 'Основы HTML')
@@ -2938,7 +2933,7 @@ Category.all.count.times do |db_category_id|
   3.times do |i|
     rand(1..3).times do |j|
       test_level = i + 1
-      Test.create(
+      Test.create!(
         title: "Болванка [#{Category.find(db_category_id + 1).title}] уровень #{i + 1} номер #{j + 1}",
         category: Category.find_by(id: db_category_id + 1),
         author: User.find_by(id: rand(1..User.count)),
@@ -3018,7 +3013,7 @@ User.all.each do |user|
   Test.count.times do |i|
     next unless rand(0..99) < user_test_start_chance
 
-    UsersTest.create(user: user, test: Test.find_by(id: i + 1))
+    UsersTest.create!(user: user, test: Test.find_by(id: i + 1))
     # user.tests.find_by(id: i + 1)
     # add_test_ids_to_user_tests(db_user_tests, i + 1)
     # db_questions = Question.where(test_id: i + 1)

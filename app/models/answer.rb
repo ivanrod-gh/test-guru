@@ -6,11 +6,12 @@ class Answer < ApplicationRecord
   scope :corrects, -> { where(correct: true) }
 
   validates :body, presence: true
-  validate :validate_answer_count
+  validate :validate_answer_count, on: :create
 
   private
 
   def validate_answer_count
-    errors.add(:base) if Answer.where(question_id: question.id).count >= 4 && new_record?
+    errors.add(:base, "The number of answers for one question cannot be more than 4") if
+      Answer.where(question_id: question.id).count >= 4
   end
 end
