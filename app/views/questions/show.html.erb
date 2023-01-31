@@ -1,0 +1,5 @@
+<h2>Тело вопроса [id=<%= @question.id %>]:</h2>
+<p style="color: Red"><%= @question.body %></p>
+<br>
+
+<%= button_to('Удалить вопрос', '', method: "delete", data: { confirm: 'Вы уверены?' }) %>
