@@ -14,8 +14,8 @@ class QuestionsController < ApplicationController
   def new; end
 
   def create
-    question = @test.questions.create(question_params)
-    render plain: question.valid? ? "Вопрос успешно создан" : question.errors.inspect
+    question = @test.questions.new(question_params)
+    render plain: question.save ? "Вопрос успешно создан" : question.errors.inspect
   end
 
   def destroy
