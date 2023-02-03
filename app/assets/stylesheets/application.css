@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+
+.TableStyle {
+  display: table;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: left;
+  max-width: 1200px;
+}
+.TableRowStyle {
+  display: table-row;
+}
+.TableFlexibleColumnStyle {
+  display: table-cell;
+  border: 1px solid LightGray;
+  padding: 5px;
+  width: 1200px;
+}
+.TableConstantFirstColumnStyle {
+  display: table-cell;
+  border: 1px solid LightGray;
+  padding: 5px;
+  min-width: 290px;
+  max-width: 290px;
+}
+.TableConstantSecondColumnStyle {
+  display: table-cell;
+  border: 1px solid LightGray;
+  padding: 5px;
+  min-width: 80px;
+  max-width: 80px;
+}

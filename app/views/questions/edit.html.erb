@@ -1,0 +1,11 @@
+<h2><%= question_header('Редактировать текст вопроса', @question) %></h2>
+
+<%= render 'form', model_data: @question, submit_name: 'Внести изменения' %>
+
+<table>
+  <tr>
+    <td><%= render 'button_back' %></td>
+    <td><%= render 'button_show', instance: @question %></td>
+    <td><%= render 'button_delete', instance: @question %></td>
+  </tr>
+</table>

@@ -1,0 +1,23 @@
+<div align="center">
+  <div class="TableStyle">
+    <div class="TableRowStyle">
+      <div class="TableFlexibleColumnStyle">
+        <h2>
+          <ul>
+            <li>Категория: <%= @test.category.title %></li>
+            <li>Тест: <%= @test.title %></li>
+            <li>Автор: <%= @test.author.name %></li>
+          </ul>
+        </h2>
+        <ul><%= button_to "Создать новый вопрос", new_test_question_path(@test), method: :get %></ul>
+      </div>
+    </div>
+  </div>
+  <div class="TableStyle">
+    <div class="TableRowStyle">
+      <div class="TableFlexibleColumnStyle"align="center">Текст вопроса</div>
+      <div class="TableConstantFirstColumnStyle" align="center">Действия</div>
+    </div>
+  </div>
+  <%= render @test.questions %>
+</div>

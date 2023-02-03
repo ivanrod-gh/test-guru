@@ -1,5 +1,10 @@
-<h2>Тело вопроса [id=<%= @question.id %>]:</h2>
-<p style="color: Red"><%= @question.body %></p>
-<br>
+<h2>Тест "<%= @question.test.title %>", текст вопроса:</h2>
+<p><span style="border: 1px solid LightGray; padding: 5px;"><%= @question.body %></span></p>
 
-<%= button_to('Удалить вопрос', '', method: "delete", data: { confirm: 'Вы уверены?' }) %>
+<table>
+  <tr>
+    <td><%= render 'button_back' %></td>
+    <td><%= render 'button_edit', instance: @question %></td>
+    <td><%= render 'button_delete', instance: @question %></td>
+  </tr>
+</table>

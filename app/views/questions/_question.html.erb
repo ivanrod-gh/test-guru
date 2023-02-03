@@ -1,0 +1,14 @@
+  <div class="TableStyle">
+    <div class="TableRowStyle">
+      <div class="TableFlexibleColumnStyle"><%= question.body %></div>
+      <div class="TableConstantFirstColumnStyle" align="center">
+        <table>
+          <tr>
+            <td><%= render 'button_show', instance: question %></td>
+            <td><%= render 'button_edit', instance: question %></td>
+            <td><%= render 'button_delete', instance: question %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>

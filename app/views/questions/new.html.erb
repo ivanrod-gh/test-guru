@@ -1,12 +1,5 @@
-<h2>Создать новый вопрос для теста "<%= @test.title %>"</h2>
+<h2><%= question_header('Создать новый вопрос для', @question) %></h2>
 
-<form action="/tests/<%= @test.id %>/questions" method="post">
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<%= render 'form', model_data: [:test, @question], submit_name: 'Создать' %>
 
-  <p>
-    <label>Вопрос:</label>
-    <input type="text" size="50" name="question[body]">
-  </p><br>
-
-  <input type="submit" value="Создать">
-</form>
+<td><%= render 'button_back' %></td>
