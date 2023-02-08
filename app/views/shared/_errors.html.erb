@@ -1,0 +1,6 @@
+<% if instance.errors.present? %>
+  <h3 style="color: red">Ошибк<%= instance.errors.count > 1 ? "и (#{instance.errors.count })" : 'а'  %>:</h3>
+  <% instance.errors.full_messages.each do |message| %>
+    <p>- <%= message %></p>
+  <% end %>
+<% end %>

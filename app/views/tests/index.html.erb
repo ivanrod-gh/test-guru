@@ -1,0 +1,32 @@
+<div align="center">
+  <div class="table-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <h2>
+          <ul>
+            <li>Список всех тестов</li>
+          </ul>
+        </h2>
+        <p>
+          <div style="display: table; max-width: 1200px; padding: 0px 50px 0px 50px;">
+            <div style="display: table-row;">
+              <div style="display: table-cell; width: 1200px;">
+              </div>
+              <div style="display: table-cell; min-width: 100px;" align="center" >
+                <%= button_to "Создать новый тест", new_test_path(@test), method: :get %>
+              </div>
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="table-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style"align="center">Тест</div>
+      <div class="table-constant-second-column-style" align="center">Вопросов</div>
+      <div class="table-constant-first-column-style" align="center">Действия</div>
+    </div>
+  </div>
+  <%= render @tests %>
+</div>
