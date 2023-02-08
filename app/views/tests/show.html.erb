@@ -4,16 +4,21 @@
       <div class="table-flexible-column-style">
         <h2>
           <ul>
-            <li>Список всех тестов</li>
+            <li>Категория: <%= @test.category.title %></li>
+            <li>Тест: <%= @test.title %></li>
+            <li>Автор: <%= @test.author.name %></li>
           </ul>
         </h2>
         <p>
           <div style="display: table; max-width: 1200px; padding: 0px 50px 0px 50px;">
             <div style="display: table-row;">
               <div style="display: table-cell; width: 1200px;">
+                <%= button_to 'Вернуться к списку тестов', tests_path, method: :get %>
               </div>
               <div style="display: table-cell; min-width: 100px;" align="center" >
-                <%= button_to "Создать новый тест", new_test_path(@test), method: :get %>
+                <%= button_to 'Редактировать тест', edit_test_path(@test), method: :get %>
+                <br>
+                <%= button_to 'Добавить вопрос', new_test_question_path(@test), method: :get %>
               </div>
             </div>
           </div>
@@ -23,10 +28,9 @@
   </div>
   <div class="table-style">
     <div class="table-row-style">
-      <div class="table-flexible-column-style"align="center">Тест</div>
-      <div class="table-constant-second-column-style" align="center">Вопросов</div>
+      <div class="table-flexible-column-style" align="center">Текст вопроса</div>
       <div class="table-constant-first-column-style" align="center">Действия</div>
     </div>
   </div>
-  <%= render @tests %>
+  <%= render @test.questions %>
 </div>

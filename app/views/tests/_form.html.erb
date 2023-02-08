@@ -1,0 +1,23 @@
+<h2><%= test_header(@test) %></h2>
+
+<%= form_with model: @test, local: true do |form| %>
+  <%= render 'shared/errors', instance: @test %>
+
+  <p>
+    <%= form.label :title, 'Заголовок теста:' %>
+    <% if @test.errors.empty? %><br><% end %>
+    <%= form.text_area :title, cols: 100, rows: 1 %>
+  </p>
+
+  <p>
+    <%= form.label :category_id, 'Категория:' %><br>
+    <%= form.collection_select :category_id, Category.order(:title), :id, :title %>
+  </p>
+
+  <p>
+    <%= form.label :user_id, 'Пользователь:' %><br>
+    <%= form.collection_select :user_id, User.order(:name), :id, :name %>
+  </p>
+
+  <p><%= form.submit submit_name %></p>
+<% end %>

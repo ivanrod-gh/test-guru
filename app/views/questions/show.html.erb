@@ -1,10 +1,10 @@
 <h2>Тест "<%= @question.test.title %>", текст вопроса:</h2>
-<p><span style="border: 1px solid LightGray; padding: 5px;"><%= @question.body %></span></p>
+<p><span style="border: 1px solid lightgray; padding: 5px;"><%= @question.body %></span></p>
 
 <table>
   <tr>
-    <td><%= render 'button_back' %></td>
-    <td><%= render 'button_edit', instance: @question %></td>
-    <td><%= render 'button_delete', instance: @question %></td>
+    <td><%= button_to 'Вернуться', test_path(@question.test), method: :get %></td>
+    <td><%= button_to 'Редактировать', edit_question_path(@question), method: :get %></td>
+    <td><%= button_to "Удалить", question_path(@question), method: :delete, data: { confirm: 'Вы уверены?'}, style: "color: red" %></td>
   </tr>
 </table>

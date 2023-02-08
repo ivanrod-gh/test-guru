@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question = find_question
+    find_question
     if @question.update(question_params)
       redirect_to @question
     else
@@ -28,13 +28,8 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    question = Question.find(params[:id])
-    question.destroy
-    if question.persisted?
-      render plain: "Ошибка: Неудачная попытка удаления"
-    else
-      redirect_to test_questions_path(question.test)
-    end
+    find_question.destroy
+    redirect_to test_path(@question.test)
   end
 
   private

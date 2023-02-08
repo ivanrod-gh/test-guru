@@ -1,12 +1,12 @@
-  <div class="TableStyle">
-    <div class="TableRowStyle">
-      <div class="TableFlexibleColumnStyle"><%= question.body %></div>
-      <div class="TableConstantFirstColumnStyle" align="center">
+  <div class="table-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style"><%= question.body %></div>
+      <div class="table-constant-first-column-style" align="center">
         <table>
           <tr>
-            <td><%= render 'button_show', instance: question %></td>
-            <td><%= render 'button_edit', instance: question %></td>
-            <td><%= render 'button_delete', instance: question %></td>
+            <td><%= button_to "Просмотреть", question_path(question), method: :get %></td>
+            <td><%= button_to 'Редактировать', edit_question_path(question), method: :get %></td>
+            <td><%= button_to "Удалить", question_path(question), method: :delete, data: { confirm: 'Вы уверены?'}, style: "color: red" %></td>
           </tr>
         </table>
       </div>
