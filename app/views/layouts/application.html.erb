@@ -11,13 +11,14 @@
   </head>
 
   <body>
-    <section style="min-height: 100%; height: auto !important; height: 100%;">
-      <article style="padding-bottom: 100px;">
+    <div class="wrapper">
+      <article>
         <%= yield %>
       </article>
-    </section>
-    <footer style="left: 0px; bottom: 0px; width: 100%;">
-      <div align="center" style="background-color: lightgray">
+      <div class="push"></div>
+    </div>
+    <div class="footer">
+      <div align="center">
         <div>
           <%= current_year %>, Родионов Иван, <%= github_url('TestGuru', '/ivanrod-gh/test-guru') %> - сайт с образовательными тестами (репозиторий GitHub)
         </div>
@@ -25,6 +26,6 @@
           Учебный проект в онлайн-школе <a href="https://thinknetica.com/" target="_blank">Thinknetica</a>
         </div>
       </div>
-    </footer>
+    </div>
   </body>
 </html>

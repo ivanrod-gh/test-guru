@@ -1,0 +1,40 @@
+<div align="center">
+  <div class="table-medium-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <h1>
+          Вы проходите тест: 
+          <span style="border: 2px solid lightgray;">
+            <%= @test_passage.test.title %>
+          </span>
+        </h1>
+      </div>
+    </div>
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <span>
+          Вопрос <%= @test_passage.current_question_number %> из <%= @test_passage.questions_count %>:
+        </span>
+        <b>
+          <%= @test_passage.current_question.body %>
+        </b>
+
+        <%= form_with url: test_passage_path(@test_passage), method: :put, local: true do |form| %>
+          <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
+            <p>
+              <%= b.check_box id: "answer_ids_#{b.object.id}" %>
+              <%= b.label %>
+            </p>
+          <% end %>
+          
+          <p><%= form.submit 'Следующий вопрос' %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <p><%= button_to 'Вернуться к списку тестов', tests_path, method: :get, data: { confirm: 'Прервать выполнение теста?'} %></p>
+      </div>
+    </div>
+  </div>
+</div>

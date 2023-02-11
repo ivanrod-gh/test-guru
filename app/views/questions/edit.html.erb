@@ -1,9 +1,14 @@
-<%= render 'form', submit_name: 'Внести изменения' %>
-
-<table>
-  <tr>
-    <td><%= button_to 'Вернуться', test_path(@question.test), method: :get %></td>
-    <td><%= button_to "Просмотреть", question_path(@question), method: :get %></td>
-    <td><%= button_to "Удалить", question_path(@question), method: :delete, data: { confirm: 'Вы уверены?'}, style: "color: red" %></td>
-  </tr>
-</table>
+<div align="center">
+  <div class="table-large-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <%= render 'form', submit_name: 'Внести изменения' %>
+      </div>
+      <div class="table-constant-actions-column-style" align="center">
+        <%= button_to 'Вернуться к тесту', test_path(@question.test), method: :get %><br><hr>
+        <p><%= button_to "Просмотреть вопрос", question_path(@question), method: :get %></p><hr><br>
+        <p><%= button_to "Удалить", question_path(@question), method: :delete, data: { confirm: 'Вы уверены?'}, style: "color: red" %></p>
+      </div>
+    </div>
+  </div>
+</div>

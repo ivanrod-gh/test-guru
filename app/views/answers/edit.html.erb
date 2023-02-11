@@ -2,10 +2,10 @@
   <div class="table-large-style">
     <div class="table-row-style">
       <div class="table-flexible-column-style">
-        <%= render 'form', submit_name: 'Добавить' %>
+        <%= render 'form', submit_name: 'Внести изменения' %>
       </div>
       <div class="table-constant-actions-column-style" align="center">
-        <%= button_to 'Вернуться к тесту', test_path(@question.test), method: :get %>
+        <%= button_to 'Вернуться к вопросу', question_path(@answer.question), method: :get %>
       </div>
     </div>
   </div>

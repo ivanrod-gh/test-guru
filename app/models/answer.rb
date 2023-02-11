@@ -11,7 +11,7 @@ class Answer < ApplicationRecord
   private
 
   def validate_answer_count
-    errors.add(:base, "The number of answers for one question cannot be more than 4") if
+    errors.add(:base, "Количество ответов у одного вопроса не может быть более 4") if
       Answer.where(question_id: question.id).count >= 4
   end
 end

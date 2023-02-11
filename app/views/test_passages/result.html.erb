@@ -1,0 +1,34 @@
+<div align="center">
+  <div class="table-medium-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <h1>
+          Завершен тест:
+          <span style="border: 2px solid lightgray;">
+            <%= @test_passage.test.title %>
+          </span>
+        </h1>
+      </div>
+    </div>
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <div style="text-align: center;">
+          <% if @test_passage.complete_percent < 85 %>
+            <h3 style="background-color: orange;">
+              Вы дали <%= @test_passage.complete_percent %>% правильных ответов и не прошли тест!
+            </h3>
+          <% else %>
+            <h3 style="background-color: lime;">
+              Вы дали <%= @test_passage.complete_percent %>% правильных ответов и успешно прошли тест!
+            </h3>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <p><%= button_to 'Вернуться к списку тестов', tests_path, method: :get %></p>
+      </div>
+    </div>
+  </div>
+</div>

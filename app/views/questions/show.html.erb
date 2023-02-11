@@ -1,10 +1,34 @@
-<h2>Тест "<%= @question.test.title %>", текст вопроса:</h2>
-<p><span style="border: 1px solid lightgray; padding: 5px;"><%= @question.body %></span></p>
+<div align="center">
+  <div class="table-large-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <ul style="list-style-type: none;">
+          <li>
+            <h2>Тест: <%= @question.test.title %>, текст вопроса:</h2><br>
+            <span style="border: 1px solid lightgray; padding: 5px;">
+              <%= @question.body %>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="table-constant-actions-column-style" align="center">
+        <%= button_to 'Вернуться к тесту', test_path(@question.test), method: :get %><br><hr>
+        <p><%= button_to 'Редактировать вопрос', edit_question_path(@question), method: :get %></p><hr>
+        <p><%= button_to 'Добавить ответ', new_question_answer_path(@question), method: :get %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div align="center">
+  <div class="table-large-style">
+    <div class="table-row-style" align="center">
+      <div class="table-flexible-column-style">Ответы</div>
+      <div class="table-constant-actions-column-style">Действия автора</div>
+    </div>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <td><%= button_to 'Вернуться', test_path(@question.test), method: :get %></td>
-    <td><%= button_to 'Редактировать', edit_question_path(@question), method: :get %></td>
-    <td><%= button_to "Удалить", question_path(@question), method: :delete, data: { confirm: 'Вы уверены?'}, style: "color: red" %></td>
-  </tr>
-</table>
+<%= render @question.answers %>
+
+
+
