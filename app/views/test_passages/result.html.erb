@@ -13,13 +13,13 @@
     <div class="table-row-style">
       <div class="table-flexible-column-style">
         <div style="text-align: center;">
-          <% if @test_passage.complete_percent < 85 %>
-            <h3 style="background-color: orange;">
-              Вы дали <%= @test_passage.complete_percent %>% правильных ответов и не прошли тест!
-            </h3>
-          <% else %>
+          <% if @test_passage.success? %>
             <h3 style="background-color: lime;">
               Вы дали <%= @test_passage.complete_percent %>% правильных ответов и успешно прошли тест!
+            </h3>
+          <% else %>
+            <h3 style="background-color: orange;">
+              Вы дали <%= @test_passage.complete_percent %>% правильных ответов и не прошли тест!
             </h3>
           <% end %>
         </div>

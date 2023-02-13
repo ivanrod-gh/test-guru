@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TestPassage < ApplicationRecord
+  TEST_PASSAGE_MIN_PERCENT = 85
+
   belongs_to :user
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
@@ -21,6 +23,10 @@ class TestPassage < ApplicationRecord
 
   def complete_percent
     ((correct_questions / test.questions.count.to_f) * 100).to_i
+  end
+
+  def success?
+    complete_percent >= TEST_PASSAGE_MIN_PERCENT
   end
 
   def current_question_number
