@@ -1,10 +1,17 @@
-  <div class="table-style">
+  <div class="table-large-style">
     <div class="table-row-style">
       <div class="table-flexible-column-style"><%= test.title %></div>
-      <div class="table-constant-second-column-style" align="center">
+      <div class="table-constant-tests-column-style" align="center">
         <%= test.questions.count %>
       </div>
-      <div class="table-constant-first-column-style" align="center">
+      <div class="table-constant-tests-column-style" align="center">
+        <table>
+          <tr>
+            <td><%= button_to 'Начать', start_test_path(test), method: :post %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="table-constant-actions-column-style" align="center">
         <table>
           <tr>
             <td><%= button_to "Просмотреть", test_path(test), method: :get %></td>
@@ -15,4 +22,3 @@
       </div>
     </div>
   </div>
-  

@@ -3013,7 +3013,7 @@ User.all.each do |user|
   Test.count.times do |i|
     next unless rand(0..99) < user_test_start_chance
 
-    UsersTest.create!(user: user, test: Test.find_by(id: i + 1))
+    TestPassage.create!(user: user, test: Test.find_by(id: i + 1))
     # user.tests.find_by(id: i + 1)
     # add_test_ids_to_user_tests(db_user_tests, i + 1)
     # db_questions = Question.where(test_id: i + 1)
