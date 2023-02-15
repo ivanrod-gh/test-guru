@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TestPassage < ApplicationRecord
-  TEST_PASSAGE_MIN_PERCENT = 85
+  TEST_SUCCESSFULLY_COMPLETE_MIN_PERCENT = 85
 
   belongs_to :user
   belongs_to :test
@@ -26,7 +26,7 @@ class TestPassage < ApplicationRecord
   end
 
   def success?
-    complete_percent >= TEST_PASSAGE_MIN_PERCENT
+    complete_percent >= TEST_SUCCESSFULLY_COMPLETE_MIN_PERCENT
   end
 
   def current_question_number

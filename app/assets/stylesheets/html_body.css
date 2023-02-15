@@ -1,0 +1,14 @@
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  margin: 0em auto -4em;
+}
+.footer {
+  background-color: lightgray;
+  margin-top: 10px;
+}
+.push {
+  height: 5em;
+}
