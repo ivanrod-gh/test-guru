@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to session[:request_path]
-      session[:request_path] = nil
+      redirect_to session.delete(:request_path) || root_path
     else
       flash.now[:alert] = 'Пожалуйста, введите корректный адрес электронной почты и пароль!'
       render :new

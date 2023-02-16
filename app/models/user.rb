@@ -3,6 +3,8 @@
 require 'digest/sha1'
 
 class User < ApplicationRecord
+  EMAIL_FORMAT = /\A\w{1,}@\w{1,}[.][a-z]{1,}\z/
+
   has_secure_password
 
   has_many :author_tests, class_name: 'Test', dependent: :destroy
@@ -18,13 +20,5 @@ class User < ApplicationRecord
   end
 
   validates :name, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
-  validate :validate_email_format, on: :create
-
-  private
-
-  def validate_email_format
-    errors.add(:base, "Неверный формат электронной почты. Должно быть, например: some_example@mail.net") unless
-      email =~ /^\w{1,}@\w{1,}[.][a-z]{1,}$/
-  end
+  validates :email, presence: true, uniqueness: true, format: { with: EMAIL_FORMAT }
 end
