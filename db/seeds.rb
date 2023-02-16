@@ -15,7 +15,9 @@ Category.create!(title: 'Java')
 Category.create!(title: 'JavaScript')
 Category.create!(title: 'Викторины')
 
-rand(5..15).times { User.create!(name: Faker::Name.name, email: 'some@mail.net') }
+rand(5..15).times do |i|
+  User.create!(name: Faker::Name.unique.name, email: "some#{i}@mail.net", password: '12345')
+end
 
 Test.create!(
   title: 'Основы HTML',

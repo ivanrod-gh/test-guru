@@ -11,7 +11,7 @@
         </h2>
       </div>
       <div class="table-constant-actions-column-style" align="center">
-        <%= button_to 'Вернуться к списку тестов', tests_path, method: :get %><br><hr>
+        <p><%= button_to 'Вернуться к списку тестов', tests_path, method: :get %></p><hr>
         <p><%= button_to 'Редактировать тест', edit_test_path(@test), method: :get %></p><hr>
         <p><%= button_to 'Добавить вопрос', new_test_question_path(@test), method: :get %></p>
       </div>

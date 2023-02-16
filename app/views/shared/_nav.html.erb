@@ -1,0 +1,29 @@
+<div class="nav">
+  <div style="padding-right: 15px;" align="right">
+    <div style="padding-right: 10px; padding-bottom: 5px; background-color: lightgray; display: table-row; max-width: 1200px; min-width: 850px;">
+      <div style="display: table-cell; width: 1200px; min-width: 100px; height: 50px; text-align: left; vertical-align: middle;">
+        <div style="padding-left: 10px;">
+          <span style="font-size: 200%;">
+            <b><%= link_to 'TestGuru', root_path, { class: 'no-decoration-link' } %></b>
+          </span>
+        </div>
+      </div>
+      <% if logged_in? %>
+        <div style="display: table-cell; width: 600px; min-width: 815px; padding-bottom: 5px; vertical-align: top;">
+          <div style="padding: 5px 5px 0px 5px;">
+            Гуру <b><%= current_user.name %></b>
+          </div>
+          <div style="padding: 5px 5px 0px 5px;">
+            <%= link_to 'Выйти', logout_path, { data: { confirm: 'Вы уверены?' }, class: 'no-decoration-link' } %>
+          </div>
+        </div>
+      <% else %>
+        <div style="display: table-cell; width: 600px; min-width: 815px; padding-right: 5px; vertical-align: middle;">
+          <span><%= link_to 'Регистрация', signup_path, { class: 'no-decoration-link' } %></span>
+          <span> / </span>
+          <span><%= link_to 'Войти', login_path, { class: 'no-decoration-link' } %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -7,15 +7,14 @@
   <%= render 'shared/errors', instance: @answer %>
 
   <p>
-    <%= form.label :body, 'Ответ:' %>
-    <% if @answer.errors.empty? %><br><% end %>
-    <%= form.text_area :body, id: :answer_body, cols: 100, rows: 5 %>
+    <div><%= form.label :body, 'Ответ:' %></div>
+    <div><%= form.text_area :body, id: :answer_body, cols: 100, rows: 5 %></div>
   </p>
 
   <p>
-    <%= form.label :correct, 'Это верный ответ' %>
-    <%= form.check_box :correct, id: :answer_correct %>
+    <div><%= form.label :correct, 'Это верный ответ' %></div>
+    <div><%= form.check_box :correct, id: :answer_correct %></div>
   </p>
 
-  <p><%= form.submit submit_name%></p>
+  <br><p><div><%= form.submit submit_name%></div></p>
 <% end %>

@@ -12,7 +12,7 @@
         </ul>
       </div>
       <div class="table-constant-actions-column-style" align="center">
-        <%= button_to 'Вернуться к тесту', test_path(@question.test), method: :get %><br><hr>
+        <p><%= button_to 'Вернуться к тесту', test_path(@question.test), method: :get %></p><hr>
         <p><%= button_to 'Редактировать вопрос', edit_question_path(@question), method: :get %></p><hr>
         <p><%= button_to 'Добавить ответ', new_question_answer_path(@question), method: :get %></p>
       </div>
@@ -27,8 +27,4 @@
     </div>
   </div>
 </div>
-
 <%= render @question.answers %>
-
-
-
