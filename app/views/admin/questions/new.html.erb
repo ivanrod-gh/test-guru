@@ -1,0 +1,12 @@
+<div align="center">
+  <div class="table-large-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <%= render 'form', submit_name: 'Добавить' %>
+      </div>
+      <div class="table-constant-actions-column-style" align="center">
+        <%= button_to 'Вернуться к тесту', admin_test_path(@question.test), method: :get %>
+      </div>
+    </div>
+  </div>
+</div>

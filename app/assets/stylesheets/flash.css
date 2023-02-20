@@ -1,3 +1,7 @@
+.flash-push {
+  padding-top: 60px;
+  padding-bottom: 15px;
+}
 .flash-alert {
   color: red;
 }

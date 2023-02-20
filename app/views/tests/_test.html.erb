@@ -11,14 +11,5 @@
           </tr>
         </table>
       </div>
-      <div class="table-constant-actions-column-style" align="center">
-        <table>
-          <tr>
-            <td><%= button_to "Просмотреть", test_path(test), method: :get %></td>
-            <td><%= button_to 'Редактировать', edit_test_path(test), method: :get %></td>
-            <td><%= button_to "Удалить", test_path(test), method: :delete, data: { confirm: 'Вы уверены? Это действие безвозвратно удалит весь тест!'}, style: "color: red" %></td>
-          </tr>
-        </table>
-      </div>
     </div>
   </div>

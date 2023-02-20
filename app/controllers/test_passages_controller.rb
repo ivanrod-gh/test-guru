@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TestPassagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_test_passage, obly: %i[show update result]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_passage_not_found
@@ -12,6 +13,7 @@ class TestPassagesController < ApplicationController
   def update
     @test_passage.accept!(params[:answer_ids])
     if @test_passage.completed?
+      TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)
     else
       render :show

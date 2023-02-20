@@ -16,7 +16,19 @@ Category.create!(title: 'JavaScript')
 Category.create!(title: 'Викторины')
 
 rand(5..15).times do |i|
-  User.create!(name: Faker::Name.unique.name, email: "some#{i}@mail.net", password: '12345')
+  user = User.new(
+    email: "some#{i}@mail.net",
+    password: '123456'
+  )
+  if rand(0..1).zero?
+    user.first_name = Faker::Name.unique.male_first_name
+    user.last_name = Faker::Name.unique.male_last_name
+  else
+    user.first_name = Faker::Name.unique.female_first_name
+    user.last_name = Faker::Name.unique.female_last_name
+  end
+  user.access_level = 'Admin' if i < 3
+  user.save!
 end
 
 Test.create!(
