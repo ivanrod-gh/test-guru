@@ -1,0 +1,12 @@
+<h2><%= question_header(@question) %></h2>
+
+<%= form_with model: [:admin, @test, @question], local: true do |form| %>
+  <%= render 'shared/errors', instance: @question %>
+
+  <p>
+    <div><%= form.label :body, 'Текст вопроса:' %></div>
+    <div><%= form.text_area :body, cols: 100, rows: 5 %></div>
+  </p>
+
+  <br><p><div><%= form.submit submit_name %></div></p>
+<% end %>

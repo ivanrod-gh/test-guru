@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-require 'digest/sha1'
-
 class User < ApplicationRecord
-  EMAIL_FORMAT = /\A\w{1,}@\w{1,}[.][a-z]{1,}\z/
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :confirmable,
+         :rememberable,
+         :validatable,
+         :trackable
 
-  has_secure_password
+  EMAIL_FORMAT = /\A\w{1,}@\w{1,}[.][a-z]{1,}\z/
 
   has_many :author_tests, class_name: 'Test', dependent: :destroy
   has_many :test_passages, dependent: :destroy
@@ -19,6 +23,7 @@ class User < ApplicationRecord
     test_passages.order(id: :desc).find_by(test_id: test.id)
   end
 
-  validates :name, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true, format: { with: EMAIL_FORMAT }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :access_level, presence: true
 end

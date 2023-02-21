@@ -1,0 +1,14 @@
+<div align="center">
+  <div class="table-large-style">
+    <div class="table-row-style">
+      <div class="table-flexible-column-style">
+        <%= render 'form', submit_name: 'Внести изменения' %>
+      </div>
+      <div class="table-constant-actions-column-style" align="center">
+        <%= button_to 'Вернуться к списку тестов', admin_tests_path, method: :get %><br><hr>
+        <p><%= button_to 'Просмотреть тест', admin_test_path(@test), method: :get %></p><hr><br>
+        <p><%= button_to 'Удалить', admin_test_path(@test), method: :delete, data: { confirm: 'Вы уверены? Это действие безвозвратно удалит весь тест!'}, style: "color: red" %></p>
+      </div>
+    </div>
+  </div>
+</div>
