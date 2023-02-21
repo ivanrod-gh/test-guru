@@ -13,13 +13,5 @@
     <div><%= form.collection_select :category_id, Category.order(:title), :id, :title %></div>
   </p>
 
-  <p>
-    <div><%= form.label :user_id, 'Пользователь:' %></div>
-    <% list = [] %>
-    <% list.push current_user %>
-    <% User.order(:email).each { |user| list.push user unless user == current_user } %>
-    <div><%= form.collection_select :user_id, list, :id, :email %></div>
-  </p>
-
   <br><p><div><%= form.submit submit_name %></div></p>
 <% end %>

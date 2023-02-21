@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Admin::TestsController < Admin::BaseController
-  before_action :initialize_test, only: %i[index new]
   before_action :find_test, only: %i[show edit update destroy start]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
@@ -10,8 +9,13 @@ class Admin::TestsController < Admin::BaseController
     @tests = Test.all
   end
 
+  def new
+    @test = Test.new
+  end
+
   def create
     @test = Test.new(test_params)
+    @test.author = current_user
     if @test.save
       redirect_to admin_test_path(@test)
     else
@@ -32,23 +36,14 @@ class Admin::TestsController < Admin::BaseController
     redirect_to admin_tests_path
   end
 
-  def start
-    current_user.passed_tests.push(@test)
-    redirect_to current_user.test_passage(@test)
-  end
-
   private
-
-  def initialize_test
-    @test = Test.new
-  end
 
   def find_test
     @test = Test.find(params[:id])
   end
 
   def test_params
-    params.require(:test).permit(:title, :category_id, :user_id)
+    params.require(:test).permit(:title, :category_id)
   end
 
   def rescue_with_test_not_found
