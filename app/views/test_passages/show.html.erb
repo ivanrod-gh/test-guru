@@ -3,7 +3,7 @@
     <div class="table-row-style">
       <div class="table-flexible-column-style">
         <h1>
-          Вы проходите тест: 
+          <%= t('.header') %>
           <span style="border: 2px solid lightgray;">
             <%= @test_passage.test.title %>
           </span>
@@ -12,9 +12,7 @@
     </div>
     <div class="table-row-style">
       <div class="table-flexible-column-style">
-        <span>
-          Вопрос <%= @test_passage.current_question_number %> из <%= @test_passage.questions_count %>:
-        </span>
+        <%= t('.question_number', current_question_number: @test_passage.current_question_number, questions_count: @test_passage.questions_count) %>
         <b>
           <%= @test_passage.current_question.body %>
         </b>
@@ -27,13 +25,13 @@
             </p>
           <% end %>
           
-          <p><%= form.submit 'Следующий вопрос' %></p>
+          <p><%= form.submit t('.next_question') %></p>
         <% end %>
       </div>
     </div>
     <div class="table-row-style">
       <div class="table-flexible-column-style">
-        <p><%= button_to 'Вернуться к списку тестов', tests_path, method: :get, data: { confirm: 'Прервать выполнение теста?'} %></p>
+        <p><%= button_to t('.back'), tests_path, method: :get, params: { lang: params[:lang] }, data: { confirm: t('.back_confirmation') } %></p>
       </div>
     </div>
   </div>

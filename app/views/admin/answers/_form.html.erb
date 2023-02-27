@@ -1,20 +1,22 @@
-<h2><%= answer_header(@answer) %> ответ для вопроса:</h2>
-<span style="border: 1px solid lightgray; padding: 5px;">
-  <%= @answer.question.body %>
-</span>
+<div class="table-flexible-column-style">
+  <h2><%= answer_header(@answer) %> <%= t('.answer_for') %></h2>
+  <span style="border: 1px solid lightgray; padding: 5px;">
+    <%= @answer.question.body %>
+  </span>
 
-<%= form_with model: [:admin, @question, @answer], local: true do |form| %>
-  <%= render 'shared/errors', instance: @answer %>
+  <%= form_with model: [:admin, @question, @answer], local: true do |form| %>
+    <%= render 'shared/errors', instance: @answer %>
 
-  <p>
-    <div><%= form.label :body, 'Ответ:' %></div>
-    <div><%= form.text_area :body, id: :answer_body, cols: 100, rows: 5 %></div>
-  </p>
+    <p>
+      <div><%= form.label :body, t('.body') %></div>
+      <div><%= form.text_area :body, id: :answer_body, cols: 100, rows: 5 %></div>
+    </p>
 
-  <p>
-    <div><%= form.label :correct, 'Это верный ответ' %></div>
-    <div><%= form.check_box :correct, id: :answer_correct %></div>
-  </p>
+    <p>
+      <div><%= form.label :correct, t('.correct') %></div>
+      <div><%= form.check_box :correct, id: :answer_correct %></div>
+    </p>
 
-  <br><p><div><%= form.submit submit_name%></div></p>
-<% end %>
+    <br><p><div><%= form.submit %></div></p>
+  <% end %>
+</div>

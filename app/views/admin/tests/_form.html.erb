@@ -4,14 +4,14 @@
   <%= render 'shared/errors', instance: @test %>
 
   <p>
-    <div><%= form.label :title, 'Заголовок теста:' %></div>
+    <div><%= form.label :title %></div>
     <div><%= form.text_area :title, cols: 100, rows: 1 %></div>
   </p>
 
   <p>
-    <div><%= form.label :category_id, 'Категория:' %></div>
+    <div><%= form.label :category_id %></div>
     <div><%= form.collection_select :category_id, Category.order(:title), :id, :title %></div>
   </p>
 
-  <br><p><div><%= form.submit submit_name %></div></p>
+  <br><p><div><%= form.submit %></div></p>
 <% end %>

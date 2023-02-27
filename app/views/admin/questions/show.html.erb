@@ -2,19 +2,15 @@
   <div class="table-large-style">
     <div class="table-row-style">
       <div class="table-flexible-column-style">
-        <ul style="list-style-type: none;">
-          <li>
-            <h2>Тест: <%= @question.test.title %>, текст вопроса:</h2><br>
-            <span style="border: 1px solid lightgray; padding: 5px;">
-              <%= @question.body %>
-            </span>
-          </li>
-        </ul>
+        <h2><%= t('.header', title: @question.test.title) %></h2><br>
+        <span style="border: 1px solid lightgray; padding: 5px;">
+          <%= @question.body %>
+        </span>
       </div>
       <div class="table-constant-actions-column-style" align="center">
-        <p><%= button_to 'Вернуться к тесту', admin_test_path(@question.test), method: :get %></p><hr>
-        <p><%= button_to 'Редактировать вопрос', edit_admin_question_path(@question), method: :get %></p><hr>
-        <p><%= button_to 'Добавить ответ', new_admin_question_answer_path(@question), method: :get %></p>
+        <p><%= button_to t('.back'), admin_test_path(@question.test), method: :get, params: { lang: params[:lang] } %></p><hr>
+        <p><%= button_to t('.edit'), edit_admin_question_path(@question), method: :get, params: { lang: params[:lang] } %></p><hr>
+        <p><%= button_to t('.add_answer'), new_admin_question_answer_path(@question), method: :get, params: { lang: params[:lang] } %></p>
       </div>
     </div>
   </div>
@@ -22,8 +18,8 @@
 <div align="center">
   <div class="table-large-style">
     <div class="table-row-style" align="center">
-      <div class="table-flexible-column-style">Ответы</div>
-      <div class="table-constant-actions-column-style">Действия автора</div>
+      <div class="table-flexible-column-style"><%= t('.answers') %></div>
+      <div class="table-constant-actions-column-style"><%= t('admin.author_actions.header') %></div>
     </div>
   </div>
 </div>

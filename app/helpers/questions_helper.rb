@@ -1,6 +1,6 @@
 module QuestionsHelper
   def question_header(question)
-    text = @question.persisted? ? 'Редактировать текст вопроса' : 'Создать вопрос для'
+    text = @question.persisted? ? I18n.t('.admin.questions.edit.header') : I18n.t('.admin.questions.new.header')
     text.concat(" \"#{@question.test.title}\"")
   end
 end

@@ -2,12 +2,12 @@
   <div class="table-large-style">
     <div class="table-row-style">
       <div class="table-flexible-column-style">
-        <%= render 'form', submit_name: 'Внести изменения' %>
+        <%= render 'form' %>
       </div>
       <div class="table-constant-actions-column-style" align="center">
-        <%= button_to 'Вернуться к тесту', admin_test_path(@question.test), method: :get %><br><hr>
-        <p><%= button_to "Просмотреть вопрос", admin_question_path(@question), method: :get %></p><hr><br>
-        <p><%= button_to "Удалить", admin_question_path(@question), method: :delete, data: { confirm: 'Вы уверены?'}, style: "color: red" %></p>
+        <p><%= button_to t('.back'), admin_test_path(@question.test), method: :get, params: { lang: params[:lang] } %></p><hr>
+        <p><%= button_to t('.watch'), admin_question_path(@question), method: :get, params: { lang: params[:lang] } %></p><hr>
+        <p><%= button_to t('.delete'), admin_question_path(@question), method: :delete, data: { confirm: t('.delete_confirmation')}, style: "color: red" %></p>
       </div>
     </div>
   </div>

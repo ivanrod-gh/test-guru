@@ -4,9 +4,9 @@
   <%= render 'shared/errors', instance: @question %>
 
   <p>
-    <div><%= form.label :body, 'Текст вопроса:' %></div>
+    <div><%= form.label :body, t('.body') %></div>
     <div><%= form.text_area :body, cols: 100, rows: 5 %></div>
   </p>
 
-  <br><p><div><%= form.submit submit_name %></div></p>
+  <br><p><div><%= form.submit %></div></p>
 <% end %>

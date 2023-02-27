@@ -1,33 +1,185 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
+
+  helpers:
+    submit:
+      answer:
+        create: "Add"
+        update: "Make changes"
+      question:
+        create: "Add"
+        update: "Make changes"
+      test:
+        create: "Create a Test"
+        update: "Make changes"
+
+  activerecord:
+    models:
+      answer: "Answer"
+      category: "Category"
+      question: "Question"
+      test: "Test"
+      test_passage: "Test passage"
+      user: "User"
+    attributes:
+      answer:
+        body: "Text"
+        correct: "Correct"
+        question_id: "Question"
+      category:
+        title: "Title"
+      question:
+        body: "Text"
+        test_id: "Test"
+        answer_explanation: "Answer explanation"
+      test:
+        title: "Title"
+        category_id: "Category"
+        level: "Level"
+        user_id: "User"
+      test_passage:
+        user_id: "User"
+        test_id: "Test"
+        current_question_id: "Current question"
+        correct_questions: "Correct questions"
+      user:
+        first_name: "First name"
+        last_name: "Last name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        access_level: "Access level"
+    errors:
+      messages:
+        accepted: "must be accepted"
+        invalid: "is invalid"
+        confirmation: "doesn’t match confirmation"
+        exclusion: "is reserved"
+        inclusionis: "not included in the list"
+        too_short: "is too short minimum is %{count} characters"
+        too_long: "is too long maximum is %{count} characters"
+        wrong_length: "is the wrong length should be %{count} characters"
+        not_a_number: "is not a number"
+        odd: "must be odd"
+        even: "must be even"
+        greater_than: "must be greater than {count}"
+        greater_than_or_equal_to: "must be greater than or equal to %{count}"
+        equal_to: "must be equal to %{count}"
+        less_than: "must be less than %{count}"
+        less_than_or_equal_to: "must be less than or equal to %{count}"
+        blank: "can’t be blank"
+        taken: "has already been taken"
+
+  admin:
+    answers:
+      form:
+        answer_for: "Answer for the Question"
+        body: "Question text"
+        correct: "Correct Answer"
+      new:
+        header: "Create"
+        back: "Back to Question"
+      edit:
+        header: "Edit"
+        back: "Back to Question"
+        watch: "Watch an Answer"
+        delete: "Delete"
+        delete_confirmation: "Are you sure?"
+      show:
+        header: "Watch an Answer for Question"
+        edit: "Edit an Answer"
+        answer: "Answer"
+        back: "Back to Question"
+        correct_true: "This is the correct Answer"
+        correct_false: "This is the wrong Answer"
+    questions:
+      new:
+        header: "Create new Question for Test"
+        back: "Back to Test"
+      edit:
+        header: "Edit a Question text for Test"
+        back: "Back to Test"
+        watch: "Watch a Question"
+        delete: "Delete"
+        delete_confirmation: "Are you sure?"
+      form:
+        body: "Question text"
+      show:
+        header: "Question text for the Test \"%{title}\""
+        back: "Back to Test"
+        edit: "Edit a Question"
+        add_answer: "Add an Answer"
+        answers: "Answers"
+    tests:
+      create:
+        success: "Test created successfully!"
+      edit:
+        header: "Edit a Test"
+        back: "Back to Tests list"
+        watch: "Watch a Test"
+        delete: "Delete a Test"
+        delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
+      index:
+        header: "List of all tests"
+        new_test: "Create a new Test"
+        title: "Title"
+        questions_count: "Questions"
+        test: "Test"
+      new:
+        header: "Create a new Test"
+        back: "Back to Tests list"
+      show:
+        category: "Category"
+        title: "Title"
+        author: "Author"
+        question_body: "Question text"
+        back: "Back to Tests list"
+        edit: "Edit a Test"
+        add_question: "Add a Question"
+      test:
+        delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
+        start: "Start"
+    author_actions:
+      header: "Author actions"
+      watch: "Watch"
+      edit: "Edit"
+      delete: "Delete"
+      delete_confirmation: "Are you sure?"
+  tests:
+    index:
+      header: "List of all Tests"
+      title: "Title"
+      questions_count: "Questions"
+      test: "Test"
+      actions: "Author actions"
+    test:
+      start: "Start"
+  test_passages:
+    result:
+      header: "Test completed: %{title}"
+      back: "Back to Tests list"
+      success: "You gave %{complete_percent}% correct answers and successfully completed the Test!"
+      failure: "You gave %{complete_percent}% correct answers and haven't passed the Test!"
+    show:
+      header: "You passing a Test:"
+      question_number: "Question %{current_question_number} from %{questions_count}:"
+      next_question: "Next question"
+      back: "Back to Tests list"
+      back_confirmation: "Interrupt execution of the Test?"
+
+  shared:
+    errors:
+      header:
+        one: "Detected %{count} error:"
+        few: "Detected %{count} errors:"
+        many: "Detected %{count} errors:"
+        other: "Detected %{count} errors:"
+    nav:
+      exit: "Exit"
+      guru: "Guru"
+      sign_up: "Sign Up"
+      sign_in: "Sign In"
+
+  tests_mailer:
+    completed_test:
+      subject: "You just completed the TestGuru test!"
