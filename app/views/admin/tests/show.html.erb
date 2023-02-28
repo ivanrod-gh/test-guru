@@ -4,23 +4,23 @@
       <div class="table-flexible-column-style">
         <h2>
           <ul style="list-style-type: none;">
-            <li>Категория: <%= @test.category.title %></li>
-            <li>Заголовок: <%= @test.title %></li>
-            <li>Автор: <%= @test.author.first_name %> <%= @test.author.last_name %></li>
+            <li><%= t('.category') %>: <%= @test.category.title %></li>
+            <li><%= t('.title') %>: <%= @test.title %></li>
+            <li><%= t('.author') %>: <%= @test.author.first_name %> <%= @test.author.last_name %></li>
           </ul>
         </h2>
       </div>
       <div class="table-constant-actions-column-style" align="center">
-        <p><%= button_to 'Вернуться к списку тестов', admin_tests_path, method: :get %></p><hr>
-        <p><%= button_to 'Редактировать тест', edit_admin_test_path(@test), method: :get %></p><hr>
-        <p><%= button_to 'Добавить вопрос', new_admin_test_question_path(@test), method: :get %></p>
+        <p><%= button_to t('.back'), admin_tests_path, method: :get, params: { lang: params[:lang] } %></p><hr>
+        <p><%= button_to t('.edit'), edit_admin_test_path(@test), method: :get, params: { lang: params[:lang] } %></p><hr>
+        <p><%= button_to t('.add_question'), new_admin_test_question_path(@test), method: :get, params: { lang: params[:lang] } %></p>
       </div>
     </div>
   </div>
   <div class="table-large-style">
     <div class="table-row-style" align="center">
-      <div class="table-flexible-column-style">Текст вопроса</div>
-      <div class="table-constant-actions-column-style">Действия автора</div>
+      <div class="table-flexible-column-style"><%= t('.question_body') %></div>
+      <div class="table-constant-actions-column-style"><%= t('admin.author_actions.header') %></div>
     </div>
   </div>
   <%= render @test.questions %>

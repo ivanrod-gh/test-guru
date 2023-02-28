@@ -2,7 +2,7 @@
   <div class="table-large-style">
     <div class="table-row-style">
       <div class="table-flexible-column-style">
-        <h2>Log in</h2>
+        <h2><%= t('.header') %></h2>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
@@ -23,7 +23,7 @@
           <% end %>
 
           <div class="actions">
-            <%= f.submit "Log in" %>
+            <p><%= f.submit t('.log_in') %></p>
           </div>
         <% end %>
 

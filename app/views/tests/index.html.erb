@@ -4,7 +4,7 @@
       <div class="table-flexible-column-style">
         <h2>
           <ul style="list-style-type: none;">
-            <li>Список всех тестов</li>
+            <li><%= t('.header') %></li>
           </ul>
         </h2>
       </div>
@@ -12,9 +12,9 @@
   </div>
   <div class="table-large-style">
     <div class="table-row-style">
-      <div class="table-flexible-column-style"align="center">Название</div>
-      <div class="table-constant-tests-column-style" align="center">Вопросов</div>
-      <div class="table-constant-tests-column-style" align="center">Тест</div>
+      <div class="table-flexible-column-style"align="center"><%= t('.title') %></div>
+      <div class="table-constant-tests-column-style" align="center"><%= t('.questions_count') %></div>
+      <div class="table-constant-tests-column-style" align="center"><%= t('.test') %></div>
     </div>
   </div>
   <%= render @tests %>

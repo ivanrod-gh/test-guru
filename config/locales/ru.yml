@@ -1,3 +1,185 @@
-
 ru:
   hello: "Привет мир"
+
+  helpers:
+    submit:
+      answer:
+        create: "Добавить"
+        update: "Внести изменения"
+      question:
+        create: "Добавить"
+        update: "Внести изменения"
+      test:
+        create: "Создать тест"
+        update: "Внести изменения"
+
+  activerecord:
+    models:
+      answer: "Ответ"
+      category: "Категория"
+      question: "Вопрос"
+      test: "Тест"
+      test_passage: "Прохождение теста"
+      user: "Пользователь"
+    attributes:
+      answer:
+        body: "Текст"
+        correct: "Верный"
+        question_id: "Вопрос"
+      category:
+        title: "Название"
+      question:
+        body: "Текст"
+        test_id: "Тест"
+        answer_explanation: "Объяснение"
+      test:
+        title: "Название"
+        category_id: "Категория"
+        level: "Уровень"
+        user_id: "Пользователь"
+      test_passage:
+        user_id: "Пользователь"
+        test_id: "Тест"
+        current_question_id: "Текущий вопрос"
+        correct_questions: "Правильных ответов"
+      user:
+        first_name: "Имя"
+        last_name: "Фамилия"
+        email: "Почта"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        access_level: "Уровень доступа"
+    errors:
+      messages:
+        accepted: "необходимо принять"
+        invalid: "является неверным значением"
+        confirmation: "не совпадает с подтверждением"
+        exclusion: "- зарезервированное занение"
+        inclusionis: "не в списке"
+        too_short: "- минимальное количество символов - %{count}"
+        too_long: "- максимальное количество символов - %{count}"
+        wrong_length: "неверное количество символов. Должно быть - %{count}"
+        not_a_number: "не число"
+        odd: "не является нечетным"
+        even: "не является четным"
+        greater_than: "- количество символов должно быть более {count}"
+        greater_than_or_equal_to: "- количество символов должно быть не менее %{count}"
+        equal_to: "- количество символов должно быть равено %{count}"
+        less_than: "- количество символов должно быть менее %{count}"
+        less_than_or_equal_to: "- количество символов должно быть не более %{count}"
+        blank: "не может быть пустым значением"
+        taken: "уже занят"
+
+  admin:
+    answers:
+      form:
+        answer_for: "ответ для вопроса"
+        body: "Текст ответа"
+        correct: "Это верный ответ"
+      new:
+        header: "Создать"
+        back: "Вернуться к вопросу"
+      edit:
+        header: "Редактировать"
+        back: "Вернуться к вопросу"
+        watch: "Просмотреть ответ"
+        delete: "Удалить"
+        delete_confirmation: "Вы уверены?"
+      show:
+        header: "Просмотреть ответ для вопроса"
+        edit: "Редактировать ответ"
+        answer: "Ответ"
+        back: "Вернуться к вопросу"
+        correct_true: "Это верный ответ"
+        correct_false: "Это неверный ответ"
+    questions:
+      new:
+        header: "Создать вопрос для теста"
+        back: "Вернуться к тесту"
+      edit:
+        header: "Редактировать текст вопроса для теста"
+        back: "Вернуться к тесту"
+        watch: "Просмотреть вопрос"
+        delete: "Удалить"
+        delete_confirmation: "Вы уверены?"
+      form:
+        body: "Тест вопроса"
+      show:
+        header: "Текст вопроса теста \"%{title}\""
+        back: "Вернуться к тесту"
+        edit: "Редактировать вопрос"
+        add_answer: "Добавить ответ"
+        answers: "Ответы"
+    tests:
+      create:
+        success: "Тест успешно создан!"
+      edit:
+        header: "Редактировать тест"
+        back: "Вернуться к списку тестов"
+        watch: "Просмотреть тест"
+        delete: "Удалить тест"
+        delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
+      index:
+        header: "Список всех тестов"
+        new_test: "Создать новый тест"
+        title: "Название"
+        questions_count: "Вопросов"
+        test: "Тест"
+      new:
+        header: "Создать новый тест"
+        back: "Вернуться к списку тестов"
+      show:
+        category: "Категория"
+        title: "Название"
+        author: "Автор"
+        question_body: "Текст вопроса"
+        back: "Вернуться к списку тестов"
+        edit: "Редактировать тест"
+        add_question: "Добавить вопрос"
+      test:
+        delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
+        start: "Начать"
+    author_actions:
+      header: "Действия автора"
+      watch: "Просмотреть"
+      edit: "Редактировать"
+      delete: "Удалить"
+      delete_confirmation: "Вы уверены?"
+  tests:
+    index:
+      header: "Список всех тестов"
+      title: "Название"
+      questions_count: "Вопросов"
+      test: "Тест"
+      actions: "Действия автора"
+    test:
+      start: "Начать"
+  test_passages:
+    result:
+      header: "Завершен тест: %{title}"
+      back: "Вернуться к списку тестов"
+      success: "Вы дали %{complete_percent}% правильных ответов и успешно прошли тест!"
+      failure: "Вы дали %{complete_percent}% правильных ответов и не прошли тест!"
+    show:
+      header: "Вы проходите тест:"
+      question_number: "Вопрос %{current_question_number} из %{questions_count}:"
+      next_question: "Следующий вопрос"
+      back: "Вернуться к списку тестов"
+      back_confirmation: "Прервать выполнение теста?"
+
+  shared:
+    errors:
+      header:
+        one: "Обнаружена %{count} ошибка:"
+        few: "Обнаружено %{count} ошибки:"
+        many: "Обнаружено %{count} ошибок:"
+        other: "Обнаружено %{count} ошибок:"
+    nav:
+      exit: "Выход"
+      guru: "Гуру"
+      sign_up: "Регистрация"
+      sign_in: "Войти"
+
+  tests_mailer:
+    completed_test:
+      subject: "Вы только что прошли тест на TestGuru!"
