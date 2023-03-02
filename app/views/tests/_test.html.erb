@@ -1,15 +1,11 @@
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style"><%= test.title %></div>
-      <div class="table-constant-tests-column-style" align="center">
-        <%= test.questions.count %>
-      </div>
-      <div class="table-constant-tests-column-style" align="center">
-        <table>
-          <tr>
-            <td><%= button_to t('.start'), start_test_path(test), method: :post %></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+<div class="row table-border">
+  <div class="col-md-10 table-border" align="left">
+    <%= test.title %>
   </div>
+  <div class="col-md-1 table-border" align="center">
+    <%= test.questions.count %>
+  </div>
+  <div class="col-md-1 table-border" align="center">
+    <%= link_to t('.start'), start_test_path(test), method: :post %>
+  </div>
+</div>

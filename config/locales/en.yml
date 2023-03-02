@@ -2,6 +2,8 @@ en:
   hello: "Hello world"
 
   helpers:
+    select:
+      prompt: "Please select"
     submit:
       answer:
         create: "Add"
@@ -25,21 +27,28 @@ en:
       answer:
         body: "Text"
         correct: "Correct"
+        question: "Question"
         question_id: "Question"
       category:
         title: "Title"
       question:
         body: "Text"
+        test: "Test"
         test_id: "Test"
         answer_explanation: "Answer explanation"
       test:
         title: "Title"
+        category: "Category"
         category_id: "Category"
         level: "Level"
+        user: "User"
         user_id: "User"
       test_passage:
+        user: "User"
         user_id: "User"
+        test: "Test"
         test_id: "Test"
+        current_question: "Current question"
         current_question_id: "Current question"
         correct_questions: "Correct questions"
       user:
@@ -123,7 +132,7 @@ en:
         header: "List of all tests"
         new_test: "Create a new Test"
         title: "Title"
-        questions_count: "Questions"
+        questions_count: "Quest."
         test: "Test"
       new:
         header: "Create a new Test"
@@ -149,14 +158,14 @@ en:
     index:
       header: "List of all Tests"
       title: "Title"
-      questions_count: "Questions"
+      questions_count: "Quest."
       test: "Test"
       actions: "Author actions"
     test:
       start: "Start"
   test_passages:
     result:
-      header: "Test completed: %{title}"
+      header: "Test completed"
       back: "Back to Tests list"
       success: "You gave %{complete_percent}% correct answers and successfully completed the Test!"
       failure: "You gave %{complete_percent}% correct answers and haven't passed the Test!"

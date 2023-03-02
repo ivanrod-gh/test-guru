@@ -1,38 +1,34 @@
-<div align="center">
-  <div class="table-medium-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <h1>
-          <%= t('.header') %>
-          <span style="border: 2px solid lightgray;">
-            <%= @test_passage.test.title %>
-          </span>
-        </h1>
+<div class="row table-border">
+  <div class="col-md-12">
+    <div>
+      <div class="row">
+          <div class="col-md-3">
+            <%= t('.header') %>
+          </div>
+        <div class="col-md-9">
+          <b><%= @test_passage.test.title %></b>
+        </div>
       </div>
+      <hr>
     </div>
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
+    <div>
+      <p>
         <%= t('.question_number', current_question_number: @test_passage.current_question_number, questions_count: @test_passage.questions_count) %>
-        <b>
-          <%= @test_passage.current_question.body %>
-        </b>
-
-        <%= form_with url: test_passage_path(@test_passage), method: :put, local: true do |form| %>
-          <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
-            <p>
-              <%= b.check_box id: "answer_ids_#{b.object.id}" %>
-              <%= b.label %>
-            </p>
-          <% end %>
-          
-          <p><%= form.submit t('.next_question') %></p>
+        <b><%= @test_passage.current_question.body %></b>
+      </p>
+      <%= form_with url: test_passage_path(@test_passage), method: :put, local: true do |form| %>
+        <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
+          <p>
+            <%= b.check_box id: "answer_ids_#{b.object.id}" %>
+            <%= b.label %>
+          </p>
         <% end %>
-      </div>
+        <hr>
+        <p><%= form.submit t('.next_question') %></p>
+      <% end %>
     </div>
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <p><%= button_to t('.back'), tests_path, method: :get, params: { lang: params[:lang] }, data: { confirm: t('.back_confirmation') } %></p>
-      </div>
+    <div>
+      <%= link_to t('.back'), tests_path, method: :get, data: { confirm: t('.back_confirmation') } %>
     </div>
   </div>
 </div>

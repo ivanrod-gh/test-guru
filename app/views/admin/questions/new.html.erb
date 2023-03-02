@@ -1,12 +1,8 @@
-<div align="center">
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <%= render 'form' %>
-      </div>
-      <div class="table-constant-actions-column-style" align="center">
-        <%= button_to t('.back'), admin_test_path(@question.test), method: :get, params: { lang: params[:lang] } %>
-      </div>
-    </div>
+<div class="row table-border">
+  <div class="col-md-8 table-border">
+    <%= render 'form' %>
+  </div>
+  <div class="col-md-4 table-border">
+    <%= link_to t('.back'), admin_test_path(@question.test), method: :get %>
   </div>
 </div>

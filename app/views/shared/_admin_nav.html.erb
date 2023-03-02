@@ -1,37 +1,26 @@
-<div class="nav">
-  <div style="padding-right: 15px;" align="right">
-    <div style="padding-right: 10px; padding-bottom: 5px; background-color: #85c1e9; display: table-row; max-width: 1200px; min-width: 850px;">
-      <div style="display: table-cell; width: 1200px; min-width: 100px; height: 50px; text-align: left; vertical-align: middle;">
-        <div style="padding-left: 10px; white-space: nowrap;">
-          <span style="font-size: 200%;">
-            <b><%= link_to 'TestGuru / AdminPanel', root_path, { class: 'no-decoration-link' } %></b>
-          </span>
-        </div>
-      </div>
-      <div style="display: table-cell; vertical-align: middle; padding: 0px 50px 0px 50px;" align="center">
-        <table>
-          <tr>
-            <td><%= button_to 'ru', admin_tests_path, method: :get, params: { lang: "ru" } %></td>
-            <td><%= button_to 'en', admin_tests_path, method: :get, params: { lang: "en" } %></td>
-          </tr>
-        </table>
-      </div>
+<div class="row admin-nav">
+  <div class="col-md-6">
+    <div class="d-flex justify-content-start align-items-center">
+      <div class="p-2 me-3"><%= link_to 'TestGuru', root_path, { class: 'brand-link' } %></div>
+      <div class="p-2"><%= link_to 'Admin', admin_tests_path, { class: 'brand-link' } %></div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="d-flex justify-content-end align-items-center">
+      <div class="p-2"><%= button_to 'ru', admin_tests_path, method: :get, params: { lang: "ru" } %></div>
+      <div class="p-2 me-5"><%= button_to 'en', admin_tests_path, method: :get, params: { lang: "en" } %></div>
       <% if user_signed_in? %>
-        <div style="display: table-cell; max-width: 200px; min-width: 100px; padding-bottom: 5px; vertical-align: top;">
-          <div style="padding: 5px 5px 0px 5px; white-space: nowrap;">
-            <%= t('shared.nav.guru') %> <b><%= current_user.first_name %></b>
-          </div>
-          <div style="padding: 5px 5px 0px 5px;">
-            <%= link_to t('shared.nav.exit'), destroy_user_session_path, { method: :delete, data: { confirm: 'Вы уверены?' }, class: 'no-decoration-link' } %>
-          </div>
+        <div class="p-2">
+          <div align="right"><%= t('shared.nav.guru') %> <b><%= current_user.first_name %></b></div>
+          <div align="right"><%= link_to t('shared.nav.exit'), destroy_user_session_path, { method: :delete, data: { confirm: 'Вы уверены?' }, class: 'no-decoration-link' } %></div>
         </div>
       <% else %>
-        <div style="display: table-cell; white-space: nowrap; max-width: 200px; min-width: 100px; padding-right: 5px; vertical-align: middle;">
-          <span><%= link_to t('shared.nav.sign_up'), new_user_registration_path, { class: 'no-decoration-link' } %></span>
-          <span> / </span>
-          <span><%= link_to t('shared.nav.sign_in'), new_user_session_path, { class: 'no-decoration-link' } %></span>
+        <div class="p-2">
+          <div><%= link_to t('shared.nav.sign_up'), new_user_registration_path, { class: 'no-decoration-link' } %></div>
+          <div><%= link_to t('shared.nav.sign_in'), new_user_session_path, { class: 'no-decoration-link' } %></div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+

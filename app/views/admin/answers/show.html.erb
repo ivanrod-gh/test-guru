@@ -1,29 +1,31 @@
-<div align="center">
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <h2><%= t('.header') %></h2>
-        <span style="border: 1px solid lightgray; padding: 5px;">
-          <%= @answer.question.body %>
-        </span>
+<div class="row table-border">
+  <div class="col-md-8 table-border">
+    <div>
+      <h2><%= t('.header') %>:</h2>
+      <p>
+        
+      <div style="border: 1px solid lightgray; padding: 5px;">
+        <%= @answer.question.body %>
+      </div>
+      </p>
 
-        <h2><%= t('.answer') %></h2>
-        <span style="border: 1px solid lightgray; padding: 5px;">
-          <%= @answer.body %>
-        </span>
 
-        <br><br><br>
+      <h2><%= t('.answer') %>:</h2>
+      <div style="border: 1px solid lightgray; padding: 5px;">
+        <%= @answer.body %>
+      </div>
+
+      <br><p>
         <% if @answer.correct %>
           <span style="border: 2px solid lime;"><%= t('.correct_true') %></span>
         <% else %>
           <span style="border: 2px solid red;"><%= t('.correct_false') %></span>
         <% end %>
-
-      </div>
-      <div class="table-constant-actions-column-style" align="center">
-        <p><%= button_to t('.back'), admin_question_path(@answer.question), method: :get, params: { lang: params[:lang] } %></p><hr>
-        <p><%= button_to t('.edit'), edit_admin_answer_path(@answer), method: :get, params: { lang: params[:lang] } %></p>
-      </div>
+      </p>
     </div>
+  </div>
+  <div class="col-md-4 table-border">
+    <div><%= link_to t('.back'), admin_question_path(@answer.question), method: :get %></div>
+    <div><%= link_to t('.edit'), edit_admin_answer_path(@answer), method: :get %></div>
   </div>
 </div>

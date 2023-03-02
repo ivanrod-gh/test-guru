@@ -1,19 +1,18 @@
-<div align="center">
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <%= answer.body %>
+<div class="row table-border">
+  <div class="col-md-8 table-border" align="left">
+    <%= answer.body %>
+  </div>
+  <div class="col-md-4 table-border">
+    <div class="row">
+      <div class="col-md-4" align="center">
+        <%= link_to t('admin.author_actions.watch'), admin_answer_path(answer), method: :get %>
       </div>
-      <div class="table-constant-actions-column-style" align="center">
-        <table>
-          <tr>
-            <td><%= button_to t('admin.author_actions.watch'), admin_answer_path(answer), method: :get, params: { lang: params[:lang] } %></td>
-            <td><%= button_to t('admin.author_actions.edit'), edit_admin_answer_path(answer), method: :get, params: { lang: params[:lang] } %></td>
-            <td><%= button_to t('admin.author_actions.delete'), admin_answer_path(answer), method: :delete, data: { confirm: t('admin.author_actions.delete_confirmation')}, style: "color: red" %></td>
-          </tr>
-        </table>
+      <div class="col-md-4" align="center">
+        <%= link_to t('admin.author_actions.edit'), edit_admin_answer_path(answer), method: :get %>
+      </div>
+      <div class="col-md-4" align="center">
+        <%= link_to t('admin.author_actions.delete'), admin_answer_path(answer), method: :delete, data: { confirm: t('admin.author_actions.delete_confirmation')}, style: "color: red" %>
       </div>
     </div>
   </div>
 </div>
-
