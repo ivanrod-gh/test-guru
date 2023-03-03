@@ -23,7 +23,17 @@ class User < ApplicationRecord
     test_passages.order(id: :desc).find_by(test_id: test.id)
   end
 
+  def admin?
+    check_admin
+  end
+
   validates :first_name, presence: true, length: { in: 1..20 }
   validates :last_name, presence: true, length: { in: 1..20 }
   validates :access_level, presence: true
+
+  private
+
+  def check_admin
+    access_level == 'Admin'
+  end
 end

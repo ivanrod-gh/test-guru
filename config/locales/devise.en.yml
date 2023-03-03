@@ -94,11 +94,10 @@ en:
       already_signed_out: "Signed out successfully."
       new:
         header: "Log in"
+        remember: "Remember me"
         log_in: "Log in"
     shared:
       links:
-        log_in: "Log in"
-        sign_up: "Sign up"
         password_forgoten: "Forgot your password?"
         no_confirmation_email: "Didn't receive confirmation instructions?"
         no_unlock_email: "Didn't receive unlock instructions?"
@@ -116,7 +115,7 @@ en:
       not_found: "not found"
       not_locked: "was not locked"
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
-        few: "%{count} errors prohibited this %{resource} from being saved:"
-        many: "%{count} errors prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: "1 error prohibited this [%{resource}] from being saved:"
+        few: "%{count} errors prohibited this [%{resource}] from being saved:"
+        many: "%{count} errors prohibited this [%{resource}] from being saved:"
+        other: "%{count} errors prohibited this [%{resource}] from being saved:"

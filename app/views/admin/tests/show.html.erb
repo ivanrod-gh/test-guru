@@ -1,27 +1,13 @@
-<div align="center">
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <h2>
-          <ul style="list-style-type: none;">
-            <li><%= t('.category') %>: <%= @test.category.title %></li>
-            <li><%= t('.title') %>: <%= @test.title %></li>
-            <li><%= t('.author') %>: <%= @test.author.first_name %> <%= @test.author.last_name %></li>
-          </ul>
-        </h2>
-      </div>
-      <div class="table-constant-actions-column-style" align="center">
-        <p><%= button_to t('.back'), admin_tests_path, method: :get, params: { lang: params[:lang] } %></p><hr>
-        <p><%= button_to t('.edit'), edit_admin_test_path(@test), method: :get, params: { lang: params[:lang] } %></p><hr>
-        <p><%= button_to t('.add_question'), new_admin_test_question_path(@test), method: :get, params: { lang: params[:lang] } %></p>
-      </div>
-    </div>
+<div class="row table-border">
+  <div class="col-md-8 table-border">
+    <div><%= t('.category') %>: <%= @test.category.title %></div>
+    <div><%= t('.title') %>: <%= @test.title %></div>
+    <div><%= t('.author') %>: <%= @test.author.first_name %> <%= @test.author.last_name %></div>
   </div>
-  <div class="table-large-style">
-    <div class="table-row-style" align="center">
-      <div class="table-flexible-column-style"><%= t('.question_body') %></div>
-      <div class="table-constant-actions-column-style"><%= t('admin.author_actions.header') %></div>
-    </div>
+  <div class="col-md-4 table-border">
+    <div><%= link_to t('.back'), admin_tests_path, method: :get %></div>
+    <div><%= link_to t('.edit'), edit_admin_test_path(@test), method: :get %></div>
+    <div><%= link_to t('.add_question'), new_admin_test_question_path(@test), method: :get %></div>
   </div>
-  <%= render @test.questions %>
 </div>
+<%= render @test.questions %>

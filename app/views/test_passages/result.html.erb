@@ -1,29 +1,32 @@
-<div align="center">
-  <div class="table-medium-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <h1><%= t('.header', title: @test_passage.test.title) %></h1>
-      </div>
-    </div>
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <div style="text-align: center;">
-          <% if @test_passage.success? %>
-            <h3 style="background-color: lime;">
-              <%= t('.success', complete_percent: @test_passage.complete_percent) %>
-            </h3>
-          <% else %>
-            <h3 style="background-color: orange;">
-              <%= t('.failure', complete_percent: @test_passage.complete_percent) %>
-            </h3>
-          <% end %>
+<div class="row table-border">
+  <div class="col-md-12">
+    <div>
+      <div class="row">
+          <div class="col-md-3">
+            <%= t('.header') %>:
+          </div>
+        <div class="col-md-9">
+          <b><%= @test_passage.test.title %></b>
         </div>
       </div>
     </div>
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <p><%= button_to t('.back'), tests_path, method: :get, params: { lang: params[:lang] } %></p>
+    <div>
+      <div class="mt-5 mb-5">
+
+      <% if @test_passage.success? %>
+        <h3 style="background-color: lime;">
+          <%= t('.success', complete_percent: @test_passage.complete_percent) %>
+        </h3>
+      <% else %>
+        <h3 style="background-color: orange;">
+          <%= t('.failure', complete_percent: @test_passage.complete_percent) %>
+        </h3>
+      <% end %>
       </div>
+
+    </div>
+    <div>
+      <%= link_to t('.back'), tests_path, method: :get %>
     </div>
   </div>
 </div>

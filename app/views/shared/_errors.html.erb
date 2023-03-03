@@ -1,8 +1,10 @@
 <% if instance.errors.present? %>
   <div style="color: red">
     <h3><%= t('.header', count: instance.errors.count) %></h3>
+    <ul>
     <% instance.errors.full_messages.each do |message| %>
-      <p>- <%= message %></p>
+      <li><%= message %></li>
     <% end %>
+    </ul>
   </div>
 <% end %>

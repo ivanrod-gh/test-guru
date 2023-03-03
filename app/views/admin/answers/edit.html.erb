@@ -1,12 +1,10 @@
-<div align="center">
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <%= render 'form' %>
-      <div class="table-constant-actions-column-style" align="center">
-        <p><%= button_to t('.back'), admin_question_path(@answer.question), method: :get, params: { lang: params[:lang] } %></p><hr>
-        <p><%= button_to t('.watch'), admin_answer_path(@answer), method: :get, params: { lang: params[:lang] } %></p><hr>
-        <p><%= button_to t('.delete'), admin_answer_path(@answer), method: :delete, data: { confirm: t('.delete_confirmation')}, style: "color: red" %></p>
-      </div>
-    </div>
+<div class="row table-border">
+  <div class="col-md-8 table-border">
+    <%= render 'form' %>
+  </div>
+  <div class="col-md-4 table-border">
+    <div><%= link_to t('.back'), admin_question_path(@answer.question), method: :get %></div>
+    <div><%= link_to t('.watch'), admin_answer_path(@answer), method: :get %></div>
+    <div><%= link_to t('.delete'), admin_answer_path(@answer), method: :delete, data: { confirm: t('.delete_confirmation')}, style: "color: red" %></div>
   </div>
 </div>

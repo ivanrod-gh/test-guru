@@ -2,6 +2,8 @@ ru:
   hello: "Привет мир"
 
   helpers:
+    select:
+      prompt: "Пожалуйста, выберите"
     submit:
       answer:
         create: "Добавить"
@@ -25,21 +27,28 @@ ru:
       answer:
         body: "Текст"
         correct: "Верный"
+        question: "Вопрос"
         question_id: "Вопрос"
       category:
         title: "Название"
       question:
         body: "Текст"
+        test: "Тест"
         test_id: "Тест"
         answer_explanation: "Объяснение"
       test:
         title: "Название"
+        category: "Категория"
         category_id: "Категория"
         level: "Уровень"
+        user: "Пользователь"
         user_id: "Пользователь"
       test_passage:
+        user: "Пользователь"
         user_id: "Пользователь"
+        test: "Тест"
         test_id: "Тест"
+        current_question: "Текущий вопрос"
         current_question_id: "Текущий вопрос"
         correct_questions: "Правильных ответов"
       user:
@@ -67,7 +76,7 @@ ru:
         equal_to: "- количество символов должно быть равено %{count}"
         less_than: "- количество символов должно быть менее %{count}"
         less_than_or_equal_to: "- количество символов должно быть не более %{count}"
-        blank: "не может быть пустым значением"
+        blank: "не может отсутствовать"
         taken: "уже занят"
 
   admin:
@@ -123,7 +132,7 @@ ru:
         header: "Список всех тестов"
         new_test: "Создать новый тест"
         title: "Название"
-        questions_count: "Вопросов"
+        questions_count: "Вопр."
         test: "Тест"
       new:
         header: "Создать новый тест"
@@ -141,22 +150,22 @@ ru:
         start: "Начать"
     author_actions:
       header: "Действия автора"
-      watch: "Просмотреть"
-      edit: "Редактировать"
+      watch: "Смотреть"
+      edit: "Редакт."
       delete: "Удалить"
       delete_confirmation: "Вы уверены?"
   tests:
     index:
       header: "Список всех тестов"
       title: "Название"
-      questions_count: "Вопросов"
+      questions_count: "Вопр."
       test: "Тест"
       actions: "Действия автора"
     test:
       start: "Начать"
   test_passages:
     result:
-      header: "Завершен тест: %{title}"
+      header: "Завершен тест"
       back: "Вернуться к списку тестов"
       success: "Вы дали %{complete_percent}% правильных ответов и успешно прошли тест!"
       failure: "Вы дали %{complete_percent}% правильных ответов и не прошли тест!"

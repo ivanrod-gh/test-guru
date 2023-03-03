@@ -1,26 +1,27 @@
-<div align="center">
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <h2><%= t('.header', title: @question.test.title) %></h2><br>
-        <span style="border: 1px solid lightgray; padding: 5px;">
-          <%= @question.body %>
-        </span>
+<div class="row table-border">
+  <div class="col-md-8 table-border">
+    <div>
+      <h2><%= t('.header', title: @question.test.title) %>:</h2>
+      <p>
+      <div style="border: 1px solid lightgray; padding: 5px;">
+        <%= @question.body %>
       </div>
-      <div class="table-constant-actions-column-style" align="center">
-        <p><%= button_to t('.back'), admin_test_path(@question.test), method: :get, params: { lang: params[:lang] } %></p><hr>
-        <p><%= button_to t('.edit'), edit_admin_question_path(@question), method: :get, params: { lang: params[:lang] } %></p><hr>
-        <p><%= button_to t('.add_answer'), new_admin_question_answer_path(@question), method: :get, params: { lang: params[:lang] } %></p>
-      </div>
+        
+      </p>
     </div>
   </div>
+  <div class="col-md-4 table-border">
+    <div><%= link_to t('.back'), admin_test_path(@question.test), method: :get %></div>
+    <div><%= link_to t('.edit'), edit_admin_question_path(@question), method: :get %></div>
+    <div><%= link_to t('.add_answer'), new_admin_question_answer_path(@question), method: :get %></div>
+  </div>
 </div>
-<div align="center">
-  <div class="table-large-style">
-    <div class="table-row-style" align="center">
-      <div class="table-flexible-column-style"><%= t('.answers') %></div>
-      <div class="table-constant-actions-column-style"><%= t('admin.author_actions.header') %></div>
-    </div>
+<div class="row  table-border" align="center">
+  <div class="col-md-8 table-border">
+    <%= t('.answers') %>
+  </div>
+  <div class="col-md-4 table-border">
+    <%= t('admin.author_actions.header') %>
   </div>
 </div>
 <%= render @question.answers %>

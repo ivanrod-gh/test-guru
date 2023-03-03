@@ -75,7 +75,7 @@ ru:
         header: "Изменить регистрационные данные"
         awaiting_confirmation: "В данный момент ожидается подтверждение для: %{email}"
         field_can_be_blank: "(оставьте это поле пустым, если не хотите менять пароль)"
-        minimum_password_length: "%{length} символов минимум"
+        minimum_password_length: "минимум %{length} символов"
         current_password: "Текущий пароль"
         current_password_info: "(необходимо ввести текущий пароль для подтверждения изменений)"
         update: "Внести изменения"
@@ -86,7 +86,7 @@ ru:
         back: "Вернуться"
       new:
         header: "Пройти регистрацию"
-        minimum_password_length: "%{length} символов минимум"
+        minimum_password_length: "минимум %{length} символов"
         sign_up: "Зарегистрироваться"
     sessions:
       signed_in: "Вход в систему выполнен."
@@ -94,11 +94,10 @@ ru:
       already_signed_out: "Выход из системы выполнен."
       new:
         header: "Выполнить вход"
+        remember: "Запомнить"
         log_in: "Войти"
     shared:
       links:
-        log_in: "Войти"
-        sign_up: "Зарегистрироваться"
         password_forgoten: "Забыли пароль?"
         no_confirmation_email: "Не получили письмо с подтверждением регистрации?"
         no_unlock_email: "Не получили письмо с инструкцией по разблокировке?"

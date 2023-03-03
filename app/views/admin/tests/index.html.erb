@@ -1,25 +1,23 @@
-<div align="center">
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style">
-        <h2>
-          <ul style="list-style-type: none;">
-            <li><%= t('.header') %></li>
-          </ul>
-        </h2>
-      </div>
-      <div class="table-constant-actions-column-style" align="center">
-        <%= button_to t('.new_test'), new_admin_test_path(@test), method: :get, params: { lang: params[:lang] } %>
-      </div>
-    </div>
+<div class="row table-border">
+  <div class="col-md-8 table-border">
+    <%= t('.header') %>
   </div>
-  <div class="table-large-style">
-    <div class="table-row-style">
-      <div class="table-flexible-column-style"align="center"><%= t('.title') %></div>
-      <div class="table-constant-tests-column-style" align="center"><%= t('.questions_count') %></div>
-      <div class="table-constant-tests-column-style" align="center"><%= t('.test') %></div>
-      <div class="table-constant-actions-column-style" align="center"><%= t('admin.author_actions.header') %></div>
-    </div>
+  <div class="col-md-4 table-border">
+    <%= link_to t('.new_test'), new_admin_test_path(@test), method: :get %>
   </div>
-  <%= render @tests %>
 </div>
+<div class="row  table-border" align="center">
+  <div class="col-md-6 table-border">
+    <%= t('.title') %>
+  </div>
+  <div class="col-md-1 table-border">
+    <%= t('.questions_count') %>
+  </div>
+  <div class="col-md-1 table-border">
+    <%= t('.test') %>
+  </div>
+  <div class="col-md-4 table-border">
+    <%= t('admin.author_actions.header') %>
+  </div>
+</div>
+<%= render @tests %>
