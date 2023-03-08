@@ -24,9 +24,17 @@
           </p>
         <% end %>
         <hr>
-        <p><%= form.submit t('.next_question') %></p>
+        <div class="row">
+          <div class="col-md-6" align="left">
+            <%= form.submit t('.next_question') %>
+          </div>
+          <div class="col-md-6"  align="right">
+            <%= link_to t('.create_gist'), gist_test_passage_path(@test_passage), method: :post %>
+          </div>
+        </div>
       <% end %>
     </div>
+    <br>
     <div>
       <%= link_to t('.back'), tests_path, method: :get, data: { confirm: t('.back_confirmation') } %>
     </div>

@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :author_tests, class_name: 'Test', dependent: :destroy
   has_many :test_passages, dependent: :destroy
   has_many :passed_tests, through: :test_passages, source: :test
+  has_many :gists, dependent: :destroy
 
   def tests_by_level(test_level)
     passed_tests.where(level: test_level)
@@ -23,17 +24,7 @@ class User < ApplicationRecord
     test_passages.order(id: :desc).find_by(test_id: test.id)
   end
 
-  def admin?
-    check_admin
-  end
-
   validates :first_name, presence: true, length: { in: 1..20 }
   validates :last_name, presence: true, length: { in: 1..20 }
   validates :access_level, presence: true
-
-  private
-
-  def check_admin
-    access_level == 'Admin'
-  end
 end

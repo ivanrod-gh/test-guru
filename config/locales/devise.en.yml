@@ -94,6 +94,7 @@ en:
       already_signed_out: "Signed out successfully."
       new:
         header: "Log in"
+        email_placeholder: "Enter email"
         remember: "Remember me"
         log_in: "Log in"
     shared:

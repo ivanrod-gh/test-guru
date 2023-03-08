@@ -145,6 +145,7 @@ ru:
         back: "Вернуться к списку тестов"
         edit: "Редактировать тест"
         add_question: "Добавить вопрос"
+        admin_required!: "Для просмотра этой страницы у вас недостаточно прав доступа"
       test:
         delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
         start: "Начать"
@@ -164,17 +165,25 @@ ru:
     test:
       start: "Начать"
   test_passages:
+    gist:
+      success: "Gist успешно создан (<a href=\"%{url}\">ссылка</a> на gist.github)"
+      failure: "Во время создания Gist произошла ошибка"
     result:
       header: "Завершен тест"
       back: "Вернуться к списку тестов"
       success: "Вы дали %{complete_percent}% правильных ответов и успешно прошли тест!"
       failure: "Вы дали %{complete_percent}% правильных ответов и не прошли тест!"
     show:
+      create_gist: "Возникли сложности? Создать Gist"
       header: "Вы проходите тест:"
       question_number: "Вопрос %{current_question_number} из %{questions_count}:"
       next_question: "Следующий вопрос"
       back: "Вернуться к списку тестов"
       back_confirmation: "Прервать выполнение теста?"
+
+  services:
+    gist:
+      header: "Вопрос о тесте \"%{test_title}\" и его вопросе с TestGuru"
 
   shared:
     errors:
