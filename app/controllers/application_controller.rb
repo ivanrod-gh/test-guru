@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    current_user.access_level == 'Admin' if current_user
+    current_user.admin? if current_user
   end
 end

@@ -5,8 +5,25 @@ class GistQuestionService
     @client = client || GitHubClient.new
   end
 
-  def call
-    @client.create_gist(gist_params)
+  def post
+    @response = @client.create_gist(gist_params)
+    self
+  end
+
+  def success?
+    if @response.class == Faraday::Response
+      @response.success?
+    elsif Gem.loaded_specs.has_key?('octokit') && @response.class == Sawyer::Resource
+      @response.id?
+    end
+  end
+
+  def gist_url
+    if @response.class == Faraday::Response
+      JSON.parse(@response.body)['html_url']
+    elsif Gem.loaded_specs.has_key?('octokit') && @response.class == Sawyer::Resource
+      @response[:html_url]
+    end
   end
 
   private

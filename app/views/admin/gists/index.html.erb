@@ -4,21 +4,21 @@
       <% if gist.question.body.length <= Gist::MAXIMUM_VIEW_STRING_LENGTH %>
         <%= link_to gist.question.body, admin_question_path(gist.question) %>
       <% else %>
-        <%= link_to gist.question.body[0,25].., admin_question_path(gist.question) %>
+        <%= link_to "#{gist.question.body[0,Gist::MAXIMUM_VIEW_STRING_LENGTH]}..", admin_question_path(gist.question) %>
       <% end %>
     </div>
     <div class="col-md-4 table-border">
-      <% if gist.question.body.length <= Gist::MAXIMUM_VIEW_STRING_LENGTH %>
+      <% if gist.link.length <= Gist::MAXIMUM_VIEW_STRING_LENGTH %>
         <%= link_to gist.link, gist.link %>
       <% else %>
-        <%= link_to gist.link[0,25].., gist.link %>
+        <%= link_to "#{gist.link[0,Gist::MAXIMUM_VIEW_STRING_LENGTH]}..", gist.link %>
       <% end %>
     </div>
     <div class="col-md-4 table-border">
-      <% if gist.question.body.length <= Gist::MAXIMUM_VIEW_STRING_LENGTH %>
+      <% if gist.user.email.length <= Gist::MAXIMUM_VIEW_STRING_LENGTH %>
         <%= gist.user.email %>
       <% else %>
-        <%= gist.user.email[0,25] %>
+        <%= "#{gist.user.email[0,Gist::MAXIMUM_VIEW_STRING_LENGTH]}.." %>
       <% end %>
     </div>
   <% end %>

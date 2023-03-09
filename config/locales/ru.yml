@@ -165,9 +165,6 @@ ru:
     test:
       start: "Начать"
   test_passages:
-    gist:
-      success: "Gist успешно создан (<a href=\"%{url}\">ссылка</a> на gist.github)"
-      failure: "Во время создания Gist произошла ошибка"
     result:
       header: "Завершен тест"
       back: "Вернуться к списку тестов"
@@ -180,6 +177,11 @@ ru:
       next_question: "Следующий вопрос"
       back: "Вернуться к списку тестов"
       back_confirmation: "Прервать выполнение теста?"
+
+  gists:
+    create:
+      success: "Gist успешно создан (<a href=\"%{url}\" target=\"_blank\">ссылка</a> на gist.github)"
+      failure: "Во время создания Gist произошла ошибка"
 
   services:
     gist:

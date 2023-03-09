@@ -27,4 +27,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { in: 1..20 }
   validates :last_name, presence: true, length: { in: 1..20 }
   validates :access_level, presence: true
+
+  def admin?
+    access_level == 'Admin'
+  end
 end

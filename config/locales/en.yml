@@ -165,9 +165,6 @@ en:
     test:
       start: "Start"
   test_passages:
-    gist:
-      success: "The Gist created successfully (<a href=\"%{url}\">link</a> to gist.github)"
-      failure: "An error occurred while creating the Gist"
     result:
       header: "Test completed"
       back: "Back to Tests list"
@@ -180,6 +177,11 @@ en:
       next_question: "Next question"
       back: "Back to Tests list"
       back_confirmation: "Interrupt execution of the Test?"
+
+  gists:
+    create:
+      success: "The Gist created successfully (<a href=\"%{url}\" target=\"_blank\">link</a> to gist.github)"
+      failure: "An error occurred while creating the Gist"
 
   services:
     gist:

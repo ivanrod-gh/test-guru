@@ -29,7 +29,7 @@
             <%= form.submit t('.next_question') %>
           </div>
           <div class="col-md-6"  align="right">
-            <%= link_to t('.create_gist'), gist_test_passage_path(@test_passage), method: :post %>
+            <%= link_to t('.create_gist'), test_passage_gists_path(@test_passage), method: :post %>
           </div>
         </div>
       <% end %>
