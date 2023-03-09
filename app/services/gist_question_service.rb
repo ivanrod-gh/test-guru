@@ -11,6 +11,7 @@ class GistQuestionService
   end
 
   def success?
+    byebug
     if @response.class == Faraday::Response
       @response.success?
     elsif Gem.loaded_specs.has_key?('octokit') && @response.class == Sawyer::Resource

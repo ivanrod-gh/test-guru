@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TestPassagesController < ApplicationController
-  before_action :find_test_passage, obly: %i[show update result gist]
+  before_action :find_test_passage, only: %i[show update result gist]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_passage_not_found
 
