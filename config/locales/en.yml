@@ -145,6 +145,7 @@ en:
         back: "Back to Tests list"
         edit: "Edit a Test"
         add_question: "Add a Question"
+        admin_required!: "You do not have sufficient permissions to view this page"
       test:
         delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
         start: "Start"
@@ -170,11 +171,21 @@ en:
       success: "You gave %{complete_percent}% correct answers and successfully completed the Test!"
       failure: "You gave %{complete_percent}% correct answers and haven't passed the Test!"
     show:
+      create_gist: "Difficulties arose? Create a Gist"
       header: "You passing a Test:"
       question_number: "Question %{current_question_number} from %{questions_count}:"
       next_question: "Next question"
       back: "Back to Tests list"
       back_confirmation: "Interrupt execution of the Test?"
+
+  gists:
+    create:
+      success: "The Gist created successfully (<a href=\"%{url}\" target=\"_blank\">link</a> to gist.github)"
+      failure: "An error occurred while creating the Gist"
+
+  services:
+    gist:
+      header: "A question about test \"%{test_title}\" and his question from TestGuru"
 
   shared:
     errors:

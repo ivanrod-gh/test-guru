@@ -1401,7 +1401,7 @@ question.answers.new(
 )
 question.save!
 question = current_test.questions.new(
-  body: '--х;'
+  body: '--х; это:'
 )
 question.answers.new(
   body: 'постфиксный инкремент'

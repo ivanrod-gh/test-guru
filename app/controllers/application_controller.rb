@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
   helper_method :admin?
 
   def after_sign_in_path_for(_user)
@@ -13,17 +13,17 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    if I18n.locale.to_s != I18n.default_locale.to_s
-      { lang: I18n.locale }
+    if I18n.locale.to_s == I18n.default_locale.to_s
+      {}
     else
-      { }
+      { lang: I18n.locale }
     end
   end
 
   protected
 
   def set_locale
-    I18n.locale_available?(params[:lang]) ? I18n.locale = params[:lang] : I18n.locale = I18n.default_locale
+    I18n.locale = (I18n.locale_available?(params[:lang]) ? params[:lang] : I18n.default_locale)
   end
 
   def configure_permitted_parameters
@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    current_user.admin?
+    current_user.admin? if current_user
   end
 end
