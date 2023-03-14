@@ -3,9 +3,11 @@
     <%= t('.header') %>
   </div>
 </div>
-<div class="row  table-border" align="center">
-  <div class="col-md-10 table-border">
+<div class="row table-border" align="center">
+  <div class="col-md-10 table-border sort-by-title pointer">
     <%= t('.title') %>
+    <%= octicon 'arrow-up', class: 'green hide' %>
+    <%= octicon 'arrow-down', class: 'green hide' %>
   </div>
   <div class="col-md-1 table-border">
     <%= t('.questions_count') %>
@@ -14,4 +16,6 @@
     <%= t('.test') %>
   </div>
 </div>
-<%= render @tests %>
+<div id="table-with-values">
+  <%= render @tests %>
+</div>

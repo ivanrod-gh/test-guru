@@ -29,5 +29,3 @@ class TestPassagesController < ApplicationController
     render plain: "Ошибка: Прохождение теста не найдено"
   end
 end
-
-

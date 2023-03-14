@@ -12,7 +12,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("@popperjs/core")
+import "@popperjs/core"
 import "bootstrap"
 import { Tooltip, Popover } from "bootstrap"
 document.addEventListener("turbolinks:load", () => {
@@ -27,4 +27,5 @@ document.addEventListener("turbolinks:load", () => {
   })
 })
 
-require("../stylesheets/application.scss")
+import "packs/utilities/password.confirmation.js"
+import "packs/utilities/sorting.js"

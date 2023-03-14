@@ -1,7 +1,6 @@
-.nav {
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  height: 50px;
-  text-align: right;
+.user-nav {
+  background-color: lightgray;
+}
+.admin-nav {
+  background-color: #3498db;
 }

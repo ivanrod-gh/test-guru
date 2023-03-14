@@ -88,6 +88,8 @@ en:
         header: "Sign up"
         minimum_password_length: "%{length} characters minimum"
         sign_up: "Sign up"
+        password_confirmation_failed: "Password didn\'t match confirmation"
+        password_confirmation_passed: "Password and confirmation match"
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
