@@ -7,8 +7,10 @@
   </div>
 </div>
 <div class="row  table-border" align="center">
-  <div class="col-md-6 table-border">
+  <div class="col-md-6 table-border sort-by-title pointer">
     <%= t('.title') %>
+    <%= octicon 'arrow-up', class: 'green hide' %>
+    <%= octicon 'arrow-down', class: 'green hide' %>
   </div>
   <div class="col-md-1 table-border">
     <%= t('.questions_count') %>
@@ -20,4 +22,6 @@
     <%= t('admin.author_actions.header') %>
   </div>
 </div>
-<%= render @tests %>
+<div id="table-with-values">
+  <%= render @tests %>
+</div>

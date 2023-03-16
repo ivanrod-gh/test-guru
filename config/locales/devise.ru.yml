@@ -88,6 +88,8 @@ ru:
         header: "Пройти регистрацию"
         minimum_password_length: "минимум %{length} символов"
         sign_up: "Зарегистрироваться"
+        password_confirmation_failed: "Пароль не совпадает с подтверждением"
+        password_confirmation_passed: "Пароль и подтверждение совпадают"
     sessions:
       signed_in: "Вход в систему выполнен."
       signed_out: "Выход из системы выполнен."

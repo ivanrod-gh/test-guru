@@ -36,6 +36,8 @@ gem 'rails-i18n', '~> 6.0.0'
 # GitHub API
 gem 'faraday-retry', '~> 2.1.0'
 gem 'octokit', '~> 5.0'
+# UI::Icons
+gem 'octicons_helper', '~> 18.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
