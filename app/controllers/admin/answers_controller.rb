@@ -17,6 +17,9 @@ class Admin::AnswersController < Admin::BaseController
     end
   end
 
+  def show; end
+  def edit; end
+
   def update
     if @answer.update(answer_params)
       redirect_to admin_answer_path(@answer)

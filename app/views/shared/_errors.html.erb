@@ -1,10 +1,10 @@
-<% if instance.errors.present? %>
-  <div style="color: red">
+<% if instance && instance.errors.present? %>
+  <%= content_tag :div, class: 'instance-errors', data: { instance_id: instance.id }, style: 'color: red;' do %>
     <h3><%= t('.header', count: instance.errors.count) %></h3>
     <ul>
-    <% instance.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
+      <% instance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
-  </div>
+  <% end %>
 <% end %>

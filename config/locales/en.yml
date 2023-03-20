@@ -128,6 +128,8 @@ en:
         watch: "Watch a Test"
         delete: "Delete a Test"
         delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
+      form_inline:
+        submit: 'OK'
       index:
         header: "List of all tests"
         new_test: "Create a new Test"
@@ -153,6 +155,7 @@ en:
       header: "Author actions"
       watch: "Watch"
       edit: "Edit"
+      cancel: "Cancel"
       delete: "Delete"
       delete_confirmation: "Are you sure?"
   tests:

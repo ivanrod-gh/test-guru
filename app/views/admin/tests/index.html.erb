@@ -1,9 +1,14 @@
+<span class="hide admin-author-actions-edit"><%= t('admin.author_actions.edit') %></span>
+<span class="hide admin-author-actions-cancel"><%= t('admin.author_actions.cancel') %></span>
+
+<%= render 'shared/errors', instance: @test %>
+
 <div class="row table-border">
   <div class="col-md-8 table-border">
     <%= t('.header') %>
   </div>
   <div class="col-md-4 table-border">
-    <%= link_to t('.new_test'), new_admin_test_path(@test), method: :get %>
+    <%= link_to t('.new_test'), new_admin_test_path, method: :get %>
   </div>
 </div>
 <div class="row  table-border" align="center">
