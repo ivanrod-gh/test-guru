@@ -5,7 +5,7 @@ document.addEventListener('turbolinks:load', function() {
 
 function sortRowsByTitle() {
   var table = document.querySelector('#table-with-values')
-  var rows = Array.prototype.slice.call(table.querySelectorAll('#table-row'))
+  var rows = [].slice.call(table.querySelectorAll('#table-row'))
 
   if (this.querySelector('.octicon-arrow-up').classList.contains('hide')) {
     rows.sort(compareRowsAsc)

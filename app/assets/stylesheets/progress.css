@@ -1,0 +1,17 @@
+.js-progress {
+  background-color: #efefef;
+  min-height: 1em;
+  border-radius: 3px;
+}
+.js-progress-bar-overal {
+  background-color: #65e6e6;
+  min-height: 1em;
+  border-radius: 3px;
+  width: 0%;
+}
+.js-progress-bar-current {
+  background-color: #2766f1;
+  min-height: 1em;
+  border-radius: 3px;
+  width: 0%;
+}

@@ -128,6 +128,8 @@ ru:
         watch: "Просмотреть тест"
         delete: "Удалить тест"
         delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
+      form_inline:
+        submit: 'ОК'
       index:
         header: "Список всех тестов"
         new_test: "Создать новый тест"
@@ -153,6 +155,7 @@ ru:
       header: "Действия автора"
       watch: "Смотреть"
       edit: "Редакт."
+      cancel: "Отмена"
       delete: "Удалить"
       delete_confirmation: "Вы уверены?"
   tests:

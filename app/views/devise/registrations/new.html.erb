@@ -1,3 +1,6 @@
+<span class="hide info-password-failed"><%= t('.password_confirmation_failed') %></span>
+<span class="hide info-password-passed"><%= t('.password_confirmation_passed') %></span>
+
 <div class="row justify-content-center">
   <div class="col-md-5 col-lg-4">
     <div class="card border-primary">
@@ -28,8 +31,6 @@
         <p align="center">
           <%= f.label :password_confirmation %>
           <%= octicon 'alert', class: 'hide' %>
-          <span style="display: none;" id="tooltip-password-failed"><%= t('.password_confirmation_failed') %></span>
-          <span style="display: none;" id="tooltip-password-passed"><%= t('.password_confirmation_passed') %></span>
           <%= f.password_field :password_confirmation, class: 'form-control' %>
         </p>
           <p align="center"><%= f.submit t('.sign_up'), class: 'btn btn-primary' %></p>

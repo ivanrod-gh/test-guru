@@ -11,8 +11,8 @@ function checkPasswordConfirmationCoincidence() {
   var password = document.querySelector('#user_password')
   var confirmation = document.querySelector('#user_password_confirmation')
   var alertIcon = document.querySelector('.octicon-alert')
-  var tooltipPassedText = document.querySelector('#tooltip-password-passed').textContent
-  var tooltipFailedText = document.querySelector('#tooltip-password-failed').textContent
+  var tooltipPassedText = document.querySelector('.info-password-passed').textContent
+  var tooltipFailedText = document.querySelector('.info-password-failed').textContent
 
   if (!password.value || !confirmation.value) {
     alertIcon.classList.add('hide')
@@ -21,7 +21,7 @@ function checkPasswordConfirmationCoincidence() {
     return
   }
 
-  if (password.value == confirmation.value) {
+  if (password.value === confirmation.value) {
     alertIcon.classList.remove('hide')
     alertIcon.classList.remove('red')
     alertIcon.classList.add('green')

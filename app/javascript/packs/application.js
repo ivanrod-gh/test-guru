@@ -27,5 +27,7 @@ document.addEventListener("turbolinks:load", () => {
   })
 })
 
+import "packs/utilities/form.inline.js"
 import "packs/utilities/password.confirmation.js"
+import "packs/utilities/progress.bar.js"
 import "packs/utilities/sorting.js"

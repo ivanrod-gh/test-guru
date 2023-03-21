@@ -18,6 +18,9 @@ class Admin::QuestionsController < Admin::BaseController
     end
   end
 
+  def show; end
+  def edit; end
+
   def update
     if @question.update(question_params)
       redirect_to admin_question_path(@question)
