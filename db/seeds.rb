@@ -1,13 +1,5 @@
 # frozen_string_literal: false
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create!(name: 'Luke', movie: movies.first)
-
 # Filling test DB with initial data
 Category.create!(title: 'HTML')
 Category.create!(title: 'Ruby')
@@ -15,20 +7,31 @@ Category.create!(title: 'Java')
 Category.create!(title: 'JavaScript')
 Category.create!(title: 'Викторины')
 
-rand(5..15).times do |i|
-  user = User.new(
-    email: "some#{i}@mail.net",
-    password: '123456'
+# Create users in case of environment
+if Rails.env == 'production'
+  User.create(
+    first_name: 'admin',
+    last_name: 'system',
+    email: ENV['ADMIN_MAIL'],
+    password: ENV['ADMIN_PASSWORD'],
+    access_level: 'Admin'
   )
-  if rand(0..1).zero?
-    user.first_name = Faker::Name.unique.male_first_name
-    user.last_name = Faker::Name.unique.male_last_name
-  else
-    user.first_name = Faker::Name.unique.female_first_name
-    user.last_name = Faker::Name.unique.female_last_name
+else
+  rand(5..15).times do |i|
+    user = User.new(
+      email: "some#{i}@mail.net",
+      password: '123456'
+    )
+    if rand(0..1).zero?
+      user.first_name = Faker::Name.unique.male_first_name
+      user.last_name = Faker::Name.unique.male_last_name
+    else
+      user.first_name = Faker::Name.unique.female_first_name
+      user.last_name = Faker::Name.unique.female_last_name
+    end
+    user.access_level = 'Admin' if i < 3
+    user.save!
   end
-  user.access_level = 'Admin' if i < 3
-  user.save!
 end
 
 Test.create!(
@@ -2942,103 +2945,50 @@ question.answers.new(
   body: 'Находящиеся под угрозой исчезновения'
 )
 
-# Gererate randomized additional initial data
-Category.all.count.times do |db_category_id|
-  3.times do |i|
-    rand(1..3).times do |j|
-      test_level = i + 1
-      Test.create!(
-        title: "Болванка [#{Category.find(db_category_id + 1).title}] уровень #{i + 1} номер #{j + 1}",
-        category: Category.find_by(id: db_category_id + 1),
-        author: User.find_by(id: rand(1..User.count)),
-        level: test_level
-      )
+# Gererate randomized additional initial data in case of environment
+if Rails.env != 'production'
+  Category.all.count.times do |db_category_id|
+    3.times do |i|
+      rand(1..3).times do |j|
+        test_level = i + 1
+        Test.create!(
+          title: "Болванка [#{Category.find(db_category_id + 1).title}] уровень #{i + 1} номер #{j + 1}",
+          category: Category.find_by(id: db_category_id + 1),
+          author: User.find_by(id: rand(1..User.count)),
+          level: test_level
+        )
+      end
     end
   end
-end
 
-Test.where("title LIKE 'Болванка%'").each do |db_test|
-  rand(5..15).times do
-    question = db_test.questions.new(
-      body: Faker::Markdown.emphasis
-    )
-    question_answer_count = rand(2..4)
-    correct_answer = rand(1..question_answer_count)
-    question_answer_count.times do |i|
-      question.answers.new(
-        body: "#{'(true)' if i + 1 == correct_answer} #{Faker::Book.title}",
-        correct: i + 1 == correct_answer
+  Test.where("title LIKE 'Болванка%'").each do |db_test|
+    rand(5..15).times do
+      question = db_test.questions.new(
+        body: Faker::Markdown.emphasis
       )
+      question_answer_count = rand(2..4)
+      correct_answer = rand(1..question_answer_count)
+      question_answer_count.times do |i|
+        question.answers.new(
+          body: "#{'(true)' if i + 1 == correct_answer} #{Faker::Book.title}",
+          correct: i + 1 == correct_answer
+        )
+      end
+      question.save!
     end
-    question.save!
   end
-end
 
-# def calculate_interrupt_question_id(db_questions, user_test_interrupt_chance)
-#   case rand(0..99) < user_test_interrupt_chance
-#   when true
-#     db_questions[rand(0..db_questions.length - 1)].id
-#   when false
-#     -1
-#   end
-# end
+  zero_activity_user_chance = rand(20..50)
+  User.all.each do |user|
+    next if rand(0..99) < zero_activity_user_chance
 
-# def add_test_ids_to_user_tests(db_user_tests, test_id)
-#   db_user_tests << '/' unless db_user_tests.empty?
-#   db_user_tests << "#{test_id}="
-# end
+    user_test_start_chance = rand(30..70)
+    Test.count.times do |i|
+      next unless rand(0..99) < user_test_start_chance
 
-# def add_answer_ids_to_user_tests(db_question, db_user_tests, user_question_success_chance)
-#   db_correct_answers = Answer.where(question_id: db_question.id).where(correct: true)
-#   db_wrong_answers = Answer.where(question_id: db_question.id).where(correct: false)
-#   case rand(0..99) < user_question_success_chance
-#   when true
-#     add_answers_to_to_user_tests(db_user_tests, db_correct_answers, 'correct')
-#   when false
-#     add_answers_to_to_user_tests(db_user_tests, db_wrong_answers, 'wrong')
-#   end
-# end
-
-# def add_question_ids_to_to_user_tests(db_question, db_user_tests)
-#   db_user_tests << '+' unless db_user_tests.end_with?('=')
-#   db_user_tests << "#{db_question.id}:"
-# end
-
-# def add_answers_to_to_user_tests(db_user_tests, db_answers, answers_type)
-#   case answers_type == 'correct'
-#   when true
-#     db_answers.each do |answer|
-#       db_user_tests << ',' unless db_user_tests.end_with?('+', '=', ':')
-#       db_user_tests << answer.id.to_s
-#     end
-#   when false
-#     db_user_tests << db_answers[rand(0..db_answers.length - 1)].id.to_s
-#   end
-# end
-
-zero_activity_user_chance = rand(20..50)
-User.all.each do |user|
-  next if rand(0..99) < zero_activity_user_chance
-
-  user_test_start_chance = rand(30..70)
-  # user_test_interrupt_chance = rand(3..10)
-  # user_question_success_chance = rand(30..100)
-  # db_user_tests = ''
-  Test.count.times do |i|
-    next unless rand(0..99) < user_test_start_chance
-
-    TestPassage.create!(user: user, test: Test.find_by(id: i + 1))
-    # user.tests.find_by(id: i + 1)
-    # add_test_ids_to_user_tests(db_user_tests, i + 1)
-    # db_questions = Question.where(test_id: i + 1)
-    # interrupt_question_id = calculate_interrupt_question_id(db_questions, user_test_interrupt_chance)
-    # db_questions.each do |db_question|
-    #   add_question_ids_to_to_user_tests(db_question, db_user_tests)
-    #   add_answer_ids_to_user_tests(db_question, db_user_tests, user_question_success_chance)
-    #   break if db_question.id == interrupt_question_id
-    # end
+      TestPassage.create!(user: user, test: Test.find_by(id: i + 1))
+    end
   end
-  # user.update(tests: db_user_tests)
 end
 
 # def show_users
