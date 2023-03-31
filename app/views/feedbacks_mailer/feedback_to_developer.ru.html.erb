@@ -1,0 +1,12 @@
+<div>
+  <p>
+    От:
+    <% if @user %>
+      <%= @user.first_name %> <%= @user.last_name %>, id: <%= @user.id %>
+    <% else %>
+      -не определено-
+    <% end %>
+  </p>
+  Текст письма:
+  <pre><%= @body %></pre>
+</div>

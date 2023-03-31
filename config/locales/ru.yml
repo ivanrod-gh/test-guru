@@ -181,6 +181,18 @@ ru:
       back: "Вернуться к списку тестов"
       back_confirmation: "Прервать выполнение теста?"
 
+  feedbacks:
+    new:
+      header: "Написать разработчику (%{email}):"
+      send: "Отправить"
+      no_mail: "Почта разработчика не определена"
+    create:
+      mail_sended: "Письмо было успешно отправлено!"
+      mail_is_not_sended: "Произошла ошибка - письмо не было отправлено"
+  feedbacks_mailer:
+    feedback_to_developer:
+      subject: "Получено новое письмо с TestGuru (обратная связь)!"
+
   gists:
     create:
       success: "Gist успешно создан (<a href=\"%{url}\" target=\"_blank\">ссылка</a> на gist.github)"
@@ -191,6 +203,8 @@ ru:
       header: "Вопрос о тесте \"%{test_title}\" и его вопросе с TestGuru"
 
   shared:
+    application:
+      feedback: "обратная связь"
     errors:
       header:
         one: "Обнаружена %{count} ошибка:"

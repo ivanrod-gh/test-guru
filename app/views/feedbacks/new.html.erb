@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+  <div class="col-lg-6 table-border">
+    <% if User.first && User.first.email %>
+      <div><%= t('.header', email: User.first.email) %></div>
+      <%= form_with url: feedbacks_path, local: true do |form| %>
+
+        <p>
+          <div><%= form.text_area :body, cols: 48, rows: 5 %></div>
+        </p>
+
+        <p><div><%= form.submit t('.send') %></div></p>
+      <% end %>
+    <% else %>
+      <div><%= t('.no_mail') %></div>
+    <% end %>
+  </div>
+</div>

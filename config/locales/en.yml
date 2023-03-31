@@ -181,6 +181,18 @@ en:
       back: "Back to Tests list"
       back_confirmation: "Interrupt execution of the Test?"
 
+  feedbacks:
+    new:
+      header: "Write to the developer(%{email}):"
+      send: "Send"
+      no_mail: "Developers mail is not defined"
+    create:
+      mail_sended: "Mail was successfully sended!"
+      mail_is_not_sended: "An error occurred - mail was not sended"
+  feedbacks_mailer:
+    feedback_to_developer:
+      subject: "Thre is a new mail from TestGuru (feedback)!"
+
   gists:
     create:
       success: "The Gist created successfully (<a href=\"%{url}\" target=\"_blank\">link</a> to gist.github)"
@@ -191,6 +203,8 @@ en:
       header: "A question about test \"%{test_title}\" and his question from TestGuru"
 
   shared:
+    application:
+      feedback: "feedback"
     errors:
       header:
         one: "Detected %{count} error:"
