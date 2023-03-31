@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    puts "1 default_url_options I18n.locale=#{I18n.locale} lang=#{params[:lang]}"
     if I18n.locale.to_s == I18n.default_locale.to_s
       {}
     else
