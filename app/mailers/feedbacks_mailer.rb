@@ -5,6 +5,6 @@ class FeedbacksMailer < ApplicationMailer
     @user = current_user
     @body = body
 
-    mail to: User.first.email
+    mail to: User.where(access_level: 'Admin').first.email
   end
 end

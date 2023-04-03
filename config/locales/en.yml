@@ -182,6 +182,8 @@ en:
       back_confirmation: "Interrupt execution of the Test?"
 
   feedbacks:
+    index:
+      back: "Back to the Main"
     new:
       header: "Write to the developer(%{email}):"
       send: "Send"

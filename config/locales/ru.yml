@@ -182,6 +182,8 @@ ru:
       back_confirmation: "Прервать выполнение теста?"
 
   feedbacks:
+    index:
+      back: "Вернуться на главную"
     new:
       header: "Написать разработчику (%{email}):"
       send: "Отправить"
