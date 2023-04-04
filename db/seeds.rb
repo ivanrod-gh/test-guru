@@ -2998,6 +2998,11 @@ if Rails.env != 'production'
   end
 end
 
+# Publish all the Tests
+Test.all.each do |test|
+  test.calculate_test_passable
+end
+
 # def show_users
 #   puts "All users stats:"
 #   User.all.each do |user|

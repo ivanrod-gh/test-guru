@@ -130,6 +130,7 @@ en:
         delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
       form_inline:
         submit: 'OK'
+      frozen: "You must unpublish the Test first before you add or edit questions and answers"
       index:
         header: "List of all tests"
         new_test: "Create a new Test"
@@ -148,18 +149,24 @@ en:
         edit: "Edit a Test"
         add_question: "Add a Question"
         admin_required!: "You do not have sufficient permissions to view this page"
+        publishing: "Publishing:"
+        publish: "publish"
+        unpublish: "unpublish"
         state: "State:"
-        is_passable: "published and available for passage"
-        is_not_passable: "unavailable for passage"
+        published: "published and available for passage"
+        unpublished: "unpublished"
+      publish:
+        requirements: "The Test must meet the minimum requirements for publishing"
+        success: "The Test published"
+      unpublish:
+        success: "The Test unpublished"
       test:
         delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
         start: "Start"
-        unavailable: "Unavail."
       state:
         questions_count: "Minimum questions count in the Test - %{count}"
         test_question_answers_count: "Minimum answers count for question (%{body}) - %{count}"
         test_question_right_answers_count: "Minimum right answers count for question (%{body}) - %{count}"
-        back: "Back to the Test"
     author_actions:
       header: "Author actions"
       watch: "Watch"

@@ -1,18 +1,35 @@
+<%= render 'shared/errors', instance: @test %>
+
 <div class="row table-border">
   <div class="col-md-8 table-border">
     <div><%= t('.category') %>: <%= @test.category.title %></div>
     <div><%= t('.title') %>: <%= @test.title %></div>
     <div><%= t('.author') %>: <%= @test.author.first_name %> <%= @test.author.last_name %></div>
-    <% if @test.passable? %>
+    <div><%= t('.publishing') %>
+      <% if @test.published %>
+        <span style="color: lightgray;"><%= t('.publish') %></span>
+      <% else %>
+        <%= link_to t('.publish'), publish_admin_test_path(@test), method: :patch %>
+      <% end %>
+      /
+      <% if @test.published %>
+        <%= link_to t('.unpublish'), unpublish_admin_test_path(@test), method: :patch %>
+      <% else %>
+        <span style="color: lightgray;"><%= t('.unpublish') %></span>
+      <% end %>
+    </div>
+    <% if @test.published %>
       <div><%= t('.state') %>
         <span style="color: green; font-weight: bold;">
-          <%= t('.is_passable') %>
+          <%= t('.published') %>
         </span>
       </div>
     <% else %>
       <div>
         <%= t('.state') %>
-        <%= link_to t('.is_not_passable'), state_admin_test_path(@test), method: :get, style: "color: red; font-weight: bold;" %>
+        <span style="color: red; font-weight: bold;">
+          <%= t('.unpublished') %>
+        </span>
       </div>
     <% end %>
   </div>

@@ -14,5 +14,5 @@ class FeedbacksController < ApplicationController
     end
   end
 
-  def status; end
+  def state; end
 end

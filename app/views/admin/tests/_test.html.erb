@@ -1,6 +1,6 @@
 <div class="row table-border" id="table-row">
   <div class="col-md-6 table-border" align="left">
-    <% if test.passable? %>
+    <% if test.published %>
       <%= content_tag :span, test.title, class: 'test-title', data: { test_id: test.id } %>
     <% else %>
       <%= content_tag :span, test.title, class: 'test-title', data: { test_id: test.id }, style: "text-decoration: line-through;"  %>
@@ -11,10 +11,10 @@
     <%= test.questions.count %>
   </div>
   <div class="col-md-1 table-border" align="center">
-    <% if test.passable? %>
+    <% if test.published %>
       <%= link_to t('.start'), start_test_path(test), method: :post %>
     <% else %>
-      <%= link_to t('.unavailable'), state_admin_test_path(test), method: :get, style: "color: red; font-weight: bold;" %>
+      ---
     <% end %>
   </div>
   <div class="col-md-4 table-border">

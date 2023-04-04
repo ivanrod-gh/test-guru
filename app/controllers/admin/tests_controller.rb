@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::TestsController < Admin::BaseController
-  before_action :find_test, only: %i[show edit update update_inline destroy state]
+  before_action :find_test, only: %i[show edit update update_inline destroy publish unpublish state]
   before_action :find_tests, only: %i[index update_inline]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
@@ -45,8 +45,26 @@ class Admin::TestsController < Admin::BaseController
     redirect_to admin_tests_path
   end
 
+  def publish
+    @test.calculate_test_passable
+    if @test.published
+      flash.now[:notice] = t('.success')
+      render :show
+    else
+      flash.now[:alert] = t('.requirements')
+      render :show
+    end
+  end
+
+  def unpublish
+    @test.update(published: false)
+    flash.now[:alert] = t('.success')
+    render :show
+  end
+
   def state
     @test.calculate_test_passable
+    render :show
   end
 
   private

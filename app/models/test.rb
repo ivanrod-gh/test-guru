@@ -19,6 +19,7 @@ class Test < ApplicationRecord
   scope :simples, -> { where(level: 0..1) }
   scope :averages, -> { where(level: 2..4) }
   scope :hards, -> { where(level: 5..Float::INFINITY) }
+  scope :published, -> { where(published: true) }
 
   validates :title, presence: true
   validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -33,10 +34,10 @@ class Test < ApplicationRecord
 
     check_test_questions_count
     check_test_questions_answers
-    if errors.errors.empty? && passable? != true
-      update(passable?: true)
-    elsif errors.errors.present? && passable? != false
-      update(passable?: false)
+    if errors.errors.empty? && published != true
+      update(published: true)
+    elsif errors.errors.present? && published != false
+      update(published: false)
     end
   end
 
