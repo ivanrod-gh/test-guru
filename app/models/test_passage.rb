@@ -2,7 +2,6 @@
 
 class TestPassage < ApplicationRecord
   TEST_SUCCESSFULLY_COMPLETE_MIN_PERCENT = 85
-  TEST_EMPTY_PERCENT = 0
 
   belongs_to :user
   belongs_to :test
@@ -23,7 +22,7 @@ class TestPassage < ApplicationRecord
   end
 
   def complete_percent
-    test.questions.empty? ? TEST_EMPTY_PERCENT : ((correct_questions / test.questions.count.to_f) * 100).to_i
+    ((correct_questions / test.questions.count.to_f) * 100).to_i
   end
 
   def success?

@@ -7,4 +7,13 @@ class Question < ApplicationRecord
   has_many :gists, dependent: :destroy
 
   validates :body, presence: true, length: { minimum: 5 }
+
+  after_commit :calculate_question_test_passable
+
+  private
+
+  def calculate_question_test_passable
+    test.calculate_test_passable
+  end
 end
+

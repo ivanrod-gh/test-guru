@@ -148,9 +148,18 @@ ru:
         edit: "Редактировать тест"
         add_question: "Добавить вопрос"
         admin_required!: "Для просмотра этой страницы у вас недостаточно прав доступа"
+        state: "Состояние:"
+        is_passable: "опубликован и доступен для прохождения"
+        is_not_passable: "недоступен для прохождения"
       test:
         delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
         start: "Начать"
+        unavailable: "Недост."
+      state:
+        questions_count: "Минимальное количество вопросов в тесте - %{count}"
+        test_question_answers_count: "Минимальное количество ответов у вопроса (%{body}) - %{count}"
+        test_question_right_answers_count: "Минимальное количество правильных ответов у вопроса (%{body}) - %{count}"
+        back: "Вернуться к тесту"
     author_actions:
       header: "Действия автора"
       watch: "Смотреть"
@@ -167,6 +176,8 @@ ru:
       actions: "Действия автора"
     test:
       start: "Начать"
+    start:
+      unavailable_test: "Этот тест недоступен"
   test_passages:
     result:
       header: "Завершен тест"
@@ -182,8 +193,6 @@ ru:
       back_confirmation: "Прервать выполнение теста?"
 
   feedbacks:
-    index:
-      back: "Вернуться на главную"
     new:
       header: "Написать разработчику (%{email}):"
       send: "Отправить"
@@ -191,6 +200,8 @@ ru:
     create:
       mail_sended: "Письмо было успешно отправлено!"
       mail_is_not_sended: "Произошла ошибка - письмо не было отправлено"
+    state:
+      back: "Вернуться на главную"
   feedbacks_mailer:
     feedback_to_developer:
       subject: "Получено новое письмо с TestGuru (обратная связь)!"

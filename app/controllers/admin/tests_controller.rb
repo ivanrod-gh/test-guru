@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::TestsController < Admin::BaseController
-  before_action :find_test, only: %i[show edit update update_inline destroy start]
+  before_action :find_test, only: %i[show edit update update_inline destroy state]
   before_action :find_tests, only: %i[index update_inline]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
@@ -43,6 +43,10 @@ class Admin::TestsController < Admin::BaseController
   def destroy
     @test.destroy
     redirect_to admin_tests_path
+  end
+
+  def state
+    @test.calculate_test_passable
   end
 
   private

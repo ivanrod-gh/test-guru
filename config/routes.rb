@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :tests do
       patch :update_inline, on: :member
+      get :state, on: :member
       resources :questions, shallow: true, except: :index do
         resources :answers, shallow: true, except: :index
       end
@@ -28,5 +29,6 @@ Rails.application.routes.draw do
     resources :gists, only: :index
   end
 
-  resources :feedbacks, only: %i[index new create]
+  resources :feedbacks, only: %i[new create]
+  get 'feedbacks/state', as: 'state_feedback'
 end

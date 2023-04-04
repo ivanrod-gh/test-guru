@@ -1,13 +1,21 @@
 <div class="row table-border" id="table-row">
   <div class="col-md-6 table-border" align="left">
-    <%= content_tag :span, test.title, class: 'test-title', data: { test_id: test.id } %>
+    <% if test.passable? %>
+      <%= content_tag :span, test.title, class: 'test-title', data: { test_id: test.id } %>
+    <% else %>
+      <%= content_tag :span, test.title, class: 'test-title', data: { test_id: test.id }, style: "text-decoration: line-through;"  %>
+    <% end %>
     <%= render 'form_inline', test: test == @test ? @test : test  %>
   </div>
   <div class="col-md-1 table-border" align="center">
     <%= test.questions.count %>
   </div>
   <div class="col-md-1 table-border" align="center">
-    <%= link_to t('.start'), start_test_path(test), method: :post %>
+    <% if test.passable? %>
+      <%= link_to t('.start'), start_test_path(test), method: :post %>
+    <% else %>
+      <%= link_to t('.unavailable'), state_admin_test_path(test), method: :get, style: "color: red; font-weight: bold;" %>
+    <% end %>
   </div>
   <div class="col-md-4 table-border">
     <div class="row">
@@ -18,7 +26,7 @@
         <%= link_to t('admin.author_actions.edit'), edit_admin_test_path(test), class: "form-inline-link", method: :get, data: { test_id: test.id} %>
       </div>
       <div class="col-md-4" align="center">
-        <%= link_to t('admin.author_actions.delete'), admin_test_path(test), method: :delete, data: { confirm: t('.delete_confirmation') }, style: "color: red" %>
+        <%= link_to t('admin.author_actions.delete'), admin_test_path(test), method: :delete, data: { confirm: t('.delete_confirmation') }, style: "color: red;" %>
       </div>
     </div>
   </div>

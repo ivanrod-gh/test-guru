@@ -148,9 +148,18 @@ en:
         edit: "Edit a Test"
         add_question: "Add a Question"
         admin_required!: "You do not have sufficient permissions to view this page"
+        state: "State:"
+        is_passable: "published and available for passage"
+        is_not_passable: "unavailable for passage"
       test:
         delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
         start: "Start"
+        unavailable: "Unavail."
+      state:
+        questions_count: "Minimum questions count in the Test - %{count}"
+        test_question_answers_count: "Minimum answers count for question (%{body}) - %{count}"
+        test_question_right_answers_count: "Minimum right answers count for question (%{body}) - %{count}"
+        back: "Back to the Test"
     author_actions:
       header: "Author actions"
       watch: "Watch"
@@ -167,6 +176,8 @@ en:
       actions: "Author actions"
     test:
       start: "Start"
+    start:
+      unavailable_test: "This Test is unavailable"
   test_passages:
     result:
       header: "Test completed"
@@ -182,8 +193,6 @@ en:
       back_confirmation: "Interrupt execution of the Test?"
 
   feedbacks:
-    index:
-      back: "Back to the Main"
     new:
       header: "Write to the developer(%{email}):"
       send: "Send"
@@ -191,6 +200,8 @@ en:
     create:
       mail_sended: "Mail was successfully sended!"
       mail_is_not_sended: "An error occurred - mail was not sended"
+    state:
+      back: "Back to the Main"
   feedbacks_mailer:
     feedback_to_developer:
       subject: "Thre is a new mail from TestGuru (feedback)!"
@@ -202,7 +213,7 @@ en:
 
   services:
     gist:
-      header: "A question about test \"%{test_title}\" and his question from TestGuru"
+      header: "A question about Test \"%{test_title}\" and his question from TestGuru"
 
   shared:
     application:
@@ -221,4 +232,4 @@ en:
 
   tests_mailer:
     completed_test:
-      subject: "You just completed the TestGuru test!"
+      subject: "You just completed the TestGuru Test!"
