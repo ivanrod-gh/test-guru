@@ -759,6 +759,7 @@ question.answers.new(
 question.answers.new(
   body: 'Цветовое решение документа'
 )
+question.save!
 
 # Basic Ruby: questions/answers
 current_test = Test.find_by(title: 'Основы Ruby')
@@ -1112,6 +1113,7 @@ question.answers.new(
 question.answers.new(
   body: 'интернет'
 )
+question.save!
 
 # Basic Java: questions/answers
 current_test = Test.find_by(title: 'Основы Java')
@@ -1875,6 +1877,7 @@ question.answers.new(
 question.answers.new(
   body: 'String birthdays = String[];'
 )
+question.save!
 
 # Basic Java Script: questions/answers
 current_test = Test.find_by(title: 'Основы JavaScript')
@@ -2387,6 +2390,7 @@ question.answers.new(
   body: 'ищет элемент в HTML и меняет в нём текст',
   correct: true
 )
+question.save!
 
 # Quiz: Planets: questions/answers
 current_test = Test.find_by(title: 'Викторина: Планеты солнечной системы')
@@ -2592,6 +2596,7 @@ question.answers.new(
 question.answers.new(
   body: 'Земля и Нептун'
 )
+question.save!
 
 # Quiz: Yes/No: questions/answers
 current_test = Test.find_by(title: 'Викторина: Да/нет')
@@ -2739,6 +2744,7 @@ question.answers.new(
   body: 'Нет',
   correct: true
 )
+question.save!
 
 # Quiz: Animals: questions/answers
 current_test = Test.find_by(title: 'Викторина: Животные')
@@ -2944,6 +2950,7 @@ question.answers.new(
 question.answers.new(
   body: 'Находящиеся под угрозой исчезновения'
 )
+question.save!
 
 # Gererate randomized additional initial data in case of environment
 if Rails.env != 'production'

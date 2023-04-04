@@ -35,7 +35,7 @@ class Test < ApplicationRecord
     check_test_questions_answers
     if errors.errors.empty? && passable? != true
       update(passable?: true)
-    elsif passable? != false
+    elsif errors.errors.present? && passable? != false
       update(passable?: false)
     end
   end
