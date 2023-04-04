@@ -21,7 +21,7 @@
     <div class="footer">
       <div class="container">
         <div>
-          <%= current_year %>, Родионов Иван, <%= github_url('TestGuru', '/ivanrod-gh/test-guru') %> - сайт с образовательными тестами (репозиторий GitHub)
+          <%= current_year %>, Родионов Иван (<%= link_to t('shared.application.feedback'), new_feedback_path, method: :get %>), репозиторий GitHub - <%= github_url('TestGuru', '/ivanrod-gh/test-guru') %>
         </div>
         <div>
           Учебный проект в онлайн-школе <a href="https://thinknetica.com/" target="_blank">Thinknetica</a>

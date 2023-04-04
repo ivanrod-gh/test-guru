@@ -3,6 +3,7 @@
 class Admin::AnswersController < Admin::BaseController
   before_action :find_question, only: %i[new create]
   before_action :find_answer, only: %i[show edit update destroy]
+  before_action :check_test_published, only: %i[new create edit update destroy]
 
   def new
     @answer = @question.answers.new
@@ -41,6 +42,11 @@ class Admin::AnswersController < Admin::BaseController
 
   def find_answer
     @answer = Answer.find(params[:id])
+  end
+
+  def check_test_published
+    test = (@question.test if @question) || @answer.question.test
+    redirect_to admin_test_path(test), alert: t('admin.tests.frozen') and return if test.published
   end
 
   def answer_params

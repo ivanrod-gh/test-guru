@@ -130,6 +130,7 @@ ru:
         delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
       form_inline:
         submit: 'ОК'
+      frozen: "Для добавления или редактирования вопросов и ответов теста сначала необходимо снять его с публикации"
       index:
         header: "Список всех тестов"
         new_test: "Создать новый тест"
@@ -148,9 +149,24 @@ ru:
         edit: "Редактировать тест"
         add_question: "Добавить вопрос"
         admin_required!: "Для просмотра этой страницы у вас недостаточно прав доступа"
+        publishing: "Публикация:"
+        publish: "опубликовать"
+        unpublish: "снять с публикации"
+        state: "Состояние:"
+        published: "опубликован и доступен для прохождения"
+        unpublished: "не опубликован"
+      publish:
+        requirements: "Для публикации тест должен соответствовать минимальным требованиям"
+        success: "Тест опубликован"
+      unpublish:
+        success: "Тест снят с публикации"
       test:
         delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
         start: "Начать"
+      state:
+        questions_count: "Минимальное количество вопросов в тесте - %{count}"
+        test_question_answers_count: "Минимальное количество ответов у вопроса (%{body}) - %{count}"
+        test_question_right_answers_count: "Минимальное количество правильных ответов у вопроса (%{body}) - %{count}"
     author_actions:
       header: "Действия автора"
       watch: "Смотреть"
@@ -167,6 +183,8 @@ ru:
       actions: "Действия автора"
     test:
       start: "Начать"
+    start:
+      unavailable_test: "Этот тест недоступен"
   test_passages:
     result:
       header: "Завершен тест"
@@ -181,6 +199,20 @@ ru:
       back: "Вернуться к списку тестов"
       back_confirmation: "Прервать выполнение теста?"
 
+  feedbacks:
+    new:
+      header: "Написать разработчику (%{email}):"
+      send: "Отправить"
+      no_mail: "Почта разработчика не определена"
+    create:
+      mail_sended: "Письмо было успешно отправлено!"
+      mail_is_not_sended: "Произошла ошибка - письмо не было отправлено"
+    state:
+      back: "Вернуться на главную"
+  feedbacks_mailer:
+    feedback_to_developer:
+      subject: "Получено новое письмо с TestGuru (обратная связь)!"
+
   gists:
     create:
       success: "Gist успешно создан (<a href=\"%{url}\" target=\"_blank\">ссылка</a> на gist.github)"
@@ -191,6 +223,8 @@ ru:
       header: "Вопрос о тесте \"%{test_title}\" и его вопросе с TestGuru"
 
   shared:
+    application:
+      feedback: "обратная связь"
     errors:
       header:
         one: "Обнаружена %{count} ошибка:"

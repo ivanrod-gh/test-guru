@@ -1,0 +1,8 @@
+От:
+<% if @user %>
+<%= @user.first_name %> <%= @user.last_name %>, id: <%= @user.id %>
+<% else %>
+-не определено-
+<% end %>
+Текст письма:
+<%= @body %>

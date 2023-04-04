@@ -1,0 +1,8 @@
+From:
+<% if @user %>
+  <%= @user.first_name %> <%= @user.last_name %>, id: <%= @user.id %>
+<% else %>
+  -not defined-
+<% end %>
+Email text:
+<%= @body %>

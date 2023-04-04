@@ -3,6 +3,7 @@
 class Admin::QuestionsController < Admin::BaseController
   before_action :find_question, only: %i[show edit update destroy]
   before_action :find_test, only: %i[new create]
+  before_action :check_test_published, only: %i[new create edit update destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def new
@@ -42,6 +43,11 @@ class Admin::QuestionsController < Admin::BaseController
 
   def find_test
     @test = Test.find(params[:test_id])
+  end
+
+  def check_test_published
+    test = @test || @question.test
+    redirect_to admin_test_path(test), alert: t('admin.tests.frozen') and return if test.published
   end
 
   def question_params

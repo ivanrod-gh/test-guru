@@ -130,6 +130,7 @@ en:
         delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
       form_inline:
         submit: 'OK'
+      frozen: "You must unpublish the Test first before you add or edit questions and answers"
       index:
         header: "List of all tests"
         new_test: "Create a new Test"
@@ -148,9 +149,24 @@ en:
         edit: "Edit a Test"
         add_question: "Add a Question"
         admin_required!: "You do not have sufficient permissions to view this page"
+        publishing: "Publishing:"
+        publish: "publish"
+        unpublish: "unpublish"
+        state: "State:"
+        published: "published and available for passage"
+        unpublished: "unpublished"
+      publish:
+        requirements: "The Test must meet the minimum requirements for publishing"
+        success: "The Test published"
+      unpublish:
+        success: "The Test unpublished"
       test:
         delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
         start: "Start"
+      state:
+        questions_count: "Minimum questions count in the Test - %{count}"
+        test_question_answers_count: "Minimum answers count for question (%{body}) - %{count}"
+        test_question_right_answers_count: "Minimum right answers count for question (%{body}) - %{count}"
     author_actions:
       header: "Author actions"
       watch: "Watch"
@@ -167,6 +183,8 @@ en:
       actions: "Author actions"
     test:
       start: "Start"
+    start:
+      unavailable_test: "This Test is unavailable"
   test_passages:
     result:
       header: "Test completed"
@@ -181,6 +199,20 @@ en:
       back: "Back to Tests list"
       back_confirmation: "Interrupt execution of the Test?"
 
+  feedbacks:
+    new:
+      header: "Write to the developer(%{email}):"
+      send: "Send"
+      no_mail: "Developers mail is not defined"
+    create:
+      mail_sended: "Mail was successfully sended!"
+      mail_is_not_sended: "An error occurred - mail was not sended"
+    state:
+      back: "Back to the Main"
+  feedbacks_mailer:
+    feedback_to_developer:
+      subject: "Thre is a new mail from TestGuru (feedback)!"
+
   gists:
     create:
       success: "The Gist created successfully (<a href=\"%{url}\" target=\"_blank\">link</a> to gist.github)"
@@ -188,9 +220,11 @@ en:
 
   services:
     gist:
-      header: "A question about test \"%{test_title}\" and his question from TestGuru"
+      header: "A question about Test \"%{test_title}\" and his question from TestGuru"
 
   shared:
+    application:
+      feedback: "feedback"
     errors:
       header:
         one: "Detected %{count} error:"
@@ -205,4 +239,4 @@ en:
 
   tests_mailer:
     completed_test:
-      subject: "You just completed the TestGuru test!"
+      subject: "You just completed the TestGuru Test!"
