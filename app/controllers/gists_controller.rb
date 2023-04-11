@@ -11,7 +11,7 @@ class GistsController < ApplicationController
   def create
     @service.success? ? create_database_gist : (show_gist_failure && return)
     redirect_to @test_passage, flash: { notice_html: t('.success', url: @service.gist_url) }
-  rescue
+  rescue StandardError
     show_gist_failure
   end
 

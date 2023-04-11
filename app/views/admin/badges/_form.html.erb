@@ -1,0 +1,40 @@
+<span id="badge_new_js" style="display: none;"></span>
+<h2><%= badge_header(@badge) %></h2>
+
+<%= form_with model: [:admin, @badge], local: true do |form| %>
+  <%= render 'shared/errors', instance: @badge %>
+
+  <div class="mb-3">
+    <div><%= form.label :title %></div>
+    <div><%= form.text_area :title, cols: 45, rows: 1 %></div>
+  </div>
+
+  <div class="mb-3">
+    <div><%= form.label :picture %></div>
+    <div><%= form.text_area :picture, cols: 45, rows: 1 %></div>
+  </div>
+
+  <div class="mb-3" id="badge_requirement_select">
+    <div><%= form.label :requirement_id %></div>
+    <div><%= form.collection_select :requirement_id, BadgeRequirement.order(:id), :id, :description %></div>
+  </div>
+
+  <div class="mb-3" id="required_test" style="display: none;">
+    <div><%= form.label :test_id %></div>
+    <div><%= form.collection_select :test_id, Test.order(:id), :id, :title, prompt: true %></div>
+  </div>
+
+  <div class="mb-3" id="required_category" style="display: none;">
+    <div><%= form.label :category_id %></div>
+    <div><%= form.collection_select :category_id, Category.order(:id), :id, :title, prompt: true %></div>
+  </div>
+
+  <div class="mb-3" id="required_percent" style="display: none;">
+    <%= form.radio_button :percent, "half" %>
+    <%= form.label :percent_half, "50%" %>
+    <%= form.radio_button :percent, "completely" %>
+    <%= form.label :percent_completely, "100%" %>
+  </div>
+
+  <div class="mt-5"><%= form.submit %></div></p>
+<% end %>

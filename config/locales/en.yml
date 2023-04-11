@@ -8,6 +8,9 @@ en:
       answer:
         create: "Add"
         update: "Make changes"
+      badge:
+        create: "Create badge"
+        update: "Make changes"
       question:
         create: "Add"
         update: "Make changes"
@@ -29,6 +32,12 @@ en:
         correct: "Correct"
         question: "Question"
         question_id: "Question"
+      badge:
+        title: "Title"
+        picture: "Picture"
+        requirement_id: "Requirement"
+        test_id: "Test"
+        category_id: "Category"
       category:
         title: "Title"
       question:
@@ -101,6 +110,38 @@ en:
         back: "Back to Question"
         correct_true: "This is the correct Answer"
         correct_false: "This is the wrong Answer"
+    badges:
+      badge:
+        no_test: "The specified Test does not exist"
+        no_category: "The specified Category does not exist"
+        delete_confirmation: "Are you sure? This action will permanently delete badge!"
+      create:
+        success: "Badge created successfully!"
+      edit:
+        header: "Edit badge"
+        back: "Back to badges list"
+        watch: "Watch badge"
+        delete: "Delete badge"
+        delete_confirmation: "Are you sure? This action will permanently delete badge!"
+      index:
+        header: "Edit badge"
+        new: "Create a new badge"
+        title: "Title"
+        picture: "Picture"
+      new:
+        header: "Create a new badge"
+        back: "Back to badges list"
+      show:
+        title: "Title"
+        author: "Author"
+        picture: "Picture"
+        back: "Back to badges list"
+        edit: "Edit badge"
+        requirements: "Requirements for obtaining"
+        requirements_data: "Requirements data"
+    gists:
+      index:
+        empty: "No records"
     questions:
       new:
         header: "Create new Question for Test"
@@ -137,9 +178,13 @@ en:
         title: "Title"
         questions_count: "Quest."
         test: "Test"
+        empty: "No records"
       new:
         header: "Create a new Test"
         back: "Back to Tests list"
+      publish:
+        requirements: "The Test must meet the minimum requirements for publishing"
+        success: "The Test published"
       show:
         category: "Category"
         title: "Title"
@@ -148,25 +193,21 @@ en:
         back: "Back to Tests list"
         edit: "Edit a Test"
         add_question: "Add a Question"
-        admin_required!: "You do not have sufficient permissions to view this page"
         publishing: "Publishing:"
         publish: "publish"
         unpublish: "unpublish"
         state: "State:"
         published: "published and available for passage"
         unpublished: "unpublished"
-      publish:
-        requirements: "The Test must meet the minimum requirements for publishing"
-        success: "The Test published"
-      unpublish:
-        success: "The Test unpublished"
-      test:
-        delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
-        start: "Start"
       state:
         questions_count: "Minimum questions count in the Test - %{count}"
         test_question_answers_count: "Minimum answers count for question (%{body}) - %{count}"
         test_question_right_answers_count: "Minimum right answers count for question (%{body}) - %{count}"
+      test:
+        delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
+        start: "Start"
+      unpublish:
+        success: "The Test unpublished"
     author_actions:
       header: "Author actions"
       watch: "Watch"
@@ -174,6 +215,15 @@ en:
       cancel: "Cancel"
       delete: "Delete"
       delete_confirmation: "Are you sure?"
+  badges:
+    index:
+      header: "All badges"
+    show:
+      my_badges: "My badges"
+      all_badges: "All badges"
+  gurus:
+    badge_achievements:
+      all_achieved_badges: "All received badges:"
   tests:
     index:
       header: "List of all Tests"
@@ -181,6 +231,7 @@ en:
       questions_count: "Quest."
       test: "Test"
       actions: "Author actions"
+      empty: "No records"
     test:
       start: "Start"
     start:
@@ -191,6 +242,9 @@ en:
       back: "Back to Tests list"
       success: "You gave %{complete_percent}% correct answers and successfully completed the Test!"
       failure: "You gave %{complete_percent}% correct answers and haven't passed the Test!"
+      awarded_with_badges: "For passing this Test you received the following badges:"
+      my_badges: "My badges"
+      all_badges: "All badges"
     show:
       create_gist: "Difficulties arose? Create a Gist"
       header: "You passing a Test:"
@@ -223,6 +277,7 @@ en:
       header: "A question about Test \"%{test_title}\" and his question from TestGuru"
 
   shared:
+    admin_required!: "You do not have sufficient permissions to view this page"
     application:
       feedback: "feedback"
     errors:
@@ -233,9 +288,14 @@ en:
         other: "Detected %{count} errors:"
     nav:
       exit: "Exit"
+      confirm: "Are you sure?"
       guru: "Guru"
       sign_up: "Sign Up"
       sign_in: "Sign In"
+      tests: "Tests"
+      badges: "Badges"
+      gists: "Gists"
+      my_badges: "My badges"
 
   tests_mailer:
     completed_test:

@@ -45,7 +45,7 @@ class Admin::AnswersController < Admin::BaseController
   end
 
   def check_test_published
-    test = (@question.test if @question) || @answer.question.test
+    test = @question&.test || @answer.question.test
     redirect_to admin_test_path(test), alert: t('admin.tests.frozen') and return if test.published
   end
 

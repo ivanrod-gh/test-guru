@@ -11,8 +11,7 @@
       </div>
     </div>
     <div>
-      <div class="mt-5 mb-5">
-
+      <div class="mt-5 mb-5" align="center">
       <% if @test_passage.success? %>
         <h3 style="background-color: lime;">
           <%= t('.success', complete_percent: @test_passage.complete_percent) %>
@@ -23,7 +22,24 @@
         </h3>
       <% end %>
       </div>
-
+    </div>
+    <div>
+      <% if BadgeAchievement.awards(@test_passage).present? %>
+        <div class="row text-center justify-content-center mb-3">
+          <%= t('.awarded_with_badges') %>
+        </div>
+        <% BadgeAchievement.awards(@test_passage).each do |badge_achievement| %>
+          <div class="row text-center justify-content-center">
+            <div class="col-md-6 mb-3">
+                <img src="<%= badge_achievement.badge.picture %>">
+            </div>
+          </div>
+        <% end %>
+        <div class="mb-3" align="center">
+         <%= link_to t('.my_badges'), badge_achievements_guru_path(current_user) %> /
+         <%= link_to t('.all_badges'), badges_path %>
+        </div>
+      <% end %>
     </div>
     <div>
       <%= link_to t('.back'), tests_path, method: :get %>

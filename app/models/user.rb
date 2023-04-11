@@ -15,6 +15,9 @@ class User < ApplicationRecord
   has_many :test_passages, dependent: :destroy
   has_many :passed_tests, through: :test_passages, source: :test
   has_many :gists, dependent: :destroy
+  has_many :author_badges, class_name: 'Badge', dependent: :destroy
+  has_many :badge_achievements, dependent: :destroy
+  has_many :received_achievements, through: :badge_achievements, source: :badge
 
   def tests_by_level(test_level)
     passed_tests.where(level: test_level)

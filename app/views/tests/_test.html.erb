@@ -2,10 +2,10 @@
   <div class="col-md-10 table-border" align="left">
     <%= test.title %>
   </div>
-  <div class="col-md-1 table-border" align="center">
+  <div class="col-md-1 col-6 table-border" align="center">
     <%= test.questions.count %>
   </div>
-  <div class="col-md-1 table-border" align="center">
+  <div class="col-md-1 col-6 table-border" align="center">
     <%= link_to t('.start'), start_test_path(test), method: :post %>
   </div>
 </div>

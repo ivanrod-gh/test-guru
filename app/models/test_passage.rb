@@ -7,18 +7,24 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
+  scope :joins_test_by_category_id, lambda { |category_id|
+                                      joins(:test).where(tests: { category_id: category_id })
+                                    }
+
   before_validation :before_validation_set_first_question, on: :create
   before_update :before_update_set_next_question
 
   def accept!(answer_ids)
-    if correct_answer?(answer_ids)
-      self.correct_questions += 1
-    end
+    self.correct_questions += 1 if correct_answer?(answer_ids)
     save!
   end
 
   def completed?
     current_question.nil?
+  end
+
+  def check_successful
+    update(successful: true) if success?
   end
 
   def complete_percent
@@ -44,7 +50,7 @@ class TestPassage < ApplicationRecord
   end
 
   def before_update_set_next_question
-    self.current_question = test.questions.order(:id).where('id > ?', current_question.id).first
+    self.current_question = test.questions.order(:id).where('id > ?', current_question.id).first if current_question
   end
 
   def correct_answer?(answer_ids)

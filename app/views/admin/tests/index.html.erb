@@ -4,7 +4,7 @@
 <%= render 'shared/errors', instance: @test %>
 
 <div class="row table-border">
-  <div class="col-md-8 table-border">
+  <div class="col-md-8 table-border" align="center">
     <%= t('.header') %>
   </div>
   <div class="col-md-4 table-border">
@@ -27,6 +27,10 @@
     <%= t('admin.author_actions.header') %>
   </div>
 </div>
-<div id="table-with-values">
-  <%= render @tests %>
-</div>
+<% if Test.all.present? %>
+  <div id="table-with-values">
+    <%= render @tests %>
+  </div>
+<% else %>
+  <div align="center"><%= t('.empty') %></div>
+<% end %>
