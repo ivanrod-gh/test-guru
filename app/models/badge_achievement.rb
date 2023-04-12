@@ -6,14 +6,14 @@ class BadgeAchievement < ApplicationRecord
 
   scope :awards, lambda { |test_passage|
                    where(
-                     "user_id = ? and updated_at > ? and updated_at < ?",
+                     "user_id = ? AND updated_at > ? AND updated_at < ?",
                      test_passage.user_id,
                      test_passage.created_at,
                      test_passage.updated_at
                    )
                  }
 
-  scope :given, lambda { |user, badge|
-                  where("user_id = ? and badge_id = ?", user.id, badge.id)
+  scope :recieved, lambda { |user, badge|
+                  where("user_id = ? AND badge_id = ?", user.id, badge.id)
                 }
 end

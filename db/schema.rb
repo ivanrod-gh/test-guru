@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(version: 2023_04_10_155439) do
   end
 
   create_table "badge_achievements", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "badge_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "badge_id"], name: "index_badge_achievements_on_user_id_and_badge_id"
+    t.index ["badge_id", "user_id"], name: "index_badge_achievements_on_badge_id_and_user_id"
   end
 
   create_table "badge_requirements", force: :cascade do |t|
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2023_04_10_155439) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["requirement_id"], name: "index_badges_on_requirement_id"
+    t.index ["title"], name: "index_badges_on_title", unique: true
     t.index ["user_id"], name: "index_badges_on_user_id"
   end
 

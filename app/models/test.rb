@@ -21,6 +21,14 @@ class Test < ApplicationRecord
   scope :hards, -> { where(level: 5..Float::INFINITY) }
   scope :published, -> { where(published: true) }
 
+  scope :joins_test_passages_by_category_id, lambda { |category_id|
+                                      joins(:test_passages).where(category_id: category_id)
+                                    }
+
+  scope :passage_successful_by_user, lambda { |user|
+                                      where("test_passages.user_id = ? AND successful = true", user.id)
+                                    }
+
   validates :title, presence: true
   validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :title, uniqueness: { scope: :level }

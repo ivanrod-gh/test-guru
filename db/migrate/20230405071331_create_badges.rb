@@ -1,7 +1,7 @@
 class CreateBadges < ActiveRecord::Migration[6.1]
   def change
     create_table :badges do |t|
-      t.string :title, null: false
+      t.string :title, null: false, index: {unique: true}
       t.string :picture, null: false
       t.string :requirement_data
 

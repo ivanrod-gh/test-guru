@@ -1,4 +1,4 @@
-<span id="badge_new_js" style="display: none;"></span>
+<span class="hide badge-new-js"></span>
 <h2><%= badge_header(@badge) %></h2>
 
 <%= form_with model: [:admin, @badge], local: true do |form| %>
@@ -19,21 +19,23 @@
     <div><%= form.collection_select :requirement_id, BadgeRequirement.order(:id), :id, :description %></div>
   </div>
 
-  <div class="mb-3" id="required_test" style="display: none;">
-    <div><%= form.label :test_id %></div>
-    <div><%= form.collection_select :test_id, Test.order(:id), :id, :title, prompt: true %></div>
+  <div class="mb-3 select-requirement" id="required_test" style="display: none;">
+    <div><%= form.label :required_test_id %></div>
+    <div><%= form.collection_select :required_test_id, Test.order(:id), :id, :title, prompt: true %></div>
   </div>
 
-  <div class="mb-3" id="required_category" style="display: none;">
-    <div><%= form.label :category_id %></div>
-    <div><%= form.collection_select :category_id, Category.order(:id), :id, :title, prompt: true %></div>
+  <div class="mb-3 select-requirement" id="required_category" style="display: none;">
+    <div><%= form.label :required_category_id %></div>
+    <div><%= form.collection_select :required_category_id, Category.order(:id), :id, :title, prompt: true %></div>
   </div>
 
-  <div class="mb-3" id="required_percent" style="display: none;">
-    <%= form.radio_button :percent, "half" %>
-    <%= form.label :percent_half, "50%" %>
-    <%= form.radio_button :percent, "completely" %>
-    <%= form.label :percent_completely, "100%" %>
+  <div class="mb-3 select-requirement" id="required_percent" style="display: none;">
+    <div><label for="badge_required_percent"><%= t('activerecord.attributes.badge.required_percent') %></label></div>
+    <div><select name="badge[required_percent]" id="badge_required_percent">
+      <option value="">Пожалуйста, выберите</option>
+      <option value="50">50%</option>
+      <option value="100">100%</option>
+    </select></div>
   </div>
 
   <div class="mt-5"><%= form.submit %></div></p>

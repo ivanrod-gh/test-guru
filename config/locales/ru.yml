@@ -36,8 +36,9 @@ ru:
         title: "Название"
         picture: "Изображение"
         requirement_id: "Требование"
-        test_id: "Тест"
-        category_id: "Категория"
+        required_test_id: "Тест"
+        required_category_id: "Категория"
+        required_percent: "Процент"
       category:
         title: "Название"
       question:
@@ -112,8 +113,8 @@ ru:
         correct_false: "Это неверный ответ"
     badges:
       badge:
-        no_test: "Указанный тест не существует"
-        no_category: "Указанная категория не существует"
+        test_doesnt_exist: "Указанный тест не существует"
+        category_doesnt_exist: "Указанная категория не существует"
         delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь бейдж!"
       create:
         success: "Бейдж успешно создан!"

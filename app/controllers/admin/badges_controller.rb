@@ -11,8 +11,8 @@ class Admin::BadgesController < Admin::BaseController
   end
 
   def create
-    fill_badge_data
-
+    @badge = current_user.author_badges.new(badge_params)
+    fill_requirement_data
     if @badge.save
       redirect_to admin_badge_path(@badge), notice: t('.success')
     else
@@ -38,15 +38,12 @@ class Admin::BadgesController < Admin::BaseController
 
   private
 
-  def fill_badge_data
-    @badge = current_user.author_badges.new(badge_params)
-    case @badge.requirement_id
-    when 1..2
-      @badge.requirement_data = params[:badge][:test_id]
-    when 3
-      @badge.requirement_data = params[:badge][:category_id]
-    when 4
-      @badge.requirement_data = (params[:badge][:percent] == "completely" ? 100 : 50)
+  def fill_requirement_data
+    params[:badge].each do |key,value|
+      if key.include?('required_') && value.present?
+        @badge.requirement_data = value
+        return
+      end
     end
   end
 
@@ -59,6 +56,6 @@ class Admin::BadgesController < Admin::BaseController
   end
 
   def badge_params
-    params.require(:badge).permit(:title, :picture, :requirement_id, :requirement_data)
+    params.require(:badge).permit(:title, :picture, :requirement_id)
   end
 end

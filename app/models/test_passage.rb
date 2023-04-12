@@ -7,10 +7,6 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  scope :joins_test_by_category_id, lambda { |category_id|
-                                      joins(:test).where(tests: { category_id: category_id })
-                                    }
-
   before_validation :before_validation_set_first_question, on: :create
   before_update :before_update_set_next_question
 

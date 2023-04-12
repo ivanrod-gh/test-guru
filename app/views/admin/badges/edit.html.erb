@@ -3,11 +3,7 @@
 <% elsif @badge.requirement_id == 3 %>
   <div class="hide info-required-id" data-required-id="<%= Category.where('id < ?', @badge.requirement_data).count + 1 %>"></div>
 <% elsif @badge.requirement_id == 4 %>
-  <% if @badge.requirement_data == '50' %>
-    <div class="hide info-required-id" data-required-id="<%= 50 %>"></div>
-  <% else %>
-    <div class="hide info-required-id" data-required-id="<%= 100 %>"></div>
-  <% end %>
+  <div class="hide info-required-id" data-required-id="<%= @badge.requirement_data.to_i / 50 %>"></div>
 <% end %>
 
 <div class="row table-border">

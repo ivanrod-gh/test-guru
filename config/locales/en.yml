@@ -36,8 +36,9 @@ en:
         title: "Title"
         picture: "Picture"
         requirement_id: "Requirement"
-        test_id: "Test"
-        category_id: "Category"
+        required_test_id: "Test"
+        required_category_id: "Category"
+        required_percent: "Percent"
       category:
         title: "Title"
       question:
@@ -112,8 +113,8 @@ en:
         correct_false: "This is the wrong Answer"
     badges:
       badge:
-        no_test: "The specified Test does not exist"
-        no_category: "The specified Category does not exist"
+        test_doesnt_exist: "The specified Test does not exist"
+        category_doesnt_exist: "The specified Category does not exist"
         delete_confirmation: "Are you sure? This action will permanently delete badge!"
       create:
         success: "Badge created successfully!"
