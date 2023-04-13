@@ -13,7 +13,7 @@ class TestPassagesController < ApplicationController
     @test_passage.accept!(params[:answer_ids])
     if @test_passage.completed?
       @test_passage.check_successful
-      BadgeAchievementService.new(@test_passage).calculate_achievements
+      BadgeAchievementService.new(@test_passage).call if @test_passage.check_successful
       TestsMailer.completed_test(@test_passage).deliver_now if @test_passage.successful
       redirect_to result_test_passage_path(@test_passage)
     else
