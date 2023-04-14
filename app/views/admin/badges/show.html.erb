@@ -1,0 +1,13 @@
+<div class="row table-border">
+  <div class="col-md-8 table-border">
+    <div><%= t('.title') %>: <%= @badge.title %></div>
+    <div><%= t('.picture') %>: <%= @badge.picture %></div>
+    <div><%= t('.author') %>: <%= @badge.author.first_name %> <%= @badge.author.last_name %></div>
+    <div><%= t('.requirements') %>: <%= @badge.requirement.description %></div>
+    <div><%= t('.requirements_data') %>: <%= @badge.requirement_data %></div>
+  </div>
+  <div class="col-md-4 table-border">
+    <div><%= link_to t('.back'), admin_badges_path, method: :get %></div>
+    <div><%= link_to t('.edit'), edit_admin_badge_path(@badge), method: :get %></div>
+  </div>
+</div>

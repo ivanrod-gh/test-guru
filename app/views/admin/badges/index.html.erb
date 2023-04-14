@@ -1,0 +1,22 @@
+<div class="row table-border">
+  <div class="col-md-8 table-border" align="center">
+    <%= t('.header') %>
+  </div>
+  <div class="col-md-4 table-border">
+    <%= link_to t('.new'), new_admin_badge_path, method: :get %>
+  </div>
+</div>
+<div class="row  table-border" align="center">
+  <div class="col-md-4 table-border">
+    <%= t('.title') %>
+  </div>
+  <div class="col-md-4 table-border">
+    <%= t('.picture') %>
+  </div>
+  <div class="col-md-4 table-border">
+    <%= t('admin.author_actions.header') %>
+  </div>
+</div>
+<div id="table-with-values">
+  <%= render @badges %>
+</div>

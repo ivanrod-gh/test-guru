@@ -8,6 +8,9 @@ ru:
       answer:
         create: "Добавить"
         update: "Внести изменения"
+      badge:
+        create: "Создать бейдж"
+        update: "Внести изменения"
       question:
         create: "Добавить"
         update: "Внести изменения"
@@ -29,6 +32,13 @@ ru:
         correct: "Верный"
         question: "Вопрос"
         question_id: "Вопрос"
+      badge:
+        title: "Название"
+        picture: "Изображение"
+        requirement_id: "Требование"
+        required_test_id: "Тест"
+        required_category_id: "Категория"
+        required_percent: "Процент"
       category:
         title: "Название"
       question:
@@ -101,6 +111,38 @@ ru:
         back: "Вернуться к вопросу"
         correct_true: "Это верный ответ"
         correct_false: "Это неверный ответ"
+    badges:
+      badge:
+        test_doesnt_exist: "Указанный тест не существует"
+        category_doesnt_exist: "Указанная категория не существует"
+        delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь бейдж!"
+      create:
+        success: "Бейдж успешно создан!"
+      edit:
+        header: "Редактировать бейдж"
+        back: "Вернуться к списку бейджей"
+        watch: "Просмотреть бейдж"
+        delete: "Удалить бейдж"
+        delete_confirmation: "Вы уверены? Это действие безвозвратно удалит бейдж!"
+      index:
+        header: "Список всех бейджей"
+        new: "Создать новый бейдж"
+        title: "Название"
+        picture: "Изображение"
+      new:
+        header: "Создать новый бейдж"
+        back: "Вернуться к списку бейджей"
+      show:
+        title: "Название"
+        author: "Автор"
+        picture: "Изображение"
+        back: "Вернуться к списку бейджей"
+        edit: "Редактировать бейдж"
+        requirements: "Требования к получению"
+        requirements_data: "Данные требований"
+    gists:
+      index:
+        empty: "Записи отсутствуют"
     questions:
       new:
         header: "Создать вопрос для теста"
@@ -137,9 +179,13 @@ ru:
         title: "Название"
         questions_count: "Вопр."
         test: "Тест"
+        empty: "Записи отсутствуют"
       new:
         header: "Создать новый тест"
         back: "Вернуться к списку тестов"
+      publish:
+        requirements: "Для публикации тест должен соответствовать минимальным требованиям"
+        success: "Тест опубликован"
       show:
         category: "Категория"
         title: "Название"
@@ -148,25 +194,21 @@ ru:
         back: "Вернуться к списку тестов"
         edit: "Редактировать тест"
         add_question: "Добавить вопрос"
-        admin_required!: "Для просмотра этой страницы у вас недостаточно прав доступа"
         publishing: "Публикация:"
         publish: "опубликовать"
         unpublish: "снять с публикации"
         state: "Состояние:"
         published: "опубликован и доступен для прохождения"
         unpublished: "не опубликован"
-      publish:
-        requirements: "Для публикации тест должен соответствовать минимальным требованиям"
-        success: "Тест опубликован"
-      unpublish:
-        success: "Тест снят с публикации"
-      test:
-        delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
-        start: "Начать"
       state:
         questions_count: "Минимальное количество вопросов в тесте - %{count}"
         test_question_answers_count: "Минимальное количество ответов у вопроса (%{body}) - %{count}"
         test_question_right_answers_count: "Минимальное количество правильных ответов у вопроса (%{body}) - %{count}"
+      test:
+        delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
+        start: "Начать"
+      unpublish:
+        success: "Тест снят с публикации"
     author_actions:
       header: "Действия автора"
       watch: "Смотреть"
@@ -174,6 +216,15 @@ ru:
       cancel: "Отмена"
       delete: "Удалить"
       delete_confirmation: "Вы уверены?"
+  badges:
+    index:
+      header: "Список всех бейджей"
+    show:
+      my_badges: "Мои бейджи"
+      all_badges: "Все бейджи"
+  gurus:
+    badge_achievements:
+      all_achieved_badges: "Все полученные бейджи:"
   tests:
     index:
       header: "Список всех тестов"
@@ -181,6 +232,7 @@ ru:
       questions_count: "Вопр."
       test: "Тест"
       actions: "Действия автора"
+      empty: "Записи отсутствуют"
     test:
       start: "Начать"
     start:
@@ -191,6 +243,9 @@ ru:
       back: "Вернуться к списку тестов"
       success: "Вы дали %{complete_percent}% правильных ответов и успешно прошли тест!"
       failure: "Вы дали %{complete_percent}% правильных ответов и не прошли тест!"
+      awarded_with_badges: "За прохождение этого теста вы получили следующие бейджи:"
+      my_badges: "Мои бейджи"
+      all_badges: "Все бейджи"
     show:
       create_gist: "Возникли сложности? Создать Gist"
       header: "Вы проходите тест:"
@@ -223,6 +278,7 @@ ru:
       header: "Вопрос о тесте \"%{test_title}\" и его вопросе с TestGuru"
 
   shared:
+    admin_required!: "Для просмотра этой страницы у вас недостаточно прав доступа"
     application:
       feedback: "обратная связь"
     errors:
@@ -233,9 +289,14 @@ ru:
         other: "Обнаружено %{count} ошибок:"
     nav:
       exit: "Выход"
+      confirm: "Вы уверены?"
       guru: "Гуру"
       sign_up: "Регистрация"
       sign_in: "Войти"
+      tests: "Тесты"
+      badges: "Бейджи"
+      gists: "Гисты"
+      my_badges: "Мои бейджи"
 
   tests_mailer:
     completed_test:

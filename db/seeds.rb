@@ -3003,6 +3003,169 @@ Test.all.each do |test|
   test.calculate_test_passable
 end
 
+# Add badge requirements
+BadgeRequirement.create(
+  description: 'Тест пройден с первой попытки'
+)
+BadgeRequirement.create(
+  description: 'Тест пройден на 100%'
+)
+BadgeRequirement.create(
+  description: 'Пройдены все тесты определенной категории'
+)
+BadgeRequirement.create(
+  description: 'Пройден определенный % от всех тестов'
+)
+
+# Add badges
+Badge.create!(
+  title: "Тест 'Основы HTML' пройден с первой попытки",
+  picture: "/badge/first_html_basic.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 1),
+  requirement_data: 1
+)
+Badge.create(
+  title: "Тест 'Основы Ruby' пройден с первой попытки",
+  picture: "/badge/first_ruby_basic.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 1),
+  requirement_data: 2
+)
+Badge.create(
+  title: "Тест 'Основы Java' пройден с первой попытки",
+  picture: "/badge/first_java_basic.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 1),
+  requirement_data: 3
+)
+Badge.create(
+  title: "Тест 'Основы JavaScript' пройден с первой попытки",
+  picture: "/badge/first_javascript_basic.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 1),
+  requirement_data: 4
+)
+Badge.create(
+  title: "Викторина 'Планеты солнечной системы' пройдена с первой попытки",
+  picture: "/badge/first_quiz_solar.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 1),
+  requirement_data: 5
+)
+Badge.create(
+  title: "Викторина 'Да/нет' пройдена с первой попытки",
+  picture: "/badge/first_quiz_yesno.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 1),
+  requirement_data: 6
+)
+Badge.create(
+  title: "Викторина 'Животные' пройдена с первой попытки",
+  picture: "/badge/first_quiz_animals.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 1),
+  requirement_data: 7
+)
+Badge.create(
+  title: "Пройдены 'Основы HTML' на 100%",
+  picture: "/badge/100_html_basic.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 2),
+  requirement_data: 1
+)
+Badge.create(
+  title: "Пройдены 'Основы Ruby' на 100%",
+  picture: "/badge/100_ruby_basic.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 2),
+  requirement_data: 2
+)
+Badge.create(
+  title: "Пройдены 'Основы Java' на 100%",
+  picture: "/badge/100_java_basic.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 2),
+  requirement_data: 3
+)
+Badge.create(
+  title: "Пройдены 'Основы JavaScript' на 100%",
+  picture: "/badge/100_javascript_basic.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 2),
+  requirement_data: 4
+)
+Badge.create(
+  title: "Пройдена 'Викторина: Планеты солнечной системы' на 100%",
+  picture: "/badge/100_quiz_solar.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 2),
+  requirement_data: 5
+)
+Badge.create(
+  title: "Пройдена 'Викторина: Да/нет' на 100%",
+  picture: "/badge/100_quiz_yesno.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 2),
+  requirement_data: 6
+)
+Badge.create(
+  title: "Пройдена 'Викторина: Животные' на 100%",
+  picture: "/badge/100_quiz_animals.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 2),
+  requirement_data: 7
+)
+Badge.create(
+  title: "Пройдены все тесты категории 'HTML'",
+  picture: "/badge/all_html.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 3),
+  requirement_data: 1
+)
+Badge.create(
+  title: "Пройдены все тесты категории 'Ruby'",
+  picture: "/badge/all_ruby.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 3),
+  requirement_data: 2
+)
+Badge.create(
+  title: "Пройдены все тесты категории 'Java'",
+  picture: "/badge/all_java.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 3),
+  requirement_data: 3
+)
+Badge.create(
+  title: "Пройдены все тесты категории 'JavaScript'",
+  picture: "/badge/all_javascript.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 3),
+  requirement_data: 4
+)
+Badge.create(
+  title: "Пройдены все викторины",
+  picture: "/badge/all_quiz.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 3),
+  requirement_data: 5
+)
+Badge.create(
+  title: "Пройдена половина тестов!",
+  picture: "/badge/site_50.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 4),
+  requirement_data: 50
+)
+Badge.create(
+  title: "Пройдены все тесты!",
+  picture: "/badge/site_100.png",
+  author: User.find_by(id: rand(1..User.count)),
+  requirement: BadgeRequirement.find_by(id: 4),
+  requirement_data: 100
+)
+
 # def show_users
 #   puts "All users stats:"
 #   User.all.each do |user|

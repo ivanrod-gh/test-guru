@@ -1,20 +1,49 @@
-<div class="row user-nav">
-  <div class="col-md-6">
+<div class="row user-nav align-items-center">
+  <div class="col-lg-6 col-sm-12">
     <div class="d-flex justify-content-start align-items-center">
-      <div class="p-2 me-3"><%= link_to 'TestGuru', root_path, { class: 'brand-link' } %></div>
+      <div class="p-2"><%= link_to 'TestGuru', root_path, { class: 'brand-link' } %></div>
+      <div class="dropdown me-3">
+        <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= octicon 'multi-select', height: '32' %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="<%= tests_path %>"><%= t('shared.nav.tests') %></a></li>
+          <li><a class="dropdown-item" href="<%= badges_path %>"><%= t('shared.nav.badges') %></a></li>
+        </ul>
+      </div>
       <% if admin? %>
         <div class="p-2"><%= link_to 'Admin', admin_tests_path, { class: 'brand-link' } %></div>
+        <div class="dropdown me-3">
+          <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= octicon 'multi-select', height: '32' %>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="<%= admin_tests_path %>"><%= t('shared.nav.tests') %></a></li>
+            <li><a class="dropdown-item" href="<%= admin_badges_path %>"><%= t('shared.nav.badges') %></a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="<%= admin_gists_path %>"><%= t('shared.nav.gists') %></a></li>
+          </ul>
+        </div>
       <% end %>
     </div>
   </div>
-  <div class="col-md-6">
+  <div class="col-lg-6 col-sm-12">
     <div class="d-flex justify-content-end align-items-center">
       <% if user_signed_in? %>
         <div class="p-2"><%= button_to 'ru', tests_path, method: :get, params: { lang: "ru" } %></div>
-        <div class="p-2 me-5"><%= button_to 'en', tests_path, method: :get, params: { lang: "en" } %></div>
+        <div class="p-2 me-3"><%= button_to 'en', tests_path, method: :get, params: { lang: "en" } %></div>
         <div class="p-2">
           <div align="right"><%= t('shared.nav.guru') %> <b><%= current_user.first_name %></b></div>
-          <div align="right"><%= link_to t('shared.nav.exit'), destroy_user_session_path, { method: :delete, data: { confirm: 'Вы уверены?' }, class: 'no-decoration-link' } %></div>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= octicon 'gear' %>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="<%= badge_achievements_guru_path(current_user) %>"><%= t('.my_badges') %></a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to t('shared.nav.exit'), destroy_user_session_path, { method: :delete, data: { confirm: t('shared.nav.confirm') }, class: 'dropdown-item' } %></li>
+          </ul>
         </div>
       <% else %>
         <div class="p-2"><%= button_to 'ru', new_user_session_path, method: :get, params: { lang: "ru" } %></div>

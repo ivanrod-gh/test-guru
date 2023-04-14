@@ -49,11 +49,10 @@ class Admin::TestsController < Admin::BaseController
     @test.calculate_test_passable
     if @test.published
       flash.now[:notice] = t('.success')
-      render :show
     else
       flash.now[:alert] = t('.requirements')
-      render :show
     end
+    render :show
   end
 
   def unpublish

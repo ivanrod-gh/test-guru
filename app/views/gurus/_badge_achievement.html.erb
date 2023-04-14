@@ -1,0 +1,7 @@
+<% badge_achievements.each do |badge_achievement| %>
+<div class="row">
+  <div class="col-md-12 mb-3" align="center">
+    <a href="<%= badge_path(badge_achievement.badge) %>"><img src="<%= badge_achievement.badge.picture %>"></a>
+  </div>
+</div>
+<% end %>

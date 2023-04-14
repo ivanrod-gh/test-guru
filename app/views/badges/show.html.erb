@@ -1,0 +1,12 @@
+<div class="row mt-5" align="center">
+  <div>
+    <img src="<%= @badge.picture %>">
+  </div>
+  <div class="mt-2">
+    <%= @badge.title %>
+  </div>
+  <div class="mt-5">
+   <%= link_to t('.my_badges'), badge_achievements_guru_path(current_user) %> /
+   <%= link_to t('.all_badges'), badges_path %>
+  </div>
+</div>

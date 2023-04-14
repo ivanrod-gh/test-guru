@@ -1,0 +1,18 @@
+<% if @badge.requirement_id == 1 || @badge.requirement_id == 2 %>
+  <div class="hide info-required-id" data-required-id="<%= Test.where('id < ?', @badge.requirement_data).count + 1 %>"></div>
+<% elsif @badge.requirement_id == 3 %>
+  <div class="hide info-required-id" data-required-id="<%= Category.where('id < ?', @badge.requirement_data).count + 1 %>"></div>
+<% elsif @badge.requirement_id == 4 %>
+  <div class="hide info-required-id" data-required-id="<%= @badge.requirement_data.to_i / 50 %>"></div>
+<% end %>
+
+<div class="row table-border">
+  <div class="col-md-8 table-border">
+    <%= render 'form' %>
+  </div>
+  <div class="col-md-4 table-border">
+    <div><%= link_to t('.back'), admin_badges_path, method: :get %></div>
+    <div><%= link_to t('.watch'), admin_badge_path(@badge), method: :get %></div>
+    <div><%= link_to t('.delete'), admin_badge_path(@badge), method: :delete, data: { confirm: t('.delete_confirmation')}, style: "color: red" %></div>
+  </div>
+</div>

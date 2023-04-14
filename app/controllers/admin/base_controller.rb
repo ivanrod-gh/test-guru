@@ -8,6 +8,6 @@ class Admin::BaseController < ApplicationController
   protected
 
   def admin_required!
-    redirect_to root_path, alert: t('.admin_required!') unless admin?
+    redirect_to root_path, alert: t('shared.admin_required!') unless admin?
   end
 end
