@@ -5,6 +5,7 @@ class Test < ApplicationRecord
   QUESTIONS_ANSWERS_MIN_COUNT = 2
   QUESTIONS_RIGHT_ANSWERS_MIN_COUNT = 1
   MAXIMUM_QUESTION_SHORT_BODY_LENGTH = 5
+  MINIMUM_EXECUTION_TIME = 5
 
   belongs_to :category
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
@@ -22,16 +23,17 @@ class Test < ApplicationRecord
   scope :published, -> { where(published: true) }
 
   scope :joins_test_passages_by_category_id, lambda { |category_id|
-                                      joins(:test_passages).where(category_id: category_id)
-                                    }
+                                               joins(:test_passages).where(category_id: category_id)
+                                             }
 
   scope :passage_successful_by_user, lambda { |user|
-                                      where("test_passages.user_id = ? AND successful = true", user.id)
-                                    }
+                                       where("test_passages.user_id = ? AND successful = true", user.id)
+                                     }
 
   validates :title, presence: true
-  validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :title, uniqueness: { scope: :level }
+  validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validate :validate_execution_time_if_specified
 
   def self.test_names_reversed_by_category(category_title)
     joins_category_by_title(category_title).order(title: :desc).pluck(:title)
@@ -50,6 +52,10 @@ class Test < ApplicationRecord
   end
 
   private
+
+  def validate_execution_time_if_specified
+    errors.add(:base, I18n.t('admin.tests.state.minimum_execution_time')) if time && time < MINIMUM_EXECUTION_TIME
+  end
 
   def check_test_questions_count
     if questions.count < QUESTIONS_MIN_COUNT

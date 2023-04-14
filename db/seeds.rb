@@ -37,37 +37,44 @@ end
 Test.create!(
   title: 'Основы HTML',
   category: Category.find_by(title: 'HTML'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 25
 )
 Test.create!(
   title: 'Основы Ruby',
   category: Category.find_by(title: 'Ruby'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 25
 )
 Test.create!(
   title: 'Основы Java',
   category: Category.find_by(title: 'Java'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 25
 )
 Test.create!(
   title: 'Основы JavaScript',
   category: Category.find_by(title: 'JavaScript'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 25
 )
 Test.create!(
   title: 'Викторина: Планеты солнечной системы',
   category: Category.find_by(title: 'Викторины'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 15
 )
 Test.create!(
   title: 'Викторина: Да/нет',
   category: Category.find_by(title: 'Викторины'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 15
 )
 Test.create!(
   title: 'Викторина: Животные',
   category: Category.find_by(title: 'Викторины'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 15
 )
 
 # Basic HTML: questions/answers
@@ -2962,7 +2969,8 @@ if Rails.env != 'production'
           title: "Болванка [#{Category.find(db_category_id + 1).title}] уровень #{i + 1} номер #{j + 1}",
           category: Category.find_by(id: db_category_id + 1),
           author: User.find_by(id: rand(1..User.count)),
-          level: test_level
+          level: test_level,
+          time: 20
         )
       end
     end

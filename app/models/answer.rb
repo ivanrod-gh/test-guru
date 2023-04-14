@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Answer < ApplicationRecord
+  MAXIMUM_ANSWERS_COUNT = 4
+
   belongs_to :question
 
   scope :corrects, -> { where(correct: true) }
@@ -11,7 +13,9 @@ class Answer < ApplicationRecord
   private
 
   def validate_answer_count
-    errors.add(:base, "Количество ответов у одного вопроса не может быть более 4") if
-      Answer.where(question_id: question.id).count >= 4
+    answers_count = Answer.where(question_id: question.id).count
+    return if answers_count < MAXIMUM_ANSWERS_COUNT
+
+    errors.add(:base, I18n.t('admin.answers.state.maximum_answers_count', count: answers_count))
   end
 end

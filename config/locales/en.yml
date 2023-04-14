@@ -53,6 +53,7 @@ en:
         level: "Level"
         user: "User"
         user_id: "User"
+        time: "Optional - execution time (in minutes)"
       test_passage:
         user: "User"
         user_id: "User"
@@ -111,6 +112,8 @@ en:
         back: "Back to Question"
         correct_true: "This is the correct Answer"
         correct_false: "This is the wrong Answer"
+      state:
+        maximum_answers_count: "The number of answers for one question cannot be more than %{count}"
     badges:
       badge:
         test_doesnt_exist: "The specified Test does not exist"
@@ -200,10 +203,12 @@ en:
         state: "State:"
         published: "published and available for passage"
         unpublished: "unpublished"
+        time: "Execution time (in minutes)"
       state:
         questions_count: "Minimum questions count in the Test - %{count}"
         test_question_answers_count: "Minimum answers count for question (%{body}) - %{count}"
         test_question_right_answers_count: "Minimum right answers count for question (%{body}) - %{count}"
+        minimum_execution_time: "Minimum test execution time (if specified) - 5 minutes"
       test:
         delete_confirmation: "Are you sure? This action will permanently delete the entire Test!"
         start: "Start"
@@ -253,6 +258,7 @@ en:
       next_question: "Next question"
       back: "Back to Tests list"
       back_confirmation: "Interrupt execution of the Test?"
+      timer: "Timer"
 
   feedbacks:
     new:

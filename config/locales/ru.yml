@@ -53,6 +53,7 @@ ru:
         level: "Уровень"
         user: "Пользователь"
         user_id: "Пользователь"
+        time: "Необязательно - время выполнения (в минутах)"
       test_passage:
         user: "Пользователь"
         user_id: "Пользователь"
@@ -111,6 +112,8 @@ ru:
         back: "Вернуться к вопросу"
         correct_true: "Это верный ответ"
         correct_false: "Это неверный ответ"
+      state:
+        maximum_answers_count: "Количество ответов у одного вопроса не может быть более %{count}"
     badges:
       badge:
         test_doesnt_exist: "Указанный тест не существует"
@@ -200,10 +203,12 @@ ru:
         state: "Состояние:"
         published: "опубликован и доступен для прохождения"
         unpublished: "не опубликован"
+        time: "Время выполнения (в минутах)"
       state:
         questions_count: "Минимальное количество вопросов в тесте - %{count}"
         test_question_answers_count: "Минимальное количество ответов у вопроса (%{body}) - %{count}"
         test_question_right_answers_count: "Минимальное количество правильных ответов у вопроса (%{body}) - %{count}"
+        minimum_execution_time: "Минимальное время выполнения теста (если указано) - 5 минут"
       test:
         delete_confirmation: "Вы уверены? Это действие безвозвратно удалит весь тест!"
         start: "Начать"
@@ -253,6 +258,7 @@ ru:
       next_question: "Следующий вопрос"
       back: "Вернуться к списку тестов"
       back_confirmation: "Прервать выполнение теста?"
+      timer: "Таймер"
 
   feedbacks:
     new:
