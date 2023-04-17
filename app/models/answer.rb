@@ -13,7 +13,7 @@ class Answer < ApplicationRecord
   private
 
   def validate_answer_count
-    answers_count = Answer.where(question_id: question.id).count
+    answers_count = question.answers.count
     return if answers_count < MAXIMUM_ANSWERS_COUNT
 
     errors.add(:base, I18n.t('admin.answers.state.maximum_answers_count', count: answers_count))

@@ -39,16 +39,15 @@ class TestPassage < ApplicationRecord
     test.questions.count
   end
 
-  def update_self_updated_at
-    update(updated_at: Time.current)
-  end
+  def expired?
+    return false if self.test.time.nil?
 
-  def time_passed
-    (updated_at - created_at).to_i
+    time_passed > self.test.time * 60
   end
 
   def time_left
     return nil if self.test.time.nil?
+
     (test.time * 60) - time_passed
   end
 
@@ -64,5 +63,9 @@ class TestPassage < ApplicationRecord
 
   def correct_answers
     current_question.answers.corrects
+  end
+
+  def time_passed
+    (Time.current - created_at).to_i
   end
 end

@@ -6,12 +6,12 @@ class TestPassagesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_passage_not_found
 
   def show
-    @test_passage.update_self_updated_at if @test_passage.test.time.present?
+    stop_passage if @test_passage.expired?
     redirect_to result_test_passage_path(@test_passage) if @test_passage.current_question.nil?
   end
 
   def update
-    time_enough? ? @test_passage.accept!(params[:answer_ids]) : stop_passage
+    @test_passage.expired? ? stop_passage : @test_passage.accept!(params[:answer_ids])
     if @test_passage.completed?
       @test_passage.check_successful
       BadgeAchievementService.new(@test_passage).call if @test_passage.check_successful
@@ -22,19 +22,14 @@ class TestPassagesController < ApplicationController
     end
   end
 
-  def result; end
+  def result
+    redirect_to test_passage_path(@test_passage) unless @test_passage.completed?
+  end
 
   private
 
   def find_test_passage
     @test_passage = TestPassage.find(params[:id])
-  end
-
-  def time_enough?
-    return true if @test_passage.test.time.nil?
-
-    @test_passage.update_self_updated_at
-    @test_passage.time_passed <= @test_passage.test.time * 60
   end
 
   def stop_passage

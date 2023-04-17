@@ -8,28 +8,25 @@ function timer_controller() {
   if (!time) return
   $('.test-timer').show()
 
+  setTimer(time)
+
+  var timer = setInterval(function() {
+    time--
+    setTimer(time)
+    if (time <= -2) {
+      clearInterval(timer)
+      window.location.reload()
+    }
+  }, 1000)
+}
+
+function setTimer(time) {
   if (time < 1) {
-    document.querySelector('#test_timer').textContent = generateTimerString(0)
-    time = 1
+    document.querySelector('.test-timer').style.color = 'red'
+    document.querySelector('#test_timer_string').textContent = generateTimerString(0)
   } else {
-    document.querySelector('#test_timer').textContent = generateTimerString(time)
+    document.querySelector('#test_timer_string').textContent = generateTimerString(time)
   }
-
-  function changeTimer() {
-    setTimeout(function() {
-      time--
-      document.querySelector('#test_timer').textContent = generateTimerString(time)
-      if (time > 0) {
-        changeTimer()
-      }
-      else {
-        document.querySelector('.test-timer').style.color = 'red'
-        return
-      }
-    }, 1000)
-  }
-
-  changeTimer()
 }
 
 function generateTimerString(time) {
