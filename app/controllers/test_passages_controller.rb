@@ -11,7 +11,8 @@ class TestPassagesController < ApplicationController
   end
 
   def update
-    @test_passage.expired? ? stop_passage : @test_passage.accept!(params[:answer_ids])
+    @test_passage.accept!(params[:answer_ids])
+    stop_passage if @test_passage.expired?
     if @test_passage.completed?
       @test_passage.check_successful
       BadgeAchievementService.new(@test_passage).call if @test_passage.check_successful

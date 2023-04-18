@@ -15,7 +15,7 @@ function timer_controller() {
     setTimer(time)
     if (time <= -2) {
       clearInterval(timer)
-      window.location.reload()
+      document.querySelector('#input_form').lastElementChild.submit()
     }
   }, 1000)
 }

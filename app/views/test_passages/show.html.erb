@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div id="input_form">
       <p><%= t('.question_number', current_question_number: @test_passage.current_question_number, questions_count: @test_passage.questions_count) %> <b><%= @test_passage.current_question.body %></b></p>
       <%= form_with url: test_passage_path(@test_passage), method: :put, local: true do |form| %>
         <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
