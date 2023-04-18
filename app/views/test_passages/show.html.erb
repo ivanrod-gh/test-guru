@@ -2,6 +2,9 @@
       data-current-progress="<%= @test_passage.current_question_number %>"
       data-maximum-progress="<%= @test_passage.questions_count %>">
 </span>
+<span class="hide info-time-left timer-js"
+      data-time-left="<%= @test_passage.time_left %>">
+</span>
 
 <div class="row table-border">
   <div class="col-md-12">
@@ -10,8 +13,11 @@
           <div class="col-md-3">
             <%= t('.header') %>
           </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
           <b><%= @test_passage.test.title %></b>
+        </div>
+        <div class="test-timer col-md-3" style="display: none;">
+          <%= t('.timer') %>: <span id=test_timer_string></span>
         </div>
       </div>
       <div class="mt-2 mb-4">
@@ -27,7 +33,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div id="input_form">
       <p><%= t('.question_number', current_question_number: @test_passage.current_question_number, questions_count: @test_passage.questions_count) %> <b><%= @test_passage.current_question.body %></b></p>
       <%= form_with url: test_passage_path(@test_passage), method: :put, local: true do |form| %>
         <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>

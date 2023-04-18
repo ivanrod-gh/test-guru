@@ -34,44 +34,51 @@ else
   end
 end
 
-Test.create!(
+test_basic_html = Test.create!(
   title: 'Основы HTML',
   category: Category.find_by(title: 'HTML'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 25
 )
-Test.create!(
+test_basic_ruby = Test.create!(
   title: 'Основы Ruby',
   category: Category.find_by(title: 'Ruby'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 25
 )
-Test.create!(
+test_basic_java = Test.create!(
   title: 'Основы Java',
   category: Category.find_by(title: 'Java'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 25
 )
-Test.create!(
+test_basic_java_script = Test.create!(
   title: 'Основы JavaScript',
   category: Category.find_by(title: 'JavaScript'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 25
 )
-Test.create!(
+test_quiz_planets = Test.create!(
   title: 'Викторина: Планеты солнечной системы',
   category: Category.find_by(title: 'Викторины'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 15
 )
-Test.create!(
+test_quiz_yes_no = Test.create!(
   title: 'Викторина: Да/нет',
   category: Category.find_by(title: 'Викторины'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 15
 )
-Test.create!(
+test_quiz_animals = Test.create!(
   title: 'Викторина: Животные',
   category: Category.find_by(title: 'Викторины'),
-  author: User.find_by(id: rand(1..User.count))
+  author: User.find_by(id: rand(1..User.count)),
+  time: 15
 )
 
 # Basic HTML: questions/answers
-current_test = Test.find_by(title: 'Основы HTML')
+current_test = test_basic_html
 question = current_test.questions.new(
   body: 'О чем говорит тэг <p align="right"> … </p>?'
 )
@@ -762,7 +769,7 @@ question.answers.new(
 question.save!
 
 # Basic Ruby: questions/answers
-current_test = Test.find_by(title: 'Основы Ruby')
+current_test = test_basic_ruby
 question = current_test.questions.new(
   body: 'Где записана сокращенная форма кода ниже:
 x = x / 3'
@@ -1116,7 +1123,7 @@ question.answers.new(
 question.save!
 
 # Basic Java: questions/answers
-current_test = Test.find_by(title: 'Основы Java')
+current_test = test_basic_java
 question = current_test.questions.new(
   body: 'Какой результат работы данного кода?
 public static void main(String[] args) {
@@ -1880,7 +1887,7 @@ question.answers.new(
 question.save!
 
 # Basic Java Script: questions/answers
-current_test = Test.find_by(title: 'Основы JavaScript')
+current_test = test_basic_java_script
 question = current_test.questions.new(
   body: 'Какую функцию нужно использовать, чтобы пользователь мог ввести свой текст
   (ответ) в окошке?'.gsub("\n ", '')
@@ -2393,7 +2400,7 @@ question.answers.new(
 question.save!
 
 # Quiz: Planets: questions/answers
-current_test = Test.find_by(title: 'Викторина: Планеты солнечной системы')
+current_test = test_quiz_planets
 question = current_test.questions.new(
   body: 'Сколько спутников у Марса?',
   answer_explanation: 'У Марса два спутника: Фобос и Деймос.'
@@ -2599,7 +2606,7 @@ question.answers.new(
 question.save!
 
 # Quiz: Yes/No: questions/answers
-current_test = Test.find_by(title: 'Викторина: Да/нет')
+current_test = test_quiz_yes_no
 question = current_test.questions.new(
   body: 'Быки реагируют на красный цвет?',
   answer_explanation: 'Быки практически не различают цветов. В корриде они реагируют
@@ -2747,7 +2754,7 @@ question.answers.new(
 question.save!
 
 # Quiz: Animals: questions/answers
-current_test = Test.find_by(title: 'Викторина: Животные')
+current_test = test_quiz_animals
 question = current_test.questions.new(
   body: 'Какая кошка самая большая на планете?',
   answer_explanation: 'Крупнейший подвид животного обитает в Сибири и достигает веса
@@ -2962,7 +2969,8 @@ if Rails.env != 'production'
           title: "Болванка [#{Category.find(db_category_id + 1).title}] уровень #{i + 1} номер #{j + 1}",
           category: Category.find_by(id: db_category_id + 1),
           author: User.find_by(id: rand(1..User.count)),
-          level: test_level
+          level: test_level,
+          time: 20
         )
       end
     end
@@ -3004,16 +3012,16 @@ Test.all.each do |test|
 end
 
 # Add badge requirements
-BadgeRequirement.create(
+BadgeRequirement.create!(
   description: 'Тест пройден с первой попытки'
 )
-BadgeRequirement.create(
+BadgeRequirement.create!(
   description: 'Тест пройден на 100%'
 )
-BadgeRequirement.create(
+BadgeRequirement.create!(
   description: 'Пройдены все тесты определенной категории'
 )
-BadgeRequirement.create(
+BadgeRequirement.create!(
   description: 'Пройден определенный % от всех тестов'
 )
 
@@ -3025,140 +3033,140 @@ Badge.create!(
   requirement: BadgeRequirement.find_by(id: 1),
   requirement_data: 1
 )
-Badge.create(
+Badge.create!(
   title: "Тест 'Основы Ruby' пройден с первой попытки",
   picture: "/badge/first_ruby_basic.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 1),
   requirement_data: 2
 )
-Badge.create(
+Badge.create!(
   title: "Тест 'Основы Java' пройден с первой попытки",
   picture: "/badge/first_java_basic.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 1),
   requirement_data: 3
 )
-Badge.create(
+Badge.create!(
   title: "Тест 'Основы JavaScript' пройден с первой попытки",
   picture: "/badge/first_javascript_basic.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 1),
   requirement_data: 4
 )
-Badge.create(
+Badge.create!(
   title: "Викторина 'Планеты солнечной системы' пройдена с первой попытки",
   picture: "/badge/first_quiz_solar.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 1),
   requirement_data: 5
 )
-Badge.create(
+Badge.create!(
   title: "Викторина 'Да/нет' пройдена с первой попытки",
   picture: "/badge/first_quiz_yesno.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 1),
   requirement_data: 6
 )
-Badge.create(
+Badge.create!(
   title: "Викторина 'Животные' пройдена с первой попытки",
   picture: "/badge/first_quiz_animals.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 1),
   requirement_data: 7
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены 'Основы HTML' на 100%",
   picture: "/badge/100_html_basic.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 2),
   requirement_data: 1
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены 'Основы Ruby' на 100%",
   picture: "/badge/100_ruby_basic.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 2),
   requirement_data: 2
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены 'Основы Java' на 100%",
   picture: "/badge/100_java_basic.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 2),
   requirement_data: 3
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены 'Основы JavaScript' на 100%",
   picture: "/badge/100_javascript_basic.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 2),
   requirement_data: 4
 )
-Badge.create(
+Badge.create!(
   title: "Пройдена 'Викторина: Планеты солнечной системы' на 100%",
   picture: "/badge/100_quiz_solar.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 2),
   requirement_data: 5
 )
-Badge.create(
+Badge.create!(
   title: "Пройдена 'Викторина: Да/нет' на 100%",
   picture: "/badge/100_quiz_yesno.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 2),
   requirement_data: 6
 )
-Badge.create(
+Badge.create!(
   title: "Пройдена 'Викторина: Животные' на 100%",
   picture: "/badge/100_quiz_animals.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 2),
   requirement_data: 7
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены все тесты категории 'HTML'",
   picture: "/badge/all_html.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 3),
   requirement_data: 1
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены все тесты категории 'Ruby'",
   picture: "/badge/all_ruby.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 3),
   requirement_data: 2
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены все тесты категории 'Java'",
   picture: "/badge/all_java.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 3),
   requirement_data: 3
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены все тесты категории 'JavaScript'",
   picture: "/badge/all_javascript.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 3),
   requirement_data: 4
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены все викторины",
   picture: "/badge/all_quiz.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 3),
   requirement_data: 5
 )
-Badge.create(
+Badge.create!(
   title: "Пройдена половина тестов!",
   picture: "/badge/site_50.png",
   author: User.find_by(id: rand(1..User.count)),
   requirement: BadgeRequirement.find_by(id: 4),
   requirement_data: 50
 )
-Badge.create(
+Badge.create!(
   title: "Пройдены все тесты!",
   picture: "/badge/site_100.png",
   author: User.find_by(id: rand(1..User.count)),

@@ -6,11 +6,13 @@ class TestPassagesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_passage_not_found
 
   def show
+    stop_passage if @test_passage.expired?
     redirect_to result_test_passage_path(@test_passage) if @test_passage.current_question.nil?
   end
 
   def update
     @test_passage.accept!(params[:answer_ids])
+    stop_passage if @test_passage.expired?
     if @test_passage.completed?
       @test_passage.check_successful
       BadgeAchievementService.new(@test_passage).call if @test_passage.check_successful
@@ -21,12 +23,18 @@ class TestPassagesController < ApplicationController
     end
   end
 
-  def result; end
+  def result
+    redirect_to test_passage_path(@test_passage) unless @test_passage.completed?
+  end
 
   private
 
   def find_test_passage
     @test_passage = TestPassage.find(params[:id])
+  end
+
+  def stop_passage
+    @test_passage.update(current_question: nil)
   end
 
   def rescue_with_test_passage_not_found
